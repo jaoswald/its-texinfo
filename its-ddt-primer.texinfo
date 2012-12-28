@@ -16,7 +16,7 @@ $\key
 @ifinfo
 $$\key
 @end ifinfo
-@endmacro
+@end macro
 @copying
 This file is derived from PI:INFO;DDT.33 downloaded from up.update.uu.se.
 It claims to describe DDT version 696 with updates up to version 1000.
@@ -212,10 +212,9 @@ urgent that everyone should see them before using the system.
 of what fraction of the total CPU time is available to any one user.
 It is a measure of the load level on the system.  If it is down to
 10% or so, you might prefer to wait for the load to be less.
-
-File: DDT, Node: Login, Previous: Startup, Up: Top, Next: Files
 
-Logging in and out
+@node Login
+@chapter Logging in and out
 
    Logging in is the way a user identifies himself to the system and
 the other users.  One should generally log in soon after the beginning
@@ -375,10 +374,9 @@ detaching jobs from consoles and attaching jobs to consoles.  It can
 be used to move your jobs to another console, from either the old
 console, the new console, or someone else's console. 
 :REATTACH HELP<cr> will print its documentation. 
-
-File: DDT, Node: Files, Previous: Login, Up: Top, Next: Programs
 
-DDT's File-Manipulation Commands
+@node Files
+@chapter DDT's File-Manipulation Commands
 
    DDT provides commands for renaming, deleting, and copying files, as
 well as many other file operations.  File commands are followed by the
@@ -428,8 +426,8 @@ specifies DSK as the device name, RMS as the SNAME, FOO as the FN1 and
 information it pertains to, and the FN2 is the type of file or the
 version number of the file.  Thus, DDT's source file is
 SYSENG;DDT 626.  Its binary file is SYSBIN;DDT BIN.  When a listing is
-made, it has the file name DDT @XGP.  The names BIN and @XGP indicate
-the type of file (binary and @-listing, respectively), while the
+made, it has the file name DDT @@XGP.  The names BIN and @@XGP indicate
+the type of file (binary and @@-listing, respectively), while the
 common FN1 of the files indicates that they are all logically
 associated.  The FN2 of the source file, namely 626, is composed of
 just digits;  that identifies it as a version number.  By convention,
@@ -1344,7 +1342,7 @@ implemented by ITS directly.  For information on them, see the file
 .INFO.;ITS TTY. 
 
 :SEND <user> <message>^C
-:SEND <user>@<its> <message>^C
+:SEND <user>@@<its> <message>^C
 
 sends <message> to <user>.  Nothing actually happens until the ^C is
 type.
@@ -1383,7 +1381,7 @@ prints out your SENDS file.
 
 prints out <user>'s SENDS file.
 
-:PRSEND <user>@<its>
+:PRSEND <user>@@<its>
 checks <user>'s SENDS file on the specified ITS (one of AI, ML, DM, MC)
 
    After just :SEND <user><space> has been typed in, DDT checks
@@ -1481,7 +1479,7 @@ mail if it is other than your own mail.
 :PRMAIL <user> or <user>$^A sets a default, that ^A and $^A with no
 prefix argument use.
 
-:PRMAIL <user>@<its>
+:PRMAIL <user>@@<its>
 
 Prints out <user>'s mail file, looking only on <its>.  This is for
 the sake of people who get mail on more than one machine, and for an
@@ -2233,7 +2231,7 @@ argument or Q.  Even more useful, the two altmode variants such as
 / perform a PDP-10 effective address calculation on the argument or
 Q, and open the addressed location.  For example, suppose that A
 contains 5 and 1734 contains ADD T,FOO(A).  Then after 1734/, /
-would open location FOO+5.  @A/ would open location 5. 
+would open location FOO+5.  @@A/ would open location 5. 
 
    The commands to access the address ring buffer also examine and
 deposit memory locations, but in view of their special functions they
@@ -2329,16 +2327,16 @@ people redefine those formats in MIDAS to mean the same thing they
 mean in DDT, and perhaps someday MIDAS will be changed to be
 compatible. 
 
-   Just as in MIDAS, @ can be included in an instruction to set the
+   Just as in MIDAS, @@ can be included in an instruction to set the
 indirect bit, and a parenthesized expression can be used to specify
 the index field.  It makes no difference where in the instruction the
-@ goes, although it cannot be put in the middle of a number, symbol,
+@@ goes, although it cannot be put in the middle of a number, symbol,
 or operator without causing syntactic trouble.  A parenthesized
 expression's meaning depends on whether it follows directly an
 arithmetic operator.  If it does, it acts like a term in the
 expression, whose value is the halves-swap of the expression inside
 the parentheses.  If there is no arithmetic operator in front of the
-"(", then the parenthesized expression, like an @, has a global effect
+"(", then the parenthesized expression, like an @@, has a global effect
 rather than a local one:  the expression inside has its halves swapped
 and the result is added into the entire word, after the fields are
 merged according to the format.  Thus, 2*(1) is 2*1000000, or <2,,>,
@@ -2364,7 +2362,7 @@ some examples, which assume that you or DDT just typed MOVE A,B(C):
 	FOO(0)>	MOVE A,FOO
 	MOVNS>		MOVNS A,B(C)
 	MOVNS 0,>	MOVNS B(C)
-	@>		MOVE A,@B(C)
+	@@>		MOVE A,@@B(C)
 	0,,>		B
 	,0>		MOVE A,(C)
 
