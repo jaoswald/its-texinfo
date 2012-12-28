@@ -1,13 +1,38 @@
--*-Text-*-		Documentation file for DDT
-
-
-File: DDT	Node: Top	Next: Conventions	Up: (DIR)
-
-DDT Primer and Reference Manual
-	 	describing DDT version 696.
-	      (being updated to version 1000.)
-
-
+\input texinfo @c -*- texinfo -*-
+@c %**start of header
+@setfilename its-ddt-primer
+@c @documentencoding UTF-8
+@c @documentlanguage en_US
+@settitle ITS DDT Primer
+@c %**end of header
+@macro alt {key}
+@tex $\\diamondsuit \\verb{\key} @end tex
+@ifinfo
+$\key
+@end ifinfo
+@end macro
+@macro altalt {key}
+@tex $\\diamondsuit \\diamondsuit \\verb{\key} @end tex
+@ifinfo
+$$\key
+@end ifinfo
+@endmacro
+@copying
+This file is derived from PI:INFO;DDT.33 downloaded from up.update.uu.se.
+It claims to describe DDT version 696 with updates up to version 1000.
+It is available under the same license terms as the Incompatible Timesharing
+System documentation.
+@end copying
+@titlepage
+@title DDT Primer
+@subtitle for the Incompatible Timesharing System (ITS)
+@author from the PI distribution
+@end titlepage
+@contents
+@ifnottex
+@node Top
+@top DDT Primer and Reference Manual
+describing ITS DDT version 696 (being updated to version 1000.)
    DDT is the top-level command interpreter most often used on the
 Incompatible Timesharing System (ITS).  It provides three main types
 of service to the user:  invocation of system programs, manipulation
@@ -21,9 +46,9 @@ of DDT, grouping commands according to function;  then, in the
 described in detail, in alphabetical order.  Before using a command in
 a complicated way, refer to the detailed description to verify that it
 will function as intended. 
+@end ifnottex
 
-* Menu:
-
+@menu
 * Conventions::		Conventions Used in This Document
 * Rubout::		Type-in Conventions
 * Startup::		When DDT Starts Up
@@ -57,10 +82,11 @@ will function as intended.
 * Patching::		Patching Several Instructions over One.
 * Services::		Services for Programs Running under DDT
 * INLINE::		Allows reading commands from TTY in XFILES etc.
-
-File: DDT, Node: Conventions, Previous: Top, Up: Top, Next: Rubout
+* Index::               Complete index
+@end menu
 
-Conventions Used in This Document
+@node Conventions
+@chapter Conventions Used in This Document
 
    When examples of DDT commands are given, upper case letters are
 intended to be typed in exactly as shown.  Angle-brackets ("<" and
@@ -91,10 +117,8 @@ in the left halfword.
 appropriate part of the reference section".  "See the reference
 section <part>" will mean to refer to the named part of the reference
 section.
-
-File: DDT, Node: Rubout, Previous: Conventions, Up: Top, Next: Startup
-
-DDT Type-in Conventions
+@node Rubout
+@chapter DDT Type-in Conventions
 
    DDT has several special action characters that have a specific
 effect on whatever command is being typed, instead of simply becoming
@@ -149,10 +173,9 @@ section for more details.
 ITS directly.  It is used for communicating with other users, and for
 specifying various options connected with ITS's handling of the
 terminal.  See the file .INFO.;ITS TTY for details. 
-
-File: DDT, Node: Startup, Previous: Rubout, Up:Top, Next: Login
 
-When DDT Starts Up
+@node Startup
+@chapter When DDT Starts Up
 
    This section's title is purposefully ambiguous.
 
@@ -599,10 +622,9 @@ mag tape.  There are several commands for handling microtapes:
 :UINIT, :ASSIGN, :DESIGN, and :FLAP.  Since microtapes are hardwarily
 and softwarily unreliable on the ITS systems, their use is
 discouraged.
-
-File: DDT, Node: Programs, Previous: Files, Up: Top, Next: Jobs
 
-Running Programs with DDT
+@node Programs
+@chapter Running Programs with DDT
 
    The simplest way to tell DDT to run a system program is to use the
 program's name as a colon command;  for example, :TECO<cr> will load
@@ -702,10 +724,9 @@ programs from any directory, and to request loading of the program's
 symbols.  The latter is useful mainly when the program is to be
 debugged.  See the reference section "Colon Commands" for full
 details. 
-
-File: DDT, Node: Jobs, Previous: Programs, Up: Top, Next: Returning
 
-Job Manipulation
+@node Jobs
+@chapter Job Manipulation
 
    After using the commands :<prgm>, :NEW, ^K, or ^H of the previous
 section to load programs, one might want to start them and stop them,
@@ -922,10 +943,9 @@ Selects the DDT executing it as the current job, regardless of
 JNAME.  :JOB HACTRN isn't adaquate because the DDT may be running
 as an inferior, with a different JNAME (say, "DDT), so init files
 need a different mechanism.
-
-File: DDT, Node: Returning, Previous: Jobs, Up: Top, Next: Arithmetic
 
-Returning Control to DDT from an Inferior Job
+@node Returning
+@chapter Returning Control to DDT from an Inferior Job
 
    When DDT runs a program, it gives control of the terminal to that
 program.  From then on, DDT expects that your commands are intended
@@ -1006,11 +1026,10 @@ job.  "... finished" means that the program has finished its task and
 has asked DDT to kill its job.  In some cases, the job will in fact be
 killed at the same time you receive the "finished" message. 
 "... interrupting ..." means that the job has encountered an error
-condition, whose name is printed. 
-
-File: DDT, Node: Arithmetic, Previous: Returning, Up: Top, Next: Sophisticated
+condition, whose name is printed.
 
-Arithmetic in DDT
+@node Arithmetic
+@chapter Arithmetic in DDT
 
    DDT's role as a debugging aid requires that it be able to serve as
 a desk calculator.  Expressions involving numbers (fixed or floating
@@ -1074,10 +1093,9 @@ quantities, as well as numbers.  Symbols always have numeric values if
 they are defined at all, so they are used just like numbers.  Since
 they are useful mainly for debugging, their detailed description is
 postponed. 
-
-File: DDT, Node: Sophisticated, Previous: Arithmetic, Up: Top, Next: Loading
 
-Sophisticated Job Manipulation
+@node Sophisticated
+@chapter Sophisticated Job Manipulation
 
 This section describes other things that DDT can do with jobs, that
 are less often useful or more difficult to understand than those in
@@ -1194,10 +1212,9 @@ to the job it creates.  Note that the command buffer is actually
 stored inside DDT.  Programs use it by reading its contents with
 a .BREAK instruction, and :JCL cannot retroactively alter what
 previous .BREAK instructions have read. 
-
-File: DDT, Node: Loading, Previous: Sophisticated, Up: Top, Next: Communication
 
-Loading and Dumping Jobs
+@node Loading
+@chapter Loading and Dumping Jobs
 
 :LOAD <file><cr>	or		L <file><cr>
 
@@ -1306,10 +1323,9 @@ as a direct core image.  Exactly <high>-<low>+1 words are written.
 last file loaded (not necessarily the same as the current L default
 file), and Z, which sets all or a specified range of the job's
 memory to a specified value (usually zero). 
-
-File: DDT, Node: Communication, Previous: Loading, Up: Top, Next: Announcements
 
-Communication with Other Users
+@node Communication
+@chapter Communication with Other Users
 
    The three forms of inter-user communication commonly found on
 various timesharing systems all exist on ITS.  They are known as
@@ -1517,10 +1533,9 @@ cleared.
 :ALARM<cr>
 
 clears any alarm, whether it has come due already or not. 
-
-File: DDT, Node: Announcements, Previous: Communication, Up: Top, Next: XFILE
 
-Announcements
+@node Announcements
+@chapter Announcements
 
    Messages of general interest to the user community, but not urgent
 enough to be printed out by DDT when it starts up, are distributed as
@@ -1610,10 +1625,9 @@ Most announcements should expire in 7 days, but announcements of
 changes in system programs should expire in 30 days.  Of course,
 announcements that are of no interest after a specific day should
 expire then. 
-
-File: DDT, Node: XFILE, Previous: Announcements, Up: Top, Next: Symbols
 
-DDT Commands from Files or Programs
+@node XFILE
+@chapter DDT Commands from Files or Programs
 
    Although DDT normally reads its commands from the terminal, it can
 be told to take them from a file (called an "execute file" or
@@ -1906,10 +1920,9 @@ program involves some special difficulties, due to running the init
 file twice, once to run the CRTSTY, and once to log in under the
 CRTSTY.  See [*note CRTSTY: (CRTSTY)LOGIN inits.] for more details,
 instructions, and examples.
-
-File: DDT, Node: Symbols, Previous: XFILE, Up: Top, Next: Memory
 
-Symbols
+@node Symbols
+@chapter Symbols
 
    Symbols in DDT are used primarily for debugging, and to better
 serve that purpose they do not work as they might in a typical
@@ -2091,10 +2104,9 @@ the pointer will load the symbol table of the file pointed at.
 If you load a system program with ^K (no symbols), then dump it
 after running it, it will automatically be given an indirect symbol
 table pointer to the system program file that was loaded.
-
-File: DDT, Node: Memory, Previous: Symbols, Up: Top, Next: Insns
 
-Examining and Altering Memory
+@node Memory
+@chapter Examining and Altering Memory
 
    In debugging, the most important operations are examining the job's
 memory locations and depositing new data in them.  In DDT, words are
@@ -2245,10 +2257,8 @@ IMPURE -- Same as :UNPURE <addr>
     :CORBLK PURE <loc> is good for re-purifying pages of jobs that have
 been patched, prior to :PDUMPing.
 
-
-File: DDT, Node: Insns, Previous: Memory, Up: Top, Next: Literals
-
-PDP-10 Instruction Type-in
+@node Insns
+@chapter PDP-10 Instruction Type-in
 
    One thing that one often wishes to deposit in memory is a PDP-10
 instruction.  DDT allows them to be expressed almost as they would be
@@ -2357,10 +2367,9 @@ some examples, which assume that you or DDT just typed MOVE A,B(C):
 	@>		MOVE A,@B(C)
 	0,,>		B
 	,0>		MOVE A,(C)
-
-File: DDT, Node: Literals, Previous: Insns, Up: Top, Next: Text
 
-Literals
+@node Literals
+@chapter Literals
 
    Literals are just as useful when typing in code with DDT as they
 are in an assembler.  However, because DDT can't assemble a word of
@@ -2405,10 +2414,9 @@ word of the literal (so the next literal will start in the next word).
 to be defined and will eventually ask you to define it.  But when that
 happens, you need only type ) immediately.  The literal will have
 been defined to be zero words long, and DDT will be satisfied.
-
-File: DDT, Node: Text, Previous: Literals, Up: Top, Next: Modes
 
-Text Type-in
+@node Text
+@chapter Text Type-in
 
    When altering text strings, you can use DDT's commands that compute
 the numerical representation of text according to the conventions used
@@ -2450,10 +2458,9 @@ used for quoting, as in 2".
 is the equivalent of SQUOZE <flags>,<symbol> in MIDAS.  This construct
 does not contain any final delimiter;  instead, the following operator
 serves as one. 
-
-File: DDT, Node: Modes, Previous: Text, Up: Top, Next: Type-out
 
-Type-out Modes
+@node Modes
+@chapter Type-out Modes
 
 The contents of a memory location may be interpreted by a program in
 many different ways.  DDT knows several of the most common ways, in
@@ -2623,10 +2630,9 @@ Here are the commands that select the output radix, in which
 O	selects base 8.
 
 <n>R	selects base <n>.
-
-File: DDT, Node: Type-out, Previous: Modes, Up: Top, Next: Bit
 
-Type-out Commands
+@node Type-out
+@chapter Type-out Commands
 
    Several DDT commands print a numeric argument back out using a
 specific typeout mode.  They exist for convenience, since it would be
@@ -2687,11 +2693,9 @@ requested by a type-out command is still performed unless two levels
 of ^W output-inhibition are in effect.  This makes it possible for
 valret strings and command files to perform output without having
 the type-out commands echo.
-
-File: DDT, Node: Bit, Previous: Typeout, Up: Top, Next: Pseudo
 
-Bit Typeout Mode
-
+@node Bit
+@chapter Bit Typeout Mode
 Bit typeout mode makes it possible to interpret a word in terms of
 particular sets of related symbols.  For example, a word can be
 decomposed into a sum of several symbols that are the names of
@@ -2839,10 +2843,9 @@ system symbols starting with "%";  for example, "%TS" for the symbols
 are the prefixes .R and .S which make it easy to find out which
 variable a .SUSET or .USET is reading or setting.  Prefixes ..R and
 ..S serve the same function for .BREAK 12,'s. 
-
-File: DDT, Node: Pseudo, Previous: Bit, Up: Top, Next: Rings
 
-Pseudo-locations:  DDT Variables and ITS User Variables
+@node Pseudo
+@chapter Pseudo-locations:  DDT Variables and ITS User Variables
 
    Besides its memory, a job has many other variables which contain
 part of its status.  Both DDT and ITS keep information about the job. 
@@ -2873,10 +2876,9 @@ Used Symbols".
 debugging is :ERR, which can be used to decode the last system call
 error received by the job, or to tell the meaning of a specific system
 call error code.  See the reference section. 
-
-File: DDT, Node: Rings, Previous: Pseudo, Up:Top, Next: Execution
 
-The Address and Value Ring Buffers
+@node Rings
+@chapter The Address and Value Ring Buffers
 
    DDT remembers several of the quantities most recently read or
 printed.  The user can access those saved quantities without going to
@@ -2969,10 +2971,9 @@ addresses off the ring buffer.
 
 is like <lf>, but decrements the address instead of incrementing it. 
 ^ is a combination of <cr> and ^.  <n>^ is also defined. 
-
-File: DDT, Node: Execution, Previous: Rings, Up: Top, Next: MAR
 
-Controlling Execution While Debugging
+@node Execution
+@chapter Controlling Execution While Debugging
 
    This is an overview of the commands useful for controlling the
 execution of a job being debugged. 
@@ -3035,10 +3036,8 @@ blank line and then a "*".  If the instruction skips, DDT prints
 "<SKIP>" before the "*".  In either case, the job's PC is not altered
 by the X.
 
-
-File: DDT, Node: MAR, Previous: Execution, Up: Top, Next: Breakpoints
-
-The MAR
+@node MAR
+@chapter The MAR
 
    For each inferior of DDT, there is one MAR, with which the user can
 make the inferior stop on referencing one particular word of memory. 
@@ -3083,10 +3082,9 @@ confusion.
 executed when the MAR is hit.  ..MARXCT, if nonzero, should be the
 address in the job's memory of the ASCIZ string of commands.  Like
 ..MARCON, ..MARXCT is zeroed by I commands. 
-
-File: DDT, Node: Breakpoints, Previous: MAR, Up: Top, Next: Stepping
 
-Breakpoints
+@node Breakpoints
+@chapter Breakpoints
 
    As said above, DDT gives every job eight breakpoints, each of which
 allows the user to make the job stop if it tries to execute one
@@ -3156,10 +3154,9 @@ after stopping at a breakpoint, <n>P will continue and give that
 breakpoint a proceed count of <n> - it restarts the program not just
 until the breakpoint is next hit, but until the <n>'th time it is hit
 (of course, other things can still stop the program). 
-
-File: DDT, Node: Stepping, Previous: Breakpoints, Up:Top, Next: Raid
 
-Stepping
+@node Stepping
+@chapter Stepping
 
    When a bug has been brought to bay, the simplest way to flush it
 out is to step through the program one instruction or a few
@@ -3276,10 +3273,9 @@ prints the next instruction to be executed, but takes no steps.
 
 sets the PC to <addr> and does <n> steps.  This command is equivalent
 to <addr>0G <n>^^.
-
-File: DDT, Node: Raid, Previous: Stepping, Up: Top, Next: Searches
 
-Raid Registers
+@node Raid
+@chapter Raid Registers
 
    Raid registers are DDT's display feature, named after the display-
 oriented debugger at SAIL which suggested them.  Every job has several
@@ -3329,10 +3325,9 @@ been erased from the screen by other typing.  When this happens,
 you should type V with no arguments.  This command is special in
 that it always redisplays all of the Raid registers, even those which
 have not changed.
-
-File: DDT, Node: Searches, Previous: Raid, Up: Top, Next: Patching
 
-Word Searches
+@node Searches
+@chapter Word Searches
 
    There are DDT commands to find all words in the memory of a job
 whose contents meet a specified condition.  The condition may be that
@@ -3401,10 +3396,9 @@ calculation on each word, it is much slower than W and N;  usually,
 1W (using mask 1 to compare just the right half) is a good substitute
 for E.  E is not affected by the mask.  It always compares all 18.
 bits of the effective address. 
-
-File: DDT, Node: Patching, Previous: Searches, Up: Top, Next: Services
 
-The Patch Feature
+@node Patching
+@chapter The Patch Feature
 
    The "patch feature" makes it easy to "insert" instructions into
 programs without reassembling them.  In fact, what happens is that
@@ -3482,10 +3476,9 @@ first JUMPA, that goes in the appropriate location.  You can always
 count on being able to end a patch, no matter what has transpired, by
 opening the first word of the patch area whose contents should be
 clobbered by the return sequence, and then doing the ^] or ^]. 
-
-File: DDT, Node: Services, Previous: Patching, Next: INLINE, Up: Top
 
-DDT Services for Programs Running under DDT
+@node Services
+@chapter DDT Services for Programs Running under DDT
 
    DDT offers programs executing under DDT's control several services. 
 There are defined conventions for normal termination, error reporting,
@@ -3798,10 +3791,10 @@ At the moment, there is only two flags:
 
      An illegal .BREAK 12, (this does not include undefined symbols)
 causes DDT to give a %PIILO interrupt to the inferior.  For a block
-mode .BREAK 12, the AOBJN pointer is counted out and stored back. 
-
-File:  DDT,  Node:  INLINE,  Previous:  Services,  Next:  Top,  Up:  Top,
+mode .BREAK 12, the AOBJN pointer is counted out and stored back.
 
+@node INLINE
+@chapter The INLINE program
 Often in writing a DDT init, you want to read a single line of input,
 and do something based on that.  INLINE is a program (not a "DDT Command"!)
 to do just that.
@@ -3846,3 +3839,9 @@ There are a few characters that are special in typein:
 rubout rubs out the last character.  It does EMACS style rubout on printing
 terminals.  On displays it erases.  On printing terminals without backspace
 (ugh) it will echo as it rubs out.
+
+@node Index
+@unnumbered Index
+@printindex cp
+
+@bye
