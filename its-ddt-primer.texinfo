@@ -6,15 +6,19 @@
 @settitle ITS DDT Primer
 @c %**end of header
 @macro alt {key}
-@tex $\\diamondsuit \\verb{\key} @end tex
+@tex
+$\\diamondsuit \\verb{\key\}$
+@end tex
 @ifinfo
-$\key
+$\key\
 @end ifinfo
 @end macro
 @macro altalt {key}
-@tex $\\diamondsuit \\diamondsuit \\verb{\key} @end tex
+@tex
+$\\diamondsuit \\diamondsuit \\verb{\key\}$
+@end tex
 @ifinfo
-$$\key
+$$\key\
 @end ifinfo
 @end macro
 @copying
@@ -332,7 +336,7 @@ terminal becomes free again, and will ignore everything typed on it
 except for ^Z (or CALL) and ^_.  ITS types a message on the console
 stating that it is free and also giving the time of day. 
 
-:LOGOUT			or		    U
+:LOGOUT			or		    @altalt{U}
 
 logs the user out.  Only the top-level job (HACTRN) can log out;  if
 the command is given to a DDT in a job that is not top-level, it is an
@@ -544,12 +548,12 @@ DIRFN2:	SIXBIT /UP/
 
 Examples of use:
 
-FOO1	Shows DIR:FIRST FOO and sets FN1 to FOO
-LISP2	Shows DIR:SECOND LISP
-2		Shows DIR:SECOND BIN
-3		Shows DIR:CDATE DOWN
-UP3		Shows DIR:CDATE UP
-PACK136	Shows DIR:ONLY PACK13
+FOO@altalt{1} 	Shows DIR:FIRST FOO and sets FN1 to FOO
+LISP@altalt{2}	Shows DIR:SECOND LISP
+@altalt{2}		Shows DIR:SECOND BIN
+@altalt{3}		Shows DIR:CDATE DOWN
+UP@altalt{3}		Shows DIR:CDATE UP
+PACK13@altalt{6}	Shows DIR:ONLY PACK13
 
 As an additional feature, if you set the DDT variable DIRDIR
 to -1, $$^F (without a numeric argument) sets your default
@@ -563,7 +567,7 @@ FOOBAR$$^F	Changes default dir to FOOBAR and does DIR:NAME1 UP
 DOWN$$0^F	Changes no defaults (now FOOBAR), does DIR:NAME1 DOWN
 
 
-:RENAME <file>,<newname>      or	^O <file>,<newname>
+:RENAME <file>,<newname>      or	@altalt{^O} <file>,<newname>
 
 changes the specified file's name.  Only the FN1 and FN2 can be
 renamed, so the second argument to :RENAME must not contain a device
@@ -613,7 +617,7 @@ out of it.
 The commands :SFDATE, :SFAUTH, :SFREAP, and :SFDUMP set various
 attributes of a file:  its creation date, its author's name, its
 don't-reap bit, and its backed-up-on-tape bit.  The commands ^T, ^T,
-^T, ^U, ^U, and ^U control "filename translations".  See the
+@altalt{^T}, ^U, ^U, and @altalt{^U} control "filename translations".  See the
 reference section for those commands.  The :REAP command marks a file
 as unimportant, and worthy of deletion as soon as it is backed up on
 mag tape.  There are several commands for handling microtapes:
@@ -808,14 +812,14 @@ it is the most common way, so jobs running without the terminal are
 often described as "^P'd" regardless of how they actually got that
 way. 
 
-^P
+@altalt{^P}
 
 causes the current job to run without the terminal, like ^P, except
 that it IS allowed to type out.  It can't read anything, however;
 instead, DDT continues to read commands.  Use this for a job which
 you expect will type out briefly and infrequently in the middle of
 its processing, so you can let it run while using the terminal
-primarily with another job.  Only one thing inhibits ^P'd jobs from
+primarily with another job.  Only one thing inhibits @altalt{^P}'d jobs from
 typing out;  that is when the terminal belongs, not to DDT, but to
 another inferior which has the 40 bit set in its ..URANDM word.
 The bit can be set by the user (by deposit commands) or with
@@ -860,7 +864,7 @@ explicitly.
 
    The :MASSACRE command kills all your jobs. 
 
-:LISTJ			or		   V
+:LISTJ			or		   @altalt{V}
 
 prints a list of all the jobs DDT knows about.  Each job gets its own
 line, which contains the job's JNAME, status, and job number.  The
@@ -876,7 +880,7 @@ Example:
 
 TECO is stopped, DEBUG has never been started, and SRCCOM is running. 
 See the reference section for more details.  For users on slow
-terminals, the J command prints out just the line describing the
+terminals, the @altalt{J} command prints out just the line describing the
 current job. 
 
 :START			or		    G
@@ -899,7 +903,7 @@ described when they are relevant (ref ..MSNAME).  For convenience's
 sake, 0^F is equivalent to <msname>^F;  it lists the working
 directory.  The MSNAME can be set explicitly: 
 
-:CWD <new msname>	or	<new msname>^S
+:CWD <new msname>	or	<new msname>@altalt{^S}
 
 sets the MSNAME to <new msname>.  Any jobs created subsequently will
 be passed <new msname> as the default SNAME to use.  Jobs that already
@@ -909,7 +913,7 @@ as the MSNAME but which is not changed by :CWD.  Most programs do
 not refer to the HSNAME;  it is used for finding files that "belong to
 you", such as your RMAIL file.
 
-:CWD <return>		or	^S
+:CWD <return>		or	@altalt{^S}
 
 Reset your MSNAME to be your HSNAME.
 
@@ -1012,7 +1016,7 @@ necessary relationship to the reason the job returned.
 terminal, that doesn't stop it from getting into trouble or finishing,
 and then trying to return.  But since the terminal is being used for
 DDT or some other program, DDT doesn't allow the program to return
-just yet.  Instead, the program has to wait, and in a :LISTJ or V
+just yet.  Instead, the program has to wait, and in a :LISTJ or @altalt{V}
 its status will be "W" for "waiting".  DDT announces this development
 to the user with a message such as "Job <jname> interrupting: ILOPR",
 "Job <jname> finished", or "Job <jname> wants the TTY", or something
@@ -1072,7 +1076,7 @@ Here is a list of all DDT arithmetic operators:
 !	fixed division		!	floating division
 #	bitwise exclusive-or
 &	bitwise and
-_	logical shift		_	floating scale
+_	logical shift		@altalt{_}	floating scale
 
 The &, # and _ operations are done first, multiplication and division
 second, and addition and subtraction last.  The subtraction and
@@ -1123,7 +1127,7 @@ foreign job.  Commands to run programs, such as ^K, ignore totally any
 jobs whose unames differ from yours;  they go ahead and create an
 inferior in addition to the unsuitable job. 
 
-:DISOWN			or		   ^K
+:DISOWN			or		   @altalt{^K}
 
 "disowns" the current job.  The job continues to exist, and if it was
 running continues to run, but it ceases to be DDT's inferior.  Any
@@ -1160,7 +1164,7 @@ makes DDT forget that the current job exists.  The job is untouched,
 and even remains DDT's inferior, but DDT no longer knows about it.
 Why do this?  So that DDT will no longer mention the job,
 and :MASSACRE won't kill it, but the job will remain in your tree
-(so it can type out on the terminal if it has been ^P'd).
+(so it can type out on the terminal if it has been @altalt{^P}'d).
 
 :SNARF <jname>
 
@@ -1184,7 +1188,7 @@ the current job a program to disown any inferior named <jname>, and
 then doing a :JOB <jname>.  Thus, :SNARF can garbage the job snarfed
 from.  This is small loss when the job is already dead. 
 
-<newjname>J
+<newjname>@altalt{J}
 
 changes the current job's name to <newjname>.  The job's contents are
 unchanged, and so is what DDT knows about it;  only the name is
@@ -1247,12 +1251,12 @@ address (".") is set to the first word not loaded, to make it
 possible to find the end of the data easily. 
 
    The L command has two other options, which may be used with either
-L or 0L.  Two altmodes instead of one (L or 0L) cause a
+L or 0L.  Two altmodes instead of one (@altalt{L} or @altalt{0L}) cause a
 merge-load, which does not throw away the core and symbols the job
 already has. The data in the file replace the data in core, but
 locations not loaded by the file are unchanged.  Symbols already
 defined are kept, along with any symbols in the file.  Also, the job's
-system variables are not reinitialized.  An infix 1 (1L or 1L)
+system variables are not reinitialized.  An infix 1 (1L or @altalt{1L})
 loads a binary file without its symbols. 
 
 <addr>L <file>
@@ -1319,7 +1323,7 @@ as a direct core image.  Exactly <high>-<low>+1 words are written.
 
    Related commands include :LFILE, which prints out the name of the
 last file loaded (not necessarily the same as the current L default
-file), and Z, which sets all or a specified range of the job's
+file), and @altalt{Z}, which sets all or a specified range of the job's
 memory to a specified value (usually zero). 
 
 @node Communication
@@ -1639,7 +1643,7 @@ primarily in files or valrets.
 
    The most common use of execute files is as init or exit files,
 which are executed automatically (if they exist) upon logging in or
-out, respectively (but 0U and 0U allow you to log in or out as if
+out, respectively (but 0U and @altalt{0U} allow you to log in or out as if
 you had no init or exit file).  Init files are identified to DDT not
 by a user command but by having the appropriate filenames.  An init
 file is called <hsname>;<xuname> LOGIN .  An exit file has LOGOUT
@@ -2013,16 +2017,16 @@ half kill a symbol:
 half-kills the symbol <symbol>, so that it will not be used for
 typeout. 
 
-^C
+@altalt{^C}
 
 half-kills the last symbol DDT typed out, and then tries again to
 print the last quantity printed.  An example makes this clear:  after
 DDT prints "MOVE A,FOO", if you decide that FOO is not the appropriate
-symbol, ^C will half-kill FOO and then try again to print the same
+symbol, @altalt{^C} will half-kill FOO and then try again to print the same
 MOVE instruction.  This time it might come out as "MOVE A,BAR+3" if
 BAR is now the closest symbol to the address in the instruction. 
 
-<symbol>K
+<symbol>@altalt{K}
 
 fully kills <symbol>.  It is no longer defined (in the current job). 
 Predefined symbols cannot be killed or half-killed.  However, a
@@ -2037,10 +2041,10 @@ a binary file, the job's symbol table is also written.  At times this
 process does not do the right thing automatically, so commands are
 provided for manipulating symbol tables: 
 
-K
+@altalt{K}
 
 deletes the current job's entire symbol table.  It is equivalent to
-fully killing each of the symbols with <symbol>K. 
+fully killing each of the symbols with <symbol>@altalt{K}. 
 
 :SYMLOD	<file>		or		:SL <file>
 
@@ -2091,7 +2095,7 @@ prints the block structure of the current job's symbol table, and
 into the job's memory, or to read symbol definitions or a whole symbol
 table into DDT out of the job's memory (the linking loader STINK does
 this to give DDT the symbol table constructed by the loading process). 
-The commands ^Y, ^Y and ^Y serve those functions.  The command
+The commands ^Y, ^Y and @altalt{^Y} serve those functions.  The command
 :SYMTYP takes a symbol as argument and returns information on whether
 the symbol is defined.  See the reference section. 
 
@@ -2153,7 +2157,7 @@ replaces that page of the inferior's memory with a new, writable page,
 containing the same data in each word, before depositing.  This can
 cause a page which was once shared with other jobs to become private,
 which occasionally causes a problem, so DDT informs you with a message
-like ":UNPURE <address>" (ref :UNPURE, ^M, ..UNPURE). 
+like ":UNPURE <address>" (ref :UNPURE, @altalt{^M}, ..UNPURE). 
 
 <cr>
 
@@ -2228,10 +2232,10 @@ either an argument or Q.  With no altmodes, they get the address from
 the right half of the argument or Q.  The one-altmode variants, such
 as / and <tab>, all take the address from the left half of the
 argument or Q.  Even more useful, the two altmode variants such as
-/ perform a PDP-10 effective address calculation on the argument or
+@altalt{/} perform a PDP-10 effective address calculation on the argument or
 Q, and open the addressed location.  For example, suppose that A
-contains 5 and 1734 contains ADD T,FOO(A).  Then after 1734/, /
-would open location FOO+5.  @@A/ would open location 5. 
+contains 5 and 1734 contains ADD T,FOO(A).  Then after 1734/, @altalt{/}
+would open location FOO+5.  @@A@altalt{/} would open location 5. 
 
    The commands to access the address ring buffer also examine and
 deposit memory locations, but in view of their special functions they
@@ -2379,7 +2383,7 @@ the next word available for use by a literal; as words are used for
 literals PATCH is updated.  See the section on patching for how to create a
 patch area (*note Patching: Patching.).  Every program ought to have one.
 
-(
+@altalt{(}
 
 requests a literal.  Type this command in the expression from which
 you wish to refer to the address of a literal.  In an assembler, you
@@ -2396,21 +2400,21 @@ But if you use nested literals, or use a literal while making a patch
 (*note Patching: Patching.), DDT will have to wait for a while before
 asking for the data.  In any case, DDT will ask for the data eventually, by
 typing out "$LT001/ 0 ".  The symbol name typed tells you which literal DDT
-is asking for - just match it up with the symbol printed by the ( before.
+is asking for - just match it up with the symbol printed by the @altalt{(} before.
 At this time, a location in the patch area is open, and you should start by
 depositing the first word of the literal.  Deposit as many words as you
 like, or do other things.  When you are finished, open the word AFTER the
-end of the literal and type ).  This tells DDT where it should start the
+end of the literal and type @altalt{)}.  This tells DDT where it should start the
 next literal or patch.
 
-<arg>)
+<arg>@altalt{)}
 
 deposits <arg> in the open location and tells DDT that it is the last
 word of the literal (so the next literal will start in the next word).
 
-   If you rub out a (, DDT will still think that the literal needs
+   If you rub out a @altalt{(}, DDT will still think that the literal needs
 to be defined and will eventually ask you to define it.  But when that
-happens, you need only type ) immediately.  The literal will have
+happens, you need only type @altalt{)} immediately.  The literal will have
 been defined to be zero words long, and DDT will be satisfied.
 
 @node Text
@@ -2487,7 +2491,7 @@ Each typeout mode that DDT has, has a command to select it.  The
 commands to select a mode temporarily all have exactly one altmode. 
 If a second altmode is used, the selection is made permanent.  For
 example, F selects typeout as floating-point numbers, temporarily. 
-F selects the same mode permanently. 
+@altalt{F} selects the same mode permanently. 
 
 When a typeout mode has sub-options (such as whether to print
 component addresses numerically or symbolically, or what bit-name
@@ -2503,7 +2507,7 @@ which mode was most recently explicitly specified.  This variable is
 updated just as the temporary mode is, except that it is NOT reset by
 carriage returns.  The most recent mode can be used to type one value
 with the ";" command, or can be selected temporarily or permanently
-with ";" or ";".  Thus, after temporarily selecting halfword mode
+with ";" or "@altalt{;}".  Thus, after temporarily selecting halfword mode
 with H and then reverting to the permanent mode with <cr>, ";" will
 still type its argument in halfword mode. 
 
@@ -2741,7 +2745,7 @@ When %TX bit-typeout mode is set, the byte-decomposition mask is
 determined.  This is the value of the symbol "%TX", if it is defined; 
 otherwise, the value of "..B%TX", if that is defined;  otherwise
 525252,,525252 octal.  (The byte-decomposition mask may also be set
-explicitly by specifying it as an infix argument to ? or ?.) The
+explicitly by specifying it as an infix argument to ? or @altalt{?}.) The
 byte-decomposition mask divides the word into fields in much the same
 manner as the T mask does.  If the byte-decomposition mask is
 negative, then it divides the word into fields.  If it is positive,
@@ -2778,7 +2782,7 @@ Bit-typeout mode is actually superimposed on other modes:
 	can always be used to see bits explicitly
 	as left-half,,right-half, if S doesn't give
 	exactly what is desired.  To see "the other kind"
-	of bits, Q?  can always be used.
+	of bits, @altalt{Q?}  can always be used.
 
 	# mode uses S mode after extracting the low seven
 	bits, and so follows S rules.
@@ -2906,7 +2910,7 @@ is the <n>'th value back in the value ring buffer.  0Q is the same as
 Q.  1Q is the thing DDT read or printed before it read or printed
 Q. 
 
-<n>Q
+@altalt{<n>Q}
 
 is <n>Q with its halves swapped:  <(<n>Q)>. 
 
@@ -3013,7 +3017,7 @@ They are described in the section "Stepping".
 starts the program at address <addr>.  The "first part done" hardware
 flag (%PCFPD) is cleared. 
 
-<addr>G
+<addr>@altalt{G}
 
 starts the program at address <addr>, and makes <addr> the new
 starting address for future G's with no argument. 
@@ -3117,7 +3121,7 @@ clears breakpoint number <n>.
 
 clears the lowest numbered breakpoint set at <addr>.
 
-B
+@altalt{B}
 
 clears all breakpoints (of the current job).
 
@@ -3252,7 +3256,7 @@ whole subroutine body with ^N's.  The presettable options are called
 the stepping flags, and each job has its own settings of them.  In
 addition, there are master settings used to initialize the flags of
 newly created jobs.  The commands to alter the stepping flags are ^^
-and ^^;  see the reference section for details. 
+and @altalt{^^};  see the reference section for details. 
 
 ^^
 
@@ -3459,7 +3463,7 @@ produce this printout:
 Notice that JUMPA 3, is used to return from the patch, instead of
 JUMPA 1,.  JUMPA ignores its AC field, and the different numbers are
 used only as flags describing how to unmake the patch.  The command
-^\ exists to do that - see the reference section. 
+@altalt{^\\} exists to do that - see the reference section. 
 
    If you forget to follow the last instruction of the patch with ^]
 or ^], and deposit it instead with <cr> or <lf>, you need not worry; 
@@ -3750,8 +3754,8 @@ the command string.
    Type 6 reads or writes a block of 4 words as follows: device,
 SNAME, FN1, FN2  (all left-justified SIXBIT). 
 
-   Type 7 is like ^Y, with the argument in the call used as the
-argument to the ^Y (ie as the address of the AOBJN pointer to the
+   Type 7 is like @altalt{^Y}, with the argument in the call used as the
+argument to the @altalt{^Y} (ie as the address of the AOBJN pointer to the
 table to be replaced).  Writing info type 7 is like doing a ^Y, with
 the arg to the call pointing to the AOBJN pointer to feed to the ^Y. 
 
