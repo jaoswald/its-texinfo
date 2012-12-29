@@ -103,7 +103,7 @@ represented by "meta-constants", such as "<cr>" for a carriage-return.
 An alternate representation for a <cr> would be "^M".  Other 
 characters sometimes represented by meta-constants include
 <backspace>, <tab>, <lf>, <rubout>, <space>, and <comma>.  Altmode is
-represented by itself, and its appearance is .  These conventions may
+represented by itself, and its appearance is @alt{}.  These conventions may
 be violated in some places, but there will be a note to that effect
 near the scene of the crime. 
 
@@ -235,7 +235,7 @@ their names for a UNAME.  For more information on what DDT does with
 the UNAME specified, see the reference section "DDT's UNAMEs". 
 
    There are two commands for logging in:  :LOGIN, which is a "colon
-command", and U, which is a "DDT command".  Colon commands all start
+command", and @alt{U}, which is a "DDT command".  Colon commands all start
 with a colon, which is followed by the name of the command.  After the
 command name come the arguments, if any.  In the case of :LOGIN, the
 argument is the UNAME to log in as.  After the arguments, a <cr> ends
@@ -260,7 +260,7 @@ needed by unsophisticated users.  Many important operations have both
 a DDT command to save typing for expert users and a colon command for
 new users.  In such cases, the DDT command is called the "short form". 
 Logging in is such an operation, with the colon command ":LOGIN" and
-the short form "U". 
+the short form "@alt{U}". 
 
    ITS normally knows the characteristics of hardwired terminals.  For
 non-local terminals, it may not know them automatically.  In that
@@ -287,7 +287,7 @@ dashes, and all are answered approximately the same way (<space> for
 "Unsolicited Offers" for full details.  Meanwhile, :PRMAIL will print
 mail at any time, and :MSGS will print new system messages. 
 
-   When the :LOGIN or U command is finished, it prints a "*".  Many
+   When the :LOGIN or @alt{U} command is finished, it prints a "*".  Many
 commands do this, to indicate that they are finished.  The "*" is
 known as the "prompt character", but, unlike the prompt characters of
 many other programs, it means "operation completed" rather than "ready
@@ -303,7 +303,7 @@ Commands from Files.
    Here is a description of the :LOGIN command, in the format that
 will be used throughout this document: 
 
-:LOGIN <name>		or		<name>U
+:LOGIN <name>		or		<name>@alt{U}
 
 logs in as <name>.  Then, if there is a DDT init file, it is executed
 as DDT commands.  Otherwise, DDT will offer to print user <name>'s
@@ -325,7 +325,7 @@ holds for any ITS options pertaining to the terminal.  However, DDT
 will offer to --Reset All--, and if given a <space> it will make a
 special effort to reset all such options to their normal states.  This
 involves loading a new copy of DDT from the disk so that all variables
-in DDT are reinitialized (see U. in the reference section). 
+in DDT are reinitialized (see @alt{U}. in the reference section). 
 
    When finished using ITS for a time, you should "log out" to free
 your resources for other users.  The operation of logging out is the
@@ -577,7 +577,7 @@ name or an SNAME.
 
 queues the file for printing on the line printer.  Ref also :TPLN. 
 
-:COPY <oldfile>,<newfile>	or	^R <oldfile>,<newfile>
+:COPY <oldfile>,<newfile>	or	@alt{^R} <oldfile>,<newfile>
 
 makes a new file containing the same data as an old one.  The new
 file's creation date is made the same as the old one.  When you are
@@ -616,8 +616,8 @@ out of it.
 
 The commands :SFDATE, :SFAUTH, :SFREAP, and :SFDUMP set various
 attributes of a file:  its creation date, its author's name, its
-don't-reap bit, and its backed-up-on-tape bit.  The commands ^T, ^T,
-@altalt{^T}, ^U, ^U, and @altalt{^U} control "filename translations".  See the
+don't-reap bit, and its backed-up-on-tape bit.  The commands ^T, @alt{^T},
+@altalt{^T}, ^U, @alt{^U}, and @altalt{^U} control "filename translations".  See the
 reference section for those commands.  The :REAP command marks a file
 as unimportant, and worthy of deletion as soon as it is backed up on
 mag tape.  There are several commands for handling microtapes:
@@ -750,7 +750,7 @@ don't say which job.  Instead, most of them act implicitly on the job
 DDT calls the "current" job.  The :JOB command can be used to make any
 of the existing jobs current, so it can be operated on: 
 
-:JOB <jname>		or		<jname>J
+:JOB <jname>		or		<jname>@alt{J}
 
 if DDT knows about a job named <jname>, makes the job current. 
 Otherwise, if such a job actually exists (presumably not a direct
@@ -758,7 +758,7 @@ inferior of DDT, since DDT always keeps track of those) DDT will
 henceforth know about it.  If it was a disowned job (see :DISOWN), and
 the top of a tree (disowned jobs too can have inferiors), it is
 "reowned", which means that it becomes DDT's inferior.  In that case,
-":REOWNED" is printed.  If there is no job at all with the name
+":@alt{}REOWNED@alt{}" is printed.  If there is no job at all with the name
 <jname> (and the same UNAME as DDT, of course), DDT will create an
 inferior with that name.  A job created in this way has 1K (1024.
 words) of core (all zero), and no symbols.  Its uses might include
@@ -769,31 +769,31 @@ DDT and executing them.
 types a "#" to tell the user.  Whenever :JOB selects a job that DDT
 didn't already know about, "!" is typed. 
 
-:JOB			or		    J
+:JOB			or		    @alt{J}
 
 picks a new current job "conveniently".  If DDT knows about any jobs
 other than the current one, one of those others becomes current.  Its
-name is printed out inside an J command, so that the user can see
+name is printed out inside an @alt{J} command, so that the user can see
 which job DDT chose.  Jobs that need attention (are "waiting to return
 to DDT" because they have received fatal interrupts) are chosen first. 
-Repeated J commands will choose different jobs, and won't return to
+Repeated @alt{J} commands will choose different jobs, and won't return to
 any job until all the other jobs have been current.  Thus, repeated
-J's are an easy way to visit all of DDT's jobs. 
+@alt{J}'s are an easy way to visit all of DDT's jobs. 
 
    Once a job is current, it can be acted on with these commands: 
 
-:CONTINUE		or		     P
+:CONTINUE		or		     @alt{P}
 
 makes the current job resume running, and gives it control of the
 terminal.  DDT stops reading commands, and type-in goes to the program
 in the current job instead.  Hardly anyone uses or talks about the
 long form of this command or the following one, so everyone should
-know the short forms P and ^P.  P undoes the effect of stopping a
+know the short forms @alt{P} and ^P.  @alt{P} undoes the effect of stopping a
 job with ^Z (remember that ^Z stops a job and makes DDT take back
 control of the terminal).  Thus, after using a program, ^Z goes "back
-up to DDT", and P can then be used to go "back down into the
+up to DDT", and @alt{P} can then be used to go "back down into the
 program".  If the current job is already running, but without the
-terminal (see :PROCEED below), P just gives it the terminal. 
+terminal (see :PROCEED below), @alt{P} just gives it the terminal. 
 
 :PROCEED		or		     ^P
 
@@ -801,7 +801,7 @@ makes the current job resume running, but DDT keeps control of the
 terminal.  The job's program is not allowed to read from or type on
 the terminal, but as compensation DDT continues to read commands even
 while the job is running.  If you should change your mind and decide
-to give the terminal to the program, use P.  A ^P'd job will keep
+to give the terminal to the program, use @alt{P}.  A ^P'd job will keep
 running even if DDT no longer considers it current;  therefore, ^P can
 be used to make several programs run at once.  If ^P is done on a job
 that is already running (eg, it has been ^P'd already), it has no
@@ -836,15 +836,15 @@ whatever job has the terminal, while ^X is a DDT command, and can't be
 obeyed by DDT if DDT has given the terminal away and isn't paying any
 attention to it. 
 
-:KILL			or		   ^X. 
+:KILL			or		   @alt{^X}. 
 
 "kills" the current job.  It ceases to exist, and any data in it is
 lost.  Be sure not to kill a TECO without filing away any information
-being edited in!  The short form ^X does not take effect until a
+being edited in!  The short form @alt{^X} does not take effect until a
 period is typed, because it is so dangerous.  After killing a job, DDT
-tries to find a new current job by doing an J without argument. The
-new current job's name is printed inside an J (select job) command,
-as in ":KILL  TECOJ", showing that the job TECO is now current (DDT
+tries to find a new current job by doing an @alt{J} without argument. The
+new current job's name is printed inside an @alt{J} (select job) command,
+as in ":KILL  TECO@alt{J}", showing that the job TECO is now current (DDT
 often says what it is doing by printing the very commands that the
 user could give to request what DDT did). 
 
@@ -870,7 +870,7 @@ prints a list of all the jobs DDT knows about.  Each job gets its own
 line, which contains the job's JNAME, status, and job number.  The
 current job is indicated by a "*" at the front of its line.  A job's
 status is usually "P" if it is stopped (proceedable) and "R" if it is
-running;  other states include "-" meaning "never started" (P isn't
+running;  other states include "-" meaning "never started" (@alt{P} isn't
 allowed), and W meaning "interrupted and waiting to return to DDT". 
 Example: 
 
@@ -883,15 +883,15 @@ See the reference section for more details.  For users on slow
 terminals, the @altalt{J} command prints out just the line describing the
 current job. 
 
-:START			or		    G
+:START			or		    @alt{G}
 
-starts a job at the starting address of the program in it, unlike P,
+starts a job at the starting address of the program in it, unlike @alt{P},
 which starts a job where it last stopped.  Many programs do something
 useful if they are started at their starting addresses after running
 for a while.  For example, a TECO that is hung can be made usable
 again in that way, without losing any of the data being edited.  The
-G command is useful also after explicitly loading a program into a
-job with L. 
+@alt{G} command is useful also after explicitly loading a program into a
+job with @alt{L}. 
 
    When DDT creates a job, it gives the job the name of your working
 directory (in the variable .SNAME, which ref).  Most programs will use
@@ -978,7 +978,7 @@ because it tried to read past a ^_D, DDT just types a "[DDT]".  If the
 job was stopped by a ^Z, DDT normally prints [DDT], but if ..C.ZPRT is
 set to zero, or if the job is stopped for an error, DDT prints a
 message  containing the job's PC and the next instruction it will
-execute if P'd.  This information is provided for debugging's sake,
+execute if @alt{P}'d.  This information is provided for debugging's sake,
 and you should not be worried by it.
 
 	105)   JRST 105
@@ -1020,7 +1020,7 @@ just yet.  Instead, the program has to wait, and in a :LISTJ or @altalt{V}
 its status will be "W" for "waiting".  DDT announces this development
 to the user with a message such as "Job <jname> interrupting: ILOPR",
 "Job <jname> finished", or "Job <jname> wants the TTY", or something
-else similar.  When an J with no argument is done, the job will be
+else similar.  When an @alt{J} with no argument is done, the job will be
 allowed to return, and DDT will print the appropriate message.  "Job
 <jname> wants the TTY" indicates that the job tried to read from or
 type on the terminal when the terminal belonged to DDT or some other
@@ -1059,29 +1059,29 @@ machine language that it was intended to debug, rather than high level
 languages.  Specifying the mode is not difficult, however, because the
 floating point arithmetic operators are just the fixed point operators
 with a single extra altmode.  Thus, floating point addition is done
-with +, and floating point multiplication with *.  The = command
+with @alt{+}, and floating point multiplication with @alt{*}.  The = command
 always prints its argument as a fixed point number.  Its floating
-point equivalent, =, always prints its argument as a floating point
+point equivalent, @alt{=}, always prints its argument as a floating point
 number.  Feeding fixed point numbers to the floating point arithmetic
-operators or =, and the reverse, will produce seemingly insane
+operators or @alt{=}, and the reverse, will produce seemingly insane
 results.  This are a good way to learn about the PDP-10's floating
 point number representation and the quirks of its floating point
 arithmetic instructions. 
 
 Here is a list of all DDT arithmetic operators: 
 
-+	fixed addition		+	floating addition	 
--	fixed subtraction	-	floating subtraction
-*	fixed multiplication	*	floating multiplication	
-!	fixed division		!	floating division
++	fixed addition		@alt{+}	floating addition	 
+-	fixed subtraction	@alt{-}	floating subtraction
+*	fixed multiplication	@alt{*}	floating multiplication	
+!	fixed division		@alt{!}	floating division
 #	bitwise exclusive-or
 &	bitwise and
-_	logical shift		@altalt{_}	floating scale
+@alt{_}	logical shift		@altalt{_}	floating scale
 
 The &, # and _ operations are done first, multiplication and division
 second, and addition and subtraction last.  The subtraction and
 division operators may be unary, as in "-50" which has the obvious
-meaning.  Unary fixed point division is rather useless, but "!2.0" is
+meaning.  Unary fixed point division is rather useless, but "@alt{!}2.0" is
 0.5.  The logical shift and floating scale operations are defined by
 the PDP-10 instructions LSH and FSC.  They LSH or FSC their first
 operands by a number specified by their second operands. 
@@ -1120,9 +1120,9 @@ reowned.
 for examination only.  
 
 Once another user's job has been made known to DDT with :UJOB, just
-plain <jname>J can be used to make it current again.  That J will
+plain <jname>@alt{J} can be used to make it current again.  That @alt{J} will
 print :UJOB <uname> <jname> to show you what is happening.  The same
-thing will be printed by a J with no argument, if it selects the
+thing will be printed by a @alt{J} with no argument, if it selects the
 foreign job.  Commands to run programs, such as ^K, ignore totally any
 jobs whose unames differ from yours;  they go ahead and create an
 inferior in addition to the unsuitable job. 
@@ -1199,7 +1199,7 @@ changed.  Another command, :GENJOB, changes the job's name to a
 
 starts the current job at its program's starting address, without
 giving it control of the terminal.  :GZP is like an instantaneous
-sequece of G (:GO), ^Z, and ^P, which is how it got its name. 
+sequece of @alt{G} (:GO), ^Z, and ^P, which is how it got its name. 
 
 :JCL<cr>
 
@@ -1218,28 +1218,28 @@ previous .BREAK instructions have read.
 @node Loading
 @chapter Loading and Dumping Jobs
 
-:LOAD <file><cr>	or		L <file><cr>
+:LOAD <file><cr>	or		@alt{L} <file><cr>
 
 loads the binary file <file> into the current job, after resetting
 it.  Resetting a job destroys all its core and reinitializes most
 of its system variables (filename translations are the main
 exception).  Symbols are forgotten and replaced by those loaded
 from the file.  Breakpoints, raid registers and JCL remain set. 
-L does not use the same set of default filenames that the "File
+@alt{L} does not use the same set of default filenames that the "File
 manipulation commands" above use;  instead, each job has its own
-default filenames that L and all other loading and dumping
+default filenames that @alt{L} and all other loading and dumping
 commands use when acting on that job.  When a job is created by
-J (:JOB), its loading default names are initialized as
+@alt{J} (:JOB), its loading default names are initialized as
 DSK:<msname>;<jname> BIN.  Thus, the easiest way to start debugging
-the file TECO BIN is to do TECOJ L<cr>.  When a job is created
+the file TECO BIN is to do TECO@alt{J} @alt{L}<cr>.  When a job is created
 by a program-running command, the loading and dumping filename
 is set to the name of the program run.  You can specify a list of
-directories for L to search for files in using :NFDIR (ref :NFDIR). 
+directories for @alt{L} to search for files in using :NFDIR (ref :NFDIR). 
 For more information, see the reference section under "Defaulting
-of Filenames", and under L.  Some very old binary programs may
-not load with L and will require the :OLOAD command (ref :OLOAD). 
+of Filenames", and under @alt{L}.  Some very old binary programs may
+not load with @alt{L} and will require the :OLOAD command (ref :OLOAD). 
 
-0L <file>
+@alt{0L} <file>
 
 loads a core-image file instead of a binary file.  Of course,
 that's a matter of a different interpretation of the file, since
@@ -1250,23 +1250,23 @@ commands to examine the contents of the file.  The current location
 address (".") is set to the first word not loaded, to make it
 possible to find the end of the data easily. 
 
-   The L command has two other options, which may be used with either
-L or 0L.  Two altmodes instead of one (@altalt{L} or @altalt{0L}) cause a
+   The @alt{L} command has two other options, which may be used with either
+@alt{L} or @alt{0L}.  Two altmodes instead of one (@altalt{L} or @altalt{0L}) cause a
 merge-load, which does not throw away the core and symbols the job
 already has. The data in the file replace the data in core, but
 locations not loaded by the file are unchanged.  Symbols already
 defined are kept, along with any symbols in the file.  Also, the job's
-system variables are not reinitialized.  An infix 1 (1L or @altalt{1L})
+system variables are not reinitialized.  An infix 1 (@alt{1L} or @altalt{1L})
 loads a binary file without its symbols. 
 
-<addr>L <file>
+<addr>@alt{L} <file>
 
 loads with an offset of <addr>.  A binary file has <addr> added to all
 the addresses it specifies loading into (unfortunately, addresses in
-the program cannot be relocated).  A core image file (<addr>0L) is
+the program cannot be relocated).  A core image file (<addr>@alt{0L}) is
 simply read in starting at <addr>. 
 
-Y <file>
+@alt{Y} <file>
 
 dumps the contents of the current job's core as an SBLK file. 
 
@@ -1301,28 +1301,28 @@ symbol table pointer to <symbols file>.  This saves space, where the
 program being dumped is going to map in file to get symbols from
 anyway, for example LISP.
 
-   The Y command provides other types of dumping operations: 
+   The @alt{Y} command provides other types of dumping operations: 
 
-0Y <file>
+@alt{0Y} <file>
 
 writes the core of the current job directly into <file>, as a
 core-image.  If the job has 5K of core, the file will be exactly 5K
 long. 
 
-<low>,<high>Y <file>
+<low>@alt{,}<high>@alt{Y} <file>
 
 dumps, as an SBLK file, the range of core from <low> to <high>,
 inclusive.  Other core locations in the job's memory will simply not
 be mentioned in the SBLK file and will not be altered if the file is
 loaded. 
 
-<low>,<high>0Y <file>
+<low>@alt{,}<high>@alt{0Y} <file>
 
 writes out words <low> through <high> of the current job into <file>
 as a direct core image.  Exactly <high>-<low>+1 words are written. 
 
    Related commands include :LFILE, which prints out the name of the
-last file loaded (not necessarily the same as the current L default
+last file loaded (not necessarily the same as the current @alt{L} default
 file), and @altalt{Z}, which sets all or a specified range of the job's
 memory to a specified value (usually zero). 
 
@@ -1643,7 +1643,7 @@ primarily in files or valrets.
 
    The most common use of execute files is as init or exit files,
 which are executed automatically (if they exist) upon logging in or
-out, respectively (but 0U and @altalt{0U} allow you to log in or out as if
+out, respectively (but @alt{0U} and @altalt{0U} allow you to log in or out as if
 you had no init or exit file).  Init files are identified to DDT not
 by a user command but by having the appropriate filenames.  An init
 file is called <hsname>;<xuname> LOGIN .  An exit file has LOGOUT
@@ -1733,7 +1733,7 @@ commands in <line>.  For example, an abnormal return from an inferior
 job counts as an error and suspends execution of the file or string. 
 After fixing up the problem with the program, one might restart the
 program and resume execution of the file's commands by doing
-:INPOP P<cr>. 
+:INPOP @alt{P}<cr>. 
 
 If the error shows that the rest of the file is not wanted, the
 command :INFLS will discard all the suspended files and valret
@@ -1752,7 +1752,7 @@ allow both conditionals and loops.
    Conditionals use the :IF command: 
 
 	:IF <condition> <argument>
-	( <conditionalized commands> )
+	@alt{(} <conditionalized commands> @alt{)}
 
 executes <conditionalized commands> or does not execute them,
 according to <condition> and <argument>.  The simplest conditions are
@@ -1760,20 +1760,20 @@ the numeric sign conditions:  L, E, LE, N, G, GE.  Those conditions
 expect <argument> to be a numeric expression and test the sign of its
 value.  Thus, :IF E 1 would fail and not execute the <conditionalized
 commands>.  <conditionalized commands> must be balanced in parentheses
-- that is how DDT knows when they end.  The ( and ) commands are
+- that is how DDT knows when they end.  The @alt{(} and @alt{)} commands are
 ignored by DDT except for their effect on the parenthesis counting, so
 commands containing unbalanced parentheses can be conditionalized by
-including an extra ( or ) to balance the string.  Conditionals are
+including an extra @alt{(} or @alt{)} to balance the string.  Conditionals are
 strong enough to affect even the output-control characters ^V, ^W, ^B,
 ^E.  Thus,
 
-	^W :IF N Q
-	( :^VThis is a printed message
-	^W
-	)^V
+	^W :IF N @alt{Q}
+	@alt{(} :@alt{}^VThis is a printed message
+	^W@alt{}
+	@alt{)}^V
 
 conditionally prints "This is a printed message<cr>".  The <cr> before
-the ) is necessary to end the : ... <cr> comment construction.  The
+the @alt{)} is necessary to end the :@alt{} ... @alt{<cr>} comment construction.  The
 :IF argument can be ended by ">" instead of <cr>, if the user wishes. 
 
 :EXISTS <file><cr>
@@ -1789,8 +1789,8 @@ would print 0 if FOO exists.  :EXISTS is very useful in arithmetic
 conditionals: 
 
 	^W :IF E :EXISTS FOO NOTE
-	> ( :PRINT FOO NOTE^V
-	^W ) ^V
+	> @alt{(} :PRINT FOO NOTE^V
+	^W @alt{)} ^V
 
 prints the file FOO NOTE if it exists.  The ^V<cr>^W construct causes
 typeout to be enabled when the :PRINT is executed - otherwise, the
@@ -1804,7 +1804,7 @@ have done just as well.
 :ELSE command.
 
 	:ELSE
-	( <commands> )
+	@alt{(} <commands> @alt{)}
 
 is a conditional which succeeds if the preceding conditional failed.
 The "preceding conditional" is the last one which ended;  it may have
@@ -1841,11 +1841,11 @@ to conditionalize the :TCTYP which sets the parameters for your home
 terminal so that it is done only on remote terminals:
 
 	:DDTSYM TTYTYP/			(this tests for STY or dialup)
-	:IF N Q&<%TYSTY+%TYDIL>
-	( :DDTSYM TCTYP/		(this makes SUPDUP terminals
-	   :IF N Q-%TNSFW		 not count)
-	   ( :TCTYP LINEL 69. etc.
-	))
+	:IF N @alt{Q}&<%TYSTY+%TYDIL>
+	@alt{(} :DDTSYM TCTYP/		(this makes SUPDUP terminals
+	   :IF N @alt{Q}-%TNSFW		 not count)
+	   @alt{(} :TCTYP LINEL 69. etc.
+	@alt{)}@alt{)}
 
    To test, in a conditional, whether a symbol is defined, the command
 :SYMTYP can be used - see the reference section. 
@@ -1863,10 +1863,10 @@ requires a numeric argument;  at the moment, its value is ignored.
 The following code declares the terminal to be a tektronix, if the
 user says <space>. 
 
-	^W : ^V--Tektronix--^W
+	^W :@alt{} ^V--Tektronix--^W@alt{}
 	:IF MORE 0
-	( :TCTYP TEKTRONIX
-	) ^V
+	@alt{(} :TCTYP TEKTRONIX
+	@alt{)} ^V
 
 :MORE <line>
 
@@ -2012,7 +2012,7 @@ and "==");  MIDAS communicates the halfdeadness of the symbol to DDT
 along with the symbol's value.  In addition, there are DDT commands to
 half kill a symbol: 
 
-<symbol>K
+<symbol>@alt{K}
 
 half-kills the symbol <symbol>, so that it will not be used for
 typeout. 
@@ -2056,14 +2056,14 @@ no symbols.  :SYMLOD uses the same filename defaults as the loading
 and dumping commands.  :SYMADD is a similar command the keeps the
 symbols the job used to have in addition to the new ones. 
 
-^K
+@alt{^K}
 
-is the same as :SYMLOD<cr>, and loads the symbol table out of the L
+is the same as :SYMLOD<cr>, and loads the symbol table out of the @alt{L}
 default file.  It is useful after a file has been loaded without
 symbols and the symbols later appear to be necessary after all.  The
 usual reason that a file was loaded without symbols is that it was
 loaded by a command to run a program, such as <prgm>^K or :<prgm>. 
-Notice that <prgm>^K is equivalent to <prgm>^K with a ^K done before
+Notice that <prgm>@alt{^K} is equivalent to <prgm>^K with a @alt{^K} done before
 starting the program. 
 
 :LISTS
@@ -2086,7 +2086,7 @@ from the selected block, but it is defined in some other block, the
 other block's definition is still visible.  Use of such a symbol as
 input will select the block that the symbol is defined in, leaving the
 previously selected block.  The user will be notified with a message
-such as "<newblock>:".  Not surprisingly, <newblock>: is a command
+such as "<newblock>@alt{:}".  Not surprisingly, <newblock>@alt{:} is a command
 that selects the specified block;  see the reference section.  :LISTP
 prints the block structure of the current job's symbol table, and
 :PRGM prints the name of the selected block. 
@@ -2095,7 +2095,7 @@ prints the block structure of the current job's symbol table, and
 into the job's memory, or to read symbol definitions or a whole symbol
 table into DDT out of the job's memory (the linking loader STINK does
 this to give DDT the symbol table constructed by the loading process). 
-The commands ^Y, ^Y and @altalt{^Y} serve those functions.  The command
+The commands ^Y, @alt{^Y} and @altalt{^Y} serve those functions.  The command
 :SYMTYP takes a symbol as argument and returns information on whether
 the symbol is defined.  See the reference section. 
 
@@ -2131,7 +2131,7 @@ mode, ascii text mode, etc. (See the section on typeout modes).
 "/" command.  It is preceded by the address of the location to open. 
 The contents of the location are typed out, using whatever typeout
 mode is currently selected.  In addition, the address and the contents
-are remembered as the values of the special symbols "." and Q,
+are remembered as the values of the special symbols "." and @alt{Q},
 respectively.  Here is an example, which assumes that symbolic typeout
 mode is selected (as is usually the case): 
 
@@ -2139,7 +2139,7 @@ mode is selected (as is usually the case):
 
 "107/" was typed by the user, and the contents of 107 were printed, as
 a PDP-10 instruction, by DDT.  After this command, the value of "."
-will be 107, and the value of Q will be MOVE A,FOO+3. 
+will be 107, and the value of @alt{Q} will be MOVE A,FOO+3. 
 
    If you try to examine a location at which the current job has no
 memory, the error message "??" will be printed.  No location will be
@@ -2152,7 +2152,7 @@ now deposit new contents with the <cr> command.
 
 closes the open location, after depositing <newstuff> in it.  If no
 location is open, this command has no effect, except that in either
-case Q is set to <newstuff>.  If you deposit in a read-only page, DDT
+case @alt{Q} is set to <newstuff>.  If you deposit in a read-only page, DDT
 replaces that page of the inferior's memory with a new, writable page,
 containing the same data in each word, before depositing.  This can
 cause a page which was once shared with other jobs to become private,
@@ -2211,11 +2211,11 @@ an argument can be used for depositing, just like <lf>.
    After seeing the instruction MOVE A,FOO+3 typed out, you might
 wonder what is in FOO+3.  DDT saves you the trouble of typing FOO+3 in
 again by providing the <tab> (or ^I) command.  <tab> opens the
-location addressed by the right half of Q, which, after the 107/,
+location addressed by the right half of @alt{Q}, which, after the 107/,
 would be FOO+3.  <tab> prints the address it is opening on a new line,
 just like <lf>.  Alternatively, you can use the command / with no
 argument, which will also open the location addressed by the right
-half of Q, but will not print that address or go to a new line. 
+half of @alt{Q}, but will not print that address or go to a new line. 
 Giving an argument to <tab> will deposit that argument (if there is
 still a location open) and then open the location pointed to by the
 argument;  this is very different from what / does with an  argument. 
@@ -2228,12 +2228,12 @@ matter which mode is current, and [, which always prints the contents
 numerically.  The second class actually consists of one- and
 two-altmode variants of the commands already described:  /,[,] and
 <tab>.  Those commands all open a location whose address is taken from
-either an argument or Q.  With no altmodes, they get the address from
-the right half of the argument or Q.  The one-altmode variants, such
-as / and <tab>, all take the address from the left half of the
-argument or Q.  Even more useful, the two altmode variants such as
+either an argument or @alt{Q}.  With no altmodes, they get the address from
+the right half of the argument or @alt{Q}.  The one-altmode variants, such
+as @alt{/} and @alt{<tab>}, all take the address from the left half of the
+argument or @alt{Q}.  Even more useful, the two altmode variants such as
 @altalt{/} perform a PDP-10 effective address calculation on the argument or
-Q, and open the addressed location.  For example, suppose that A
+@alt{Q}, and open the addressed location.  For example, suppose that A
 contains 5 and 1734 contains ADD T,FOO(A).  Then after 1734/, @altalt{/}
 would open location FOO+5.  @@A@altalt{/} would open location 5. 
 
@@ -2351,24 +2351,24 @@ instruction field.  Since the 1 in the (1) bypasses the
 format-processor, truncation of addresses to 18. bits has no effect on
 it. 
 
->
+@alt{>}
 
 allows you to type in a new instruction slightly different from
-another one without typing in all the fields that are the same.  >
+another one without typing in all the fields that are the same.  @alt{>}
 included anywhere in a PDP-10 instruction causes all fields not
-specified to be taken over from the value of Q.  DDT's heuristics for
-deciding what fields to default are complicated (ref >).  Here are
+specified to be taken over from the value of @alt{Q}.  DDT's heuristics for
+deciding what fields to default are complicated (ref @alt{>}).  Here are
 some examples, which assume that you or DDT just typed MOVE A,B(C): 
 
 	Typing		Gives
 
-	FOO>		MOVE A,FOO(C)
-	FOO(0)>	MOVE A,FOO
-	MOVNS>		MOVNS A,B(C)
-	MOVNS 0,>	MOVNS B(C)
-	@@>		MOVE A,@@B(C)
-	0,,>		B
-	,0>		MOVE A,(C)
+	FOO@alt{>}		MOVE A,FOO(C)
+	FOO(0)@alt{>}	MOVE A,FOO
+	MOVNS@alt{>}		MOVNS A,B(C)
+	MOVNS 0,@alt{>}	MOVNS B(C)
+	@@@alt{>}		MOVE A,@@B(C)
+	0,,@alt{>}		B
+	,0@alt{>}		MOVE A,(C)
 
 @node Literals
 @chapter Literals
@@ -2424,38 +2424,38 @@ been defined to be zero words long, and DDT will be satisfied.
 the numerical representation of text according to the conventions used
 most often by PDP-10 programs:  ASCII, SIXBIT and SQUOZE. 
 
-1'<text>
+@alt{1'}<text>@alt{}
 
 has, as its value, the SIXBIT representation of <text>.  In other
 words, it is the DDT equivalent of SIXBIT /<text>/.  Only the first 6
-characters of <text> are meaningful.  The "1" in 1' can be replaced
+characters of <text> are meaningful.  The "1" in @alt{1'} can be replaced
 by any other number without effect;  it is present to distinguish this
-command from the ' command, which selects a typeout mode. 
+command from the @alt{'} command, which selects a typeout mode. 
 
-2"<text>
+@alt{2"}<text>@alt{}
 
 has, as its value, the ASCII representation of <text>.  In other
 words, it is the DDT equivalent of ASCII /<text>/.  Only the first 5
 characters of <text> are meaningful.  Special DDT characters such as
-^V, ^D,  and <rubout> can't be entered directly, so a quoting
+^V, ^D, @alt{} and <rubout> can't be entered directly, so a quoting
 mechanism is provided.  The character ^ "controlifies" the following
 character, so that ^ and V make a ^V.  ^ and ? make a ^?, which is a
-<rubout>.   is actually a ^[, so ^ and [ can be used to enter it.  In
-addition, ^Q quotes some characters such as <rubout>, ^, and .  To
+<rubout>.  @alt{} is actually a ^[, so ^ and [ can be used to enter it.  In
+addition, ^Q quotes some characters such as <rubout>, ^, and @alt{}.  To
 play safe, use quoting to input any control character. 
 
-   The "2" in 2" has two effects:  it distinguishes this command from
-the " command, which selects a typeout mode, and its low bit
+   The "2" in @alt{2"} has two effects:  it distinguishes this command from
+the @alt{"} command, which selects a typeout mode, and its low bit
 specifies the low bit of the value.  Thus, 0 could be used instead of
 2 with no effect, but 2 is easier to type. 
 
-1#<char>
+@alt{1#}<char>
 
 returns the ASCII representation of <char>, right-justified in a word. 
 It is the equivalent of MIDAS "<char> or "<char>".  ^Q and ^ must be
-used for quoting, as in 2". 
+used for quoting, as in @alt{2"}. 
 
-<flags>&<symbol>
+@alt{<flags>&}<symbol>
 
 is the equivalent of SQUOZE <flags>,<symbol> in MIDAS.  This construct
 does not contain any final delimiter;  instead, the following operator
@@ -2490,7 +2490,7 @@ permanently selected mode will be reselected.
 Each typeout mode that DDT has, has a command to select it.  The
 commands to select a mode temporarily all have exactly one altmode. 
 If a second altmode is used, the selection is made permanent.  For
-example, F selects typeout as floating-point numbers, temporarily. 
+example, @alt{F} selects typeout as floating-point numbers, temporarily. 
 @altalt{F} selects the same mode permanently. 
 
 When a typeout mode has sub-options (such as whether to print
@@ -2507,8 +2507,8 @@ which mode was most recently explicitly specified.  This variable is
 updated just as the temporary mode is, except that it is NOT reset by
 carriage returns.  The most recent mode can be used to type one value
 with the ";" command, or can be selected temporarily or permanently
-with ";" or "@altalt{;}".  Thus, after temporarily selecting halfword mode
-with H and then reverting to the permanent mode with <cr>, ";" will
+with "@alt{;}" or "@altalt{;}".  Thus, after temporarily selecting halfword mode
+with @alt{H} and then reverting to the permanent mode with <cr>, ";" will
 still type its argument in halfword mode. 
 
 The user may define typeout modes of his own, by supplying DDT with an
@@ -2517,11 +2517,12 @@ value in his favorite manner.  DDT has several typeout-mode selecting
 commands that select a variable mode instead of a fixed one;  if the
 user's instruction is specified as the definition of one of those
 modes, the user's instruction will be used for typeout when that mode
-is selected.  The commands that select a variable mode are ", #, $,
-%, &, and '.  The terms "# mode", "$ mode", etc. mean "the mode
-that # currently specifies", etc.  Some of the variable modes are
+is selected.  The commands that select a variable mode are @alt{"}, @alt{#}, @alt{$},
+@alt{%}, @alt{&}, and @alt{'}.  The terms "# mode", "$ mode", etc. mean "the mode
+@c Is @alt{$} really @altalt{}?
+that @alt{#} currently specifies", etc.  Some of the variable modes are
 initially set to useful built-in typeout modes such as ASCII mode,
-SQUOZE mode, etc.  Others ($ and %) are useless unless given meaning
+SQUOZE mode, etc.  Others (@alt{$} and @alt{%}) are useless unless given meaning
 by the user.  The meanings of the variable mode commands are
 controlled by locations inside DDT:  each job has one location for
 each of the six commands.  The locations' addresses are called,
@@ -2538,32 +2539,32 @@ will be in 25 (but ref .40ADDR), but depending on this makes the
 typeout mode less versatile (it can't be used in a Raid register, for
 example). 
 
-With the exception of T mode, all of the built-in DDT typeout modes
+With the exception of @alt{T} mode, all of the built-in DDT typeout modes
 arrange for their output to be in a form suitable for being typed back
-in.  That is automatic for C, H, F and S modes.  For the ASCII,
+in.  That is automatic for @alt{C}, @alt{H}, @alt{F} and @alt{S} modes.  For the ASCII,
 SQUOZE, and SIXBIT typeout modes, it requires that the data typed out
 be preceded by an appropriate DDT operator for reading the data back
 in, and that it be printed in the syntax used by that operator. 
 
 Here follow descriptions of the fixed built-in typeout modes. 
 
-C	selects Constant mode, in which words are typed out
+@alt{C}	selects Constant mode, in which words are typed out
 	 as numbers, using the currently selected output radix. 
 
-E	selects E&S mode, in which words are typed out as E&S
+@alt{E}	selects E&S mode, in which words are typed out as E&S
 	 display processor instructions. 
 
-F	selects Floating point mode, in which words are typed out
+@alt{F}	selects Floating point mode, in which words are typed out
 	 as floating point numbers.  The radix is always decimal. 
 
-H	selects Halfword mode, in which words are typed out
+@alt{H}	selects Halfword mode, in which words are typed out
 	 as <lh>,,<rh>, with each halfword printed as an address. 
 
-S	selects Symbolic mode, in which words are typed out as
+@alt{S}	selects Symbolic mode, in which words are typed out as
 	 cleverly as DDT can manage, either as a PDP-10 instruction,
 	 in halfword mode, or as a number.  In the first case,
 	 the address, index and AC fields are printed as addresses.
-	 In the other two cases, the ordinary C and H mode
+	 In the other two cases, the ordinary @alt{C} and @alt{H} mode
 	 actions are used.  The decision of which format to use
 	 is complicated, but PDP-10 instruction printout is used
 	 whenever it makes sense.  With I/O instructions, the user
@@ -2571,67 +2572,67 @@ Here follow descriptions of the fixed built-in typeout modes.
 	 Specially used symbols.  The .CALL UUO is printed specially;
 	 DDT prints in parentheses the name of the call (eg, OPEN).
 
-<n>T	selects typeout of words as decomposed into <n>-bit bytes.
-<pat>T	selects typeout of words as decomposed into bytes in
+@alt{<n>T}	selects typeout of words as decomposed into <n>-bit bytes.
+@alt{<pat>T}	selects typeout of words as decomposed into bytes in
 	 an arbitrary pattern specified by <pat>.  The byte
 	 boundaries occur where two adjacent bits in <pat> differ.
 	 Thus, the pattern 707070,,631463 divides the LH into
 	 3-bit bytes and the RH into 2-bit bytes.
 
-T	selects typeout of words as decomposed into bytes
+@alt{T}	selects typeout of words as decomposed into bytes
 	 according to the last byte size or pattern specified.
 
 
 Here follow the descriptions of the built-in typeout modes
- that are the initial settings of the variable commands ", etc.
+ that are the initial settings of the variable commands @alt{"}, etc.
 
-"	is initially set to select full-word ASCII typeout mode,
-	 in which ASCII /<foo>/ types out as 0"<foo>, and
-	 ASCII /<foo>/+1 types out as 1"<foo>.  Control
+@alt{"}	is initially set to select full-word ASCII typeout mode,
+	 in which ASCII /<foo>/ types out as @alt{0"}<foo>@alt{}, and
+	 ASCII /<foo>/+1 types out as @alt{1"}<foo>@alt{}.  Control
 	 characters in <foo> are typed as uparrow followed
 	 by the appropriate non-control character.  Uparrow
 	 is preceded by a ^Q.  Rubout is typed as uparrow-?.
 	 Altmode is typed as uparrow-[.
 
-#	is initially set to select single-character ASCII
+@alt{#}	is initially set to select single-character ASCII
 	 typeout mode, in which the ASCII code for <char>
-	 is typed out as 1#<char>.  As in full-word ASCII
+	 is typed out as @alt{1#}<char>.  As in full-word ASCII
 	 typeout mode, control characters are typed out with
 	 uparrows and ^ and ^Q are preceded by ^Q.
 	 Altmode, however, is typed as an altmode.
 
-&	is initially set to select SQUOZE typeout mode, in
+@alt{&}	is initially set to select SQUOZE typeout mode, in
 	 which SQUOZE <flags>,<symbol> types out as
-	 <flags>&<symbol>.  <flags> will always be a
+	 @alt{<flags>&}<symbol>.  <flags> will always be a
 	 multiple of 4, and less than 100 .
 
-'	is initially set to select SIXBIT typeout mode, in
-	 which SIXBIT /<foo>/ is typed out as 0'<foo>.
+@alt{'}	is initially set to select SIXBIT typeout mode, in
+	 which SIXBIT /<foo>/ is typed out as @alt{0'}<foo>@alt{}.
 
 
 Here are the commands that control how addresses are printed:
 
-A	selects typeout of addresses as numbers (in the
+@alt{A}	selects typeout of addresses as numbers (in the
 	 selected radix).
 
-R	selects typeout of addresses symbolically, when possible.
+@alt{R}	selects typeout of addresses symbolically, when possible.
 	 An address which is not equal to any symbol will be
 	 typed as <symbol>+<number>, provided that <number> is
 	 less than the current contents of ..SYMOFS (initially
 	 100).
 
-?	selects bit typeout mode, which is complicated, and
+@alt{?}	selects bit typeout mode, which is complicated, and
 	 is described in a later section.
 
 
 Here are the commands that select the output radix, in which
  numbers are printed:
 
-D	selects base 10.
+@alt{D}	selects base 10.
 
-O	selects base 8.
+@alt{O}	selects base 8.
 
-<n>R	selects base <n>.
+@alt{<n>R}	selects base <n>.
 
 @node Type-out
 @chapter Type-out Commands
@@ -2640,52 +2641,52 @@ Here are the commands that select the output radix, in which
 specific typeout mode.  They exist for convenience, since it would be
 possible anyway to select that typeout mode and then use the ; 
 command to print the argument in that mode.  When one of these
-commands has no argument, it prints the value of Q. 
+commands has no argument, it prints the value of @alt{Q}. 
 
 ;
 
-prints Q (or its argument, if there is one) in the last
+prints @alt{Q} (or its argument, if there is one) in the last
 selected mode (which may not be current, if a CR reverted it).
 
 _ (underscore or backarrow)
 
-prints Q (or its argument, if there is one) symbolically. 
+prints @alt{Q} (or its argument, if there is one) symbolically. 
 
 =
 
-prints Q or its argument as a fixed-point number.  = prints as a
+prints @alt{Q} or its argument as a fixed-point number.  @alt{=} prints as a
 floating point number. 
 
-<r>=
+@alt{<r>=}
 
-prints Q or a prefix argument as a fixed point number using <r> as
+prints @alt{Q} or a prefix argument as a fixed point number using <r> as
 the radix. 
 
 '
 
-prints Q or its argument in the ' mode, which is SIXBIT text mode
+prints @alt{Q} or its argument in the @alt{'} mode, which is SIXBIT text mode
 unless the user has changed it. 
 
 "
 
-prints Q or its argument in the " mode, which is ASCII text mode
+prints @alt{Q} or its argument in the @alt{"} mode, which is ASCII text mode
 unless the user has changed it. 
 
 #
 
-prints Q in the # mode, which is single-character ASCII mode unless
+prints @alt{Q} in the @alt{#} mode, which is single-character ASCII mode unless
 the user has changed it.  # cannot be given an argument to print,
 since then # would be interpreted as an arithmetic operator. 
 
 &
 
-prints Q in the & mode, which is SQUOZE text mode unless the user
+prints @alt{Q} in the @alt{&} mode, which is SQUOZE text mode unless the user
 has changed it.  & cannot be given an argument to print, since then &
 would be interpreted as an arithmetic operator. 
 
 ? 
 
-prints Q in H? mode, which is a case of bit typeout mode (to be
+prints @alt{Q} in @alt{H}@alt{?} mode, which is a case of bit typeout mode (to be
 described later). 
 
    Type-out commands interact specially with the ..TTYFLG variable
@@ -2708,7 +2709,7 @@ names in a program, it is wise to make them start with a common prefix
 for the sake of bit typeout mode. 
 
 In addition to the prefix, bit typeout mode requires a byte
-decomposition pattern, such as the T typeout mode uses.  This tells
+decomposition pattern, such as the @alt{T} typeout mode uses.  This tells
 DDT how to divide the quantity being typed into bytes.  The symbols
 typed are not allowed to overlap the byte boundaries, and each one
 must completely account for the value of one of the bytes.  This
@@ -2745,20 +2746,20 @@ When %TX bit-typeout mode is set, the byte-decomposition mask is
 determined.  This is the value of the symbol "%TX", if it is defined; 
 otherwise, the value of "..B%TX", if that is defined;  otherwise
 525252,,525252 octal.  (The byte-decomposition mask may also be set
-explicitly by specifying it as an infix argument to ? or @altalt{?}.) The
+explicitly by specifying it as an infix argument to @alt{?} or @altalt{?}.) The
 byte-decomposition mask divides the word into fields in much the same
-manner as the T mask does.  If the byte-decomposition mask is
+manner as the @alt{T} mask does.  If the byte-decomposition mask is
 negative, then it divides the word into fields.  If it is positive,
 then its right half is divided into fields, and bit 3.1 determines the
 half (0 = RH, 1 = LH) which the mask applies to. 
 
 Bit-typeout mode is actually superimposed on other modes: 
 
-	H typeout types the left half using left-half
+	@alt{H} typeout types the left half using left-half
 	bits, and the right half using right-half bits.
 
-	S typeout, if it converts itself to H, follows
-	H rules.  Otherwise, the instruction is typed as
+	@alt{S} typeout, if it converts itself to @alt{H}, follows
+	@alt{H} rules.  Otherwise, the instruction is typed as
 	usual, except for the address field, which may or
 	may not be typed as as bits, according to the
 	type of instruction.  For example, TLNE uses
@@ -2778,14 +2779,14 @@ Bit-typeout mode is actually superimposed on other modes:
 		XORI	EQVI
 		TR--
 	Op-codes which do not use bits always use the most
-	recent setting by A or R.  "?", which means "H;",
+	recent setting by @alt{A} or @alt{R}.  "?", which means "@alt{H;}",
 	can always be used to see bits explicitly
-	as left-half,,right-half, if S doesn't give
+	as left-half,,right-half, if @alt{S} doesn't give
 	exactly what is desired.  To see "the other kind"
 	of bits, @altalt{Q?}  can always be used.
 
-	# mode uses S mode after extracting the low seven
-	bits, and so follows S rules.
+	# mode uses @alt{S} mode after extracting the low seven
+	bits, and so follows @alt{S} rules.
 
 These modes use bit-typeout iff the bit-typeout flag is set. 
 
@@ -2814,9 +2815,9 @@ parentheses.  Thus:
 		TLNE TT,(%QXABC+%QXDEF+%QXGHI)
 
 Example:
-		201140000701    %TX?#
+		201140000701    %TX@alt{?#}
 	would type out
-		MOVEI C,%TXMTA+%TXCTL 1#A
+		MOVEI C,%TXMTA+%TXCTL @alt{1#}A
 or something like that.
 
 Example:	consider these definitions in a program:
@@ -2897,31 +2898,31 @@ specially provided for that purpose.
    Every value found by examining memory, deposited into memory, or
 printed out by a "retype using ... mode" command such as "=", ";", or
 "_", is pushed onto the value ring buffer.  The contents of the ring
-buffer are accessible via the various forms of Q: 
+buffer are accessible via the various forms of @alt{Q}: 
 
-Q
+@alt{Q}
 
 evaluates to whatever is at the front of the value ring buffer.  It
 stands for the last thing DDT read or printed. 
 
-<n>Q
+@alt{<n>Q}
 
-is the <n>'th value back in the value ring buffer.  0Q is the same as
-Q.  1Q is the thing DDT read or printed before it read or printed
-Q. 
+is the <n>'th value back in the value ring buffer.  @alt{0Q} is the same as
+@alt{Q}.  @alt{1Q} is the thing DDT read or printed before it read or printed
+@alt{Q}. 
 
 @altalt{<n>Q}
 
-is <n>Q with its halves swapped:  <(<n>Q)>. 
+is @alt{<n>Q} with its halves swapped:  <(@alt{<n>Q})>. 
 
-   One use for <n>Q is to move a series of words up or down one word. 
-That is done by depositing 2Q into each word: 
+   One use for @alt{<n>Q} is to move a series of words up or down one word. 
+That is done by depositing @alt{2Q} into each word: 
 
 	103/   51   0
-	104/   57   2Q
-	105/   3    2Q
+	104/   57   @alt{2Q}
+	105/   3    @alt{2Q}
 
-When depositing into 104, Q would be 57, 1Q would be 0, and 2Q is
+When depositing into 104, @alt{Q} would be 57, @alt{1Q} would be 0, and @alt{2Q} is
 51.  The 104 does not count because it is used as an address, and will
 go on the address ring buffer instead of the value ring buffer. 
 
@@ -2943,36 +2944,36 @@ that, the address ring buffer is accessed destructively, by discarding
 recent addresses from the front to get at the earlier addresses behind
 them. 
 
-<cr>
+@alt{<cr>}
 
 discards the address at the front of the address ring buffer, and
 reopens the address which thereby appears at the front.  After 1/ and
-2/, <cr> will discard the 2 and reopen 1.  The reopened address is
+2/, @alt{<cr>} will discard the 2 and reopen 1.  The reopened address is
 typed out symbolically on a new line, followed by slash and the
-contents of the location (in the current mode).  <n><cr> is an
-extension of the <cr> command;  it discards the first <n> addresses
+contents of the location (in the current mode).  @alt{<n><cr>} is an
+extension of the @alt{<cr>} command;  it discards the first <n> addresses
 from the buffer and then reopens the one left at the front.  When
-<cr> (or the following commands, <lf> and ^) is given a prefix
+@alt{<cr>} (or the following commands, @alt{<lf>} and @alt{^)} is given a prefix
 argument, that argument is deposited into the open location (if there
-is one).  In that regard, <cr> is just like <cr>.  However, <cr>,
+is one).  In that regard, @alt{<cr>} is just like <cr>.  However, @alt{<cr>},
 unlike <cr>, does NOT revert to the permanently selected typeout
 modes. 
 
-<lf>
+@alt{<lf>}
 
-is like <cr>, but instead of reopening the location that comes to the
+is like @alt{<cr>}, but instead of reopening the location that comes to the
 front of the ring buffer, it opens the word after that location. 
-<lf> is like an <cr> followed by a <lf>, except that only the second
+@alt{<lf>} is like an @alt{<cr>} followed by a <lf>, except that only the second
 location - the incremented address - is actually opened.  When you
 have been examining a sequence of words with <lf>, and then digress to
-a word out of the sequence (with <tab>, for example), <lf> will open
-the next word of the sequence.  <n><lf> is also defined, and pops <n>
+a word out of the sequence (with <tab>, for example), @alt{<lf>} will open
+the next word of the sequence.  @alt{<n><lf>} is also defined, and pops <n>
 addresses off the ring buffer. 
 
-^
+@alt{^}
 
-is like <lf>, but decrements the address instead of incrementing it. 
-^ is a combination of <cr> and ^.  <n>^ is also defined. 
+is like @alt{<lf>}, but decrements the address instead of incrementing it. 
+@alt{^} is a combination of @alt{<cr>} and ^.  @alt{<n>^} is also defined. 
 
 @node Execution
 @chapter Controlling Execution While Debugging
@@ -2981,8 +2982,8 @@ is like <lf>, but decrements the address instead of incrementing it.
 execution of a job being debugged. 
 
    The basic commands for controlling execution are still important: 
-G to start the job at the program's start address, ^Z and ^X to stop
-it, and P and ^P to resume execution. 
+@alt{G} to start the job at the program's start address, ^Z and ^X to stop
+it, and @alt{P} and ^P to resume execution. 
 
    DDT can impose on an inferior conditions under which it should stop
 executing.  There are several types of conditions available. 
@@ -2999,7 +3000,7 @@ described in detail in later sections.
 
    Also, the user can make the job stop before each system call by
 putting zero in the pseudo-location ..SYSUUO.   When the job stops for
-such a reason, DDT gives "SYSUUO;" as the reason.  P will make it
+such a reason, DDT gives "SYSUUO;" as the reason.  @alt{P} will make it
 proceed on, but the next system call will make it stop again. 
 Similarly, putting 0 in ..PERMIT will make the job stop before all
 .VALUEs, suicide attempts (.BREAK 16,), and .BREAK 12,'s that would
@@ -3012,7 +3013,7 @@ They are described in the section "Stepping".
 
    Some other execution-control commands are these: 
 
-<addr>G
+<addr>@alt{G}
 
 starts the program at address <addr>.  The "first part done" hardware
 flag (%PCFPD) is cleared. 
@@ -3020,15 +3021,15 @@ flag (%PCFPD) is cleared.
 <addr>@altalt{G}
 
 starts the program at address <addr>, and makes <addr> the new
-starting address for future G's with no argument. 
+starting address for future @alt{G}'s with no argument. 
 
-<addr>0G
+<addr>@alt{0G}
 
 sets the program's PC to <addr>, but doesn't start execution. 
-<addr>0G followed by P is equivalent to <addr>G.  0G sets the PC
+<addr>@alt{0G} followed by @alt{P} is equivalent to <addr>@alt{G}.  @alt{0G} sets the PC
 to the starting address. 
 
-<insn>X
+<insn>@alt{X}
 
 makes the current job execute the instruction <insn>.  If <insn> is a
 subroutine call, the whole subroutine is executed.  If <insn> is a
@@ -3036,7 +3037,7 @@ jump, the job will continue running until stopped for some unrelated
 reason.  If the instruction returns without skipping, DDT prints one
 blank line and then a "*".  If the instruction skips, DDT prints
 "<SKIP>" before the "*".  In either case, the job's PC is not altered
-by the X.
+by the @alt{X}.
 
 @node MAR
 @chapter The MAR
@@ -3046,7 +3047,7 @@ make the inferior stop on referencing one particular word of memory.
 The MAR can be restricted to certain types of references, and an
 arbitrary conditional instruction can be supplied. 
 
-<addr><mode>I
+<addr>@alt{<mode>I}
 
 sets the current job's MAR to trap only some references to <addr>. 
 The value of <mode> determines which types of reference are trapped: 
@@ -3067,23 +3068,23 @@ aborts the instruction that trips it, that instruction will be
 temporarily immune to MAR when the job is restarted (otherwise, it
 would be impossible to pass by that instruction). 
 
-I
+@alt{I}
 
 turns off the current job's MAR.  Reloading the job with a ^K command
-also turns it off (but L does not!).
+also turns it off (but @alt{L} does not!).
 
    An additional condition can be imposed on the MAR by depositing an
 instruction in ..MARCON.  When the MAR is tripped, DDT will put that
 instruction in the job's memory and execute it;  if it fails to skip,
 DDT will ignore this particular triggering of the MAR.  One common
 thing to do is to test the sign of the word that a write-catching MAR
-is set on.  ..MARCON is reset to 0 by I commands to minimize
+is set on.  ..MARCON is reset to 0 by @alt{I} commands to minimize
 confusion. 
 
    In addition, ..MARXCT allows you to specify DDT commands to be
 executed when the MAR is hit.  ..MARXCT, if nonzero, should be the
 address in the job's memory of the ASCIZ string of commands.  Like
-..MARCON, ..MARXCT is zeroed by I commands. 
+..MARCON, ..MARXCT is zeroed by @alt{I} commands. 
 
 @node Breakpoints
 @chapter Breakpoints
@@ -3093,7 +3094,7 @@ allows the user to make the job stop if it tries to execute one
 particular instruction.  The breakpoints are numbered 1 through 8, and
 each one can be set on an instruction or disabled. 
 
-<addr>B
+<addr>@alt{B}
 
 sets a breakpoint on the instruction at address <addr>.  This involves
 replacing that instruction with a special breakpoint system call. 
@@ -3107,17 +3108,17 @@ program overwrites the breakpointed location, the breakpoint will be
 rendered ineffective.  If you suspect that one of these problems is
 screwing you, try using the MAR instead;  it is immune to them. 
 
-   <addr>B chooses the lowest-numbered breakpoint that is not already
+   <addr>@alt{B} chooses the lowest-numbered breakpoint that is not already
 in use;  if the breakpoints are all in use, it is an error.  In that
 case, you can use :LISTB to find out what breakpoints are set, and
 then clear some of them, or simply change their settings with
-<addr><n>B.  There are several ways to clear breakpoints: 
+<addr>@alt{<n>B}.  There are several ways to clear breakpoints: 
 
-0<n>B
+0@alt{<n>B}
 
 clears breakpoint number <n>. 
 
-<addr>0B
+<addr>@alt{0B}
 
 clears the lowest numbered breakpoint set at <addr>.
 
@@ -3125,14 +3126,14 @@ clears the lowest numbered breakpoint set at <addr>.
 
 clears all breakpoints (of the current job).
 
-B
+@alt{B}
 
 when stopped at a breakpoint, clears that breakpoint.
 
    When a job stops at a breakpoint (breakpoint 3, say) and returns to
 DDT, DDT's message to the user looks like
 
-	3B; <pc> >> <insn>
+	@alt{3B}; <pc> >> <insn>
 
 <pc> is the job's PC, and will usually be the address where the
 breakpoint was set (but might be the address of an XCT instruction
@@ -3150,9 +3151,9 @@ proceed count would require.
    These more esoteric breakpoint features are accessible by modifying
 the four-word block in DDT that controls the breakpoint.  There is a
 special way to refer to the beginning of breakpoint <n>'s four-word
-block:  <n>B is its address.  <n>B+2 holds the proceed count, and
-<n>B+1 holds the conditional instruction.  Ref <n>B.  In addition,
-after stopping at a breakpoint, <n>P will continue and give that
+block:  @alt{<n>B} is its address.  @alt{<n>B}+2 holds the proceed count, and
+@alt{<n>B}+1 holds the conditional instruction.  Ref @alt{<n>B}.  In addition,
+after stopping at a breakpoint, <n>@alt{P} will continue and give that
 breakpoint a proceed count of <n> - it restarts the program not just
 until the breakpoint is next hit, but until the <n>'th time it is hit
 (of course, other things can still stop the program). 
@@ -3184,30 +3185,30 @@ subroutine which is above suspicion.  When that happens, one wishes to
 regard the entire subroutine call as a single instruction and step
 through it all at once. 
 
-^N
+@alt{^N}
 
 executes one instruction, regarding subroutine calls as black-box
-single instructions.  ^N defines "one instruction has executed" as
+single instructions.  @alt{^N} defines "one instruction has executed" as
 "the PC is 1 or 2 greater than it started out".  This is the right way
 to step over a subroutine call provided that the subroutine will
 return to one of the two locations following the instruction that
-called it.  ^N places two breakpoints of a special kind, called
+called it.  @alt{^N} places two breakpoints of a special kind, called
 temporary breakpoints, on those locations, to stop the program when
-the subroutine returns.  ^N attempts to understand recursive
+the subroutine returns.  @alt{^N} attempts to understand recursive
 subroutine calling and not stop until the stack level returns to its
-previous level.  Another use for ^N is, after checking out the body
+previous level.  Another use for @alt{^N} is, after checking out the body
 of a loop on one iteration, to let the remaining iterations happen: 
-just do ^N when the next instruction to be executed is the
+just do @alt{^N} when the next instruction to be executed is the
 conditional branch back to the start of the loop.  Temporary
 breakpoints differ from ordinary breakpoints in that they are both
 removed if either one of them is hit, unlike ordinary breakpoints
 which remain until explicitly removed. 
 
-<nargs>^N
+@alt{<nargs>^N}
 
 steps over a subroutine call which is followed by <nargs> in-line
 arguments.  The temporary breakpoints are put in the two locations
-following those arguments.  Note that ordinary ^N, with no infix
+following those arguments.  Note that ordinary @alt{^N}, with no infix
 argument, does not assume that there are no arguments, as implied
 above.  It tries to figure out how many there are, assuming that words
 with op-code fields (top 9 bits) containing 0 or 774 to 777 are
@@ -3216,32 +3217,32 @@ probably arguments.
    Another useful operation is to run a program to a certain point. 
 For this, temporary breakpoints are just the thing: 
 
-<addr>^N
+<addr>@alt{^N}
 
 runs the current job until it reaches <addr>.  This is done by putting
-two temporary breakpoints at <addr> and <addr>+1, and P'ing.  When
+two temporary breakpoints at <addr> and <addr>+1, and @alt{P}'ing.  When
 control reaches <addr>, the temporary breakpoints will stop the job
 and be removed. 
 
-<stack pointer>,^N
+<stack pointer>,@alt{^N}
 
 runs the current job until it POPJ's.  <stack pointer> should be an
 accumulator on which a PUSHJ was done;  DDT finds the return address
 in the word on the top of the stack and puts temporary breakpoints
-there.  Like ^N without arguments, this form of ^N tries to guess
+there.  Like @alt{^N} without arguments, this form of @alt{^N} tries to guess
 how many arguments followed the call, unless you tell it explicitly
 with an infix argument. 
 
--1(<stack pointer>)^N
+-1(<stack pointer>)@alt{^N}
 
 is the thing to use to return from a subroutine which has already
 pushed one word onto the stack - or to return from the second
-subroutine out.  It works like <stack pointer>,^N except that the
+subroutine out.  It works like <stack pointer>,@alt{^N} except that the
 word one down on the stack, instead of the word at the very top, is
 assumed to hold the return address. 
 
    Lazy debuggers can tell DDT to step again and again, as if multiple
-^N's or ^N's were being typed.  This is called "multi-stepping" and
+^N's or @alt{^N}'s were being typed.  This is called "multi-stepping" and
 is invoked with the command ^^.  When DDT is multi-stepping, it prints
 one instruction and executes it, then prints the next instruction and
 executes it, until either the user types a command or a prespecified
@@ -3251,11 +3252,11 @@ and perhaps type a space to stop stepping.  The available presettable
 stop-conditions include stopping before subroutine calls, stopping
 before system calls, stopping before jump instructions, and stopping
 before subroutine returns.  In addition, multi-stepping can either
-step over subroutine calls instantly with a ^N, or step through the
+step over subroutine calls instantly with a @alt{^N}, or step through the
 whole subroutine body with ^N's.  The presettable options are called
 the stepping flags, and each job has its own settings of them.  In
 addition, there are master settings used to initialize the flags of
-newly created jobs.  The commands to alter the stepping flags are ^^
+newly created jobs.  The commands to alter the stepping flags are @alt{^^}
 and @altalt{^^};  see the reference section for details. 
 
 ^^
@@ -3271,10 +3272,10 @@ begins multi-stepping, but stops after <arg> steps.
 prints the next instruction to be executed, but takes no steps.
 0^^ is useful if you forget where your program stopped.
 
-<addr><n>G
+<addr>@alt{<n>G}
 
 sets the PC to <addr> and does <n> steps.  This command is equivalent
-to <addr>0G <n>^^.
+to <addr>@alt{0G} <n>^^.
 
 @node Raid
 @chapter Raid Registers
@@ -3289,21 +3290,21 @@ both in the mode remembered in the Raid register, and as a constant in
 the remembered output radix.  The current mode has no effect, and is
 not changed. 
 
-   The main Raid-register control command is V.  Depending on the
+   The main Raid-register control command is @alt{V}.  Depending on the
 arguments it can set or clear a Raid register, or simply change the
-typeout mode associated with a register already set.  In addition, V
+typeout mode associated with a register already set.  In addition, @alt{V}
 always redisplays the Raid registers, even if it does nothing else. 
-<addr>V sets a Raid register to display the contents of <addr>. 
-Whatever typeout mode is current when the V is done is remembered by
+<addr>@alt{V} sets a Raid register to display the contents of <addr>. 
+Whatever typeout mode is current when the @alt{V} is done is remembered by
 the Raid register.  If <addr> has the indirect bit or an index
 register in it, the address calculation will be done again each time
 the Raid register is to be displayed;  this makes it easy to display,
 for example, the second word down on the stack (but you must use
 ",-1(P)", not simply "-1(P)".  -1(P) equals -1+(P), which is NOT what
 you want.  This screw is because, with no opcode preceding the -1, it
-is not truncated to 18. bits).  <addr>0V clears a Raid register set
-on <addr>.  <n>V sets the typeout mode remembered by Raid register
-<n> to the current mode.  V by itself simply redisplays the Raid
+is not truncated to 18. bits).  <addr>@alt{0V} clears a Raid register set
+on <addr>.  @alt{<n>V} sets the typeout mode remembered by Raid register
+<n> to the current mode.  @alt{V} by itself simply redisplays the Raid
 registers.  Other options exist;  see the reference section. 
 
    Raid registers can be used for dynamic examination of the rate of
@@ -3324,7 +3325,7 @@ reference section).
    Sometimes DDT will think that a raid register does not need to
 be redisplayed (its contents have not changed), when in fact it has
 been erased from the screen by other typing.  When this happens,
-you should type V with no arguments.  This command is special in
+you should type @alt{V} with no arguments.  This command is special in
 that it always redisplays all of the Raid registers, even those which
 have not changed.
 
@@ -3338,7 +3339,7 @@ regarded as a PDP-10 instruction, have a particular effective address
 (using the current contents, in the job, of any index registers and
 indirect address words required in the address calculation). 
 
-<value>W
+<value>@alt{W}
 
 finds all words in the current job which contain <value>.  Each word
 found is opened as if by a <tab> command, printing the address and
@@ -3349,54 +3350,54 @@ buffer and "." will be set up as the printout would suggest.  The
 range of core searched is specified by the contents of the ..LIMIT
 variable in DDT (ref ..LIMIT). 
 
-<low>,<high>,<value>W
+<low>@alt{,}<high>@alt{,}<value>@alt{W}
 
 finds all words between the addresses <low> and <high>, inclusive,
 that contain <value>.  ..LIMIT is overridden. 
 
-<value>N
+<value>@alt{N}
 
 finds all words in the current job which do NOT contain <value>.  In
-other respects just like <value>W.  0N is a convenient way to print
+other respects just like <value>@alt{W}.  0@alt{N} is a convenient way to print
 all the memory of a job, saving lines by not mentioning words which
 are zero. 
 
-<mask>M
+<mask>@alt{M}
 
-sets the mask for W and N searches.  Only the bits of the word which
-are set in <mask> are considered by W and N when they compare a
+sets the mask for @alt{W} and @alt{N} searches.  Only the bits of the word which
+are set in <mask> are considered by @alt{W} and @alt{N} when they compare a
 word's contents with <value>.  The mask is initially -1 or
-777777,,777777, so that all bits are compared.  When set with an M
-command, the mask keeps its new value until another M command is
-done.  Example:  777777M will make W and N compare only the right
-half;  then 0N will find all words whose right halves are not zero. 
+777777,,777777, so that all bits are compared.  When set with an @alt{M}
+command, the mask keeps its new value until another @alt{M} command is
+done.  Example:  777777@alt{M} will make @alt{W} and @alt{N} compare only the right
+half;  then 0@alt{N} will find all words whose right halves are not zero. 
 
    There are actually eight different masks for word searches.  Unless
 otherwise specified, mask number zero is used;  that is what has been
 referred to as "the mask".  But one can specify any of the other seven
-masks explicitly in an M, W or N command with an infix arg: 
-<mask><n>M sets mask <n> and <value><n>W searches using mask <n>. 
+masks explicitly in an @alt{M}, @alt{W} or @alt{N} command with an infix arg: 
+<mask>@alt{<n>M} sets mask <n> and <value>@alt{<n>W} searches using mask <n>. 
 The other seven masks are useful mainly because they are initially set
 up to important subfields of a word.  Mask 1 is set up to the right
 half;  mask 2, to the left half.  Masks 3, 4 and 5 are initially the
 AC field, index field and opcode.  The eight masks are stored in a
-block in DDT starting at address M, so that M+3/ will examine mask 3
+block in DDT starting at address @alt{M}, so that @alt{M+3}/ will examine mask 3
 and allow you to change it. 
 
-<value><mask>W
+<value>@alt{<mask>W}
 
 finds all words whose contents match <value> in all the bits specified
 by the mask.  If <mask> is between 0 and 7, it is the number of one of
 the prespecified masks to use.  Otherwise, <mask> itself is the mask
-to use.  Thus, 5,,<-1,,>W compares all left halves against 5. 
+to use.  Thus, 5,,@alt{<-1,,>W} compares all left halves against 5. 
 
-<address>E
+<address>@alt{E}
 
 finds all words in the current job whose effective address is
-<address>.  Because E must do an explicit PDP-10 effective address
-calculation on each word, it is much slower than W and N;  usually,
-1W (using mask 1 to compare just the right half) is a good substitute
-for E.  E is not affected by the mask.  It always compares all 18.
+<address>.  Because @alt{E} must do an explicit PDP-10 effective address
+calculation on each word, it is much slower than @alt{W} and @alt{N};  usually,
+@alt{1W} (using mask 1 to compare just the right half) is a good substitute
+for @alt{E}.  @alt{E} is not affected by the mask.  It always compares all 18.
 bits of the effective address. 
 
 @node Patching
@@ -3420,7 +3421,7 @@ instant the same value of PATCH obtains in all blocks.  To make sure
 of this, define it as global, even in an absolute assembly. 
 
    An ordinary patch is begun with the ^\ command, and ended (and made
-effective) with either ^] or ^].  The two main schemes of patches,
+effective) with either ^] or @alt{^]}.  The two main schemes of patches,
 patches "before" an existing instruction and patches "after" one, will
 now be described: 
 
@@ -3430,15 +3431,15 @@ being patched over.  Type a <rubout> to get rid of it.  Then simply
 deposit the instructions to be inserted before the existing one,
 depositing the first instruction in the location opened by the ^\. 
 After typing the last instruction, don't deposit it with <cr> or <lf>; 
-instead, use ^].  ^] will deposit the new instruction, followed by a
+instead, use @alt{^]}.  @alt{^]} will deposit the new instruction, followed by a
 copy of the instruction being replaced, and the two JUMPA's back to
 the two locations after the one being patched.  When that is done, the
 patch is finished.  Here is an example:  assume that 105 contains
 ADDI A,1 before which LSH A,1 must be inserted.  Typing
-105/^\<rubout>LSH A,1^] produces this printout: 
+105/^\<rubout>LSH A,1@alt{^]} produces this printout: 
 
 	105/   ADDI A,1   ^\
-	PATCH/   0   ADDI A,1<ADDI A,1> LSH A,1^]
+	PATCH/   0   ADDI A,1<ADDI A,1> LSH A,1@alt{^]}
 	PATCH+1/   0   ADDI A,1
 	PATCH+2/   0   JUMPA 1,106
 	PATCH+3/   0   JUMPA 1,107
@@ -3447,7 +3448,7 @@ ADDI A,1 before which LSH A,1 must be inserted.  Typing
    To patch "after" an instruction, two things must be changed:  The
 instruction must be deposited as the first of the patch, and it must
 not be put in at the end.  Avoiding a copy at the end is done by using
-^] instead of ^].  Putting a copy at the beginning is easy since DDT
+^] instead of @alt{^]}.  Putting a copy at the beginning is easy since DDT
 is already trying to supply one;  just deposit it with <lf> instead of
 rubbing it out.  Consider putting the LSH A,1 after the ADDI A,1
 instead of before it.  Typing 105/^\<lf>LSH A,1^] will do it, and
@@ -3466,18 +3467,18 @@ used only as flags describing how to unmake the patch.  The command
 @altalt{^\\} exists to do that - see the reference section. 
 
    If you forget to follow the last instruction of the patch with ^]
-or ^], and deposit it instead with <cr> or <lf>, you need not worry; 
-just type the ^] or ^] and it will contrive to do the right thing. 
+or @alt{^]}, and deposit it instead with <cr> or <lf>, you need not worry; 
+just type the ^] or @alt{^]} and it will contrive to do the right thing. 
 What is the right thing?  After <insn><cr>, no location is open, and
 the right place for the  first JUMPA is .+1.  After <insn><lf>, the
 open location is the right place for the first JUMPA.  So ^] with no
 argument, if there is a location open, stores the first JUMPA there; 
-otherwise, it stores the first JUMPA in .+1.  ^] acts similarly,
+otherwise, it stores the first JUMPA in .+1.  @alt{^]} acts similarly,
 except that it is the instruction being patched over, rather than the
 first JUMPA, that goes in the appropriate location.  You can always
 count on being able to end a patch, no matter what has transpired, by
 opening the first word of the patch area whose contents should be
-clobbered by the return sequence, and then doing the ^] or ^]. 
+clobbered by the return sequence, and then doing the ^] or @alt{^]}. 
 
 @node Services
 @chapter DDT Services for Programs Running under DDT
@@ -3497,7 +3498,7 @@ Valretting is the most general way for a program to make use of DDT,
 and for that reason it is the ugliest way.  Valretting can be done
 only by a job that has been given the control of the terminal;  if a
 job which is running without the terminal tries to valret, the job is
-stopped and cannot actually valret until P'd by the user.  In
+stopped and cannot actually valret until @alt{P}'d by the user.  In
 addition, programs which valret are dependent on running under a DDT,
 since other superiors will probably be unable to make any sense of the
 valretted DDT commands.  For these reasons, valretting should be used
@@ -3516,11 +3517,11 @@ list of what the bits mean.  Bits that are good for general use are
 starred. 
 
    bit  meaning if on
-   2.9  X return, used by DDT to implement the X command.
+   2.9  @alt{X} return, used by DDT to implement the @alt{X} command.
 *  2.8  type an extra carriage return in DDT.  Normally, .BREAK 16,
 	causes DDT to type <cr><lf>*.  With this bit, two <crlf>'s
 	are printed.  This is used to indicate that the program
-	"did something" - it looks like what X does when an
+	"did something" - it looks like what @alt{X} does when an
 	instruction skips (can you guess why?).
 *  2.7  do not reset teletype input (effective only if job has TTY)
 	If this bit is not set, any typed-ahead input will be
@@ -3529,7 +3530,7 @@ starred.
 	the program is reporting some sort of error.
 *  2.6  kill this job, because it is finished.  The job is killed
 	immediately if it owns the terminal.  Otherwise, it is killed
-	when it is either selected with J (with no arguments) or
+	when it is either selected with @alt{J} (with no arguments) or
 	given control of the terminal.  In any case, when the job
 	is killed, DDT types ":KILL ", unless bit 2.5 or 2.3 is set.
 *  2.5  kill this job as soon as possible.  The job is killed
@@ -3583,7 +3584,7 @@ use of the terminal.
 there is no error.  .LOSE backs up the PC to point once more at that
 instruction which failed to skip, and then causes a fatal interrupt
 which brings DDT onto the scene.  Because the PC has been backed up,
-if the job is P'd the problematical instruction will be executed once
+if the job is @alt{P}'d the problematical instruction will be executed once
 more, and if the obstruction has been removed in the meanwhile the
 program will proceed with its task.  The most common instruction to
 put before a .LOSE is a system call: 
@@ -3666,7 +3667,7 @@ defined above.
 
 The .VALUE instruction, with address 0, is the usual way to report an
 "impossible" occurrence.  Unlike .LOSE 0, it leaves the PC pointing to
-the instruction after it, so the program can be P'd with mimimum
+the instruction after it, so the program can be @alt{P}'d with mimimum
 effort.  Thus, .VALUE 0 is also useful for errors which are not very
 important, so the user might wish to proceed despite them.  It is also
 used when the preceding instruction is of no particular relevance to
@@ -3809,7 +3810,7 @@ to DDT.
 A couple of examples will make this clear.
 in a init file:
 
-:Where Are You?  :INLINE :TTYLOC<CR>
+:@alt{}Where Are You?  @alt{}:INLINE :TTYLOC<CR>
 will type out
 "Where Are You?  "
 and the user may then type "836A Hacker's Haven<CR>"
