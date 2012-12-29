@@ -5,6 +5,9 @@
 @c @documentlanguage en_US
 @settitle ITS DDT Primer
 @c %**end of header
+@c Denote Altmode prettily in TeX.
+@c Note: should look into @altarg{0,Q} @altvararg{pat,T}
+@c instead of @alt{0Q} or @alt{<pat>T}
 @macro alt {key}
 @tex
 $\\diamondsuit \\verb{\key\}$
