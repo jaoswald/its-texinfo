@@ -107,7 +107,7 @@ will function as intended.
 * Patching::		Patching Several Instructions over One.
 * Services::		Services for Programs Running under DDT
 * INLINE::		Allows reading commands from TTY in XFILES etc.
-* Index::               Complete index
+* Concept-Index::               Complete index
 * Key-Index::           Index of short-form (keystroke) commands
 @end menu
 
@@ -3865,8 +3865,8 @@ rubout rubs out the last character.  It does EMACS style rubout on printing
 terminals.  On displays it erases.  On printing terminals without backspace
 (ugh) it will echo as it rubs out.
 
-@node Index
-@unnumbered Index
+@node Concept-Index
+@unnumbered Concept Index
 @printindex cp
 @node Key-Index
 @unnumbered Short-form command index
