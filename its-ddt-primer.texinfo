@@ -25,11 +25,13 @@
 
 @c altk: altmode + key
 @macro altk {key}
+@c @kindex @value{altchar}\key\
 @w{@value{altchar}\key\}
 @end macro
 
 @c altalt: altmode + altmode + key
 @macro altalt {key}
+@c @kindex @value{altchar}@value{altchar}\key\
 @w{@value{altchar}@value{altchar}\key\}
 @end macro
 @copying
