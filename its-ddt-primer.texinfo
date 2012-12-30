@@ -1,7 +1,7 @@
-\input texinfo @c -*- texinfo -*-
+\input texinfo @c -*- texinfo; coding:utf-8 -*-
 @c %**start of header
 @setfilename its-ddt-primer
-@c @documentencoding UTF-8
+@documentencoding utf-8
 @c @documentlanguage en_US
 @settitle ITS DDT Primer
 @c %**end of header
@@ -9,26 +9,16 @@
 @c Note: should look into @altarg{0,Q} @altvararg{pat,T}
 @c instead of @alt{0Q} or @alt{<pat>T}
 @c Also, should look into automatically indexing the alt-command.
-@c altb: ``bare''
-@ifnotinfo
+@c Note: texi2dvi doesn't render the HTML UTF-8 as well as
+@c makeinfo for Texinfo v. 4.13.
 @iftex
 @set altchar @mathhexbox27D
 @end iftex
-@end ifnotinfo
-@ifinfo
-@set altchar $
-@end ifinfo
+@ifnottex
+@set altchar ◊
+@end ifnottex
 
-@c altmode+nobreak
-@ifnotinfo
-@iftex
-@set altchartight @mathhexbox27D@nobreak
-@end iftex
-@end ifnotinfo
-@ifinfo
-@set altchartight $
-@end ifinfo
-
+@c altb: ``bare''
 @macro altb
 @value{altchar}
 @end macro
