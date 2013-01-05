@@ -3530,44 +3530,17 @@ in most programs.  The address field is decoded bit by bit.  Here is a
 list of what the bits mean.  Bits that are good for general use are
 starred. 
 
-   bit  meaning if on
-   2.9  @altk{X} return, used by DDT to implement the @altk{X} command.
-*  2.8  type an extra carriage return in DDT.  Normally, .BREAK 16,
-	causes DDT to type <cr><lf>*.  With this bit, two <crlf>'s
-	are printed.  This is used to indicate that the program
-	"did something" - it looks like what @altk{X} does when an
-	instruction skips (can you guess why?).
-*  2.7  do not reset teletype input (effective only if job has TTY)
-	If this bit is not set, any typed-ahead input will be
-	discarded, and any execute file or valret in progress
-	will be suspended.  This bit should always be used unless
-	the program is reporting some sort of error.
-*  2.6  kill this job, because it is finished.  The job is killed
-	immediately if it owns the terminal.  Otherwise, it is killed
-	when it is either selected with @altk{J} (with no arguments) or
-	given control of the terminal.  In any case, when the job
-	is killed, DDT types ":KILL ", unless bit 2.5 or 2.3 is set.
-*  2.5  kill this job as soon as possible.  The job is killed
-	instantly unless it is current but doesn't own the terminal.
-	That exception is because it is very embarrassing for the
-	current job to vanish while you are in the middle of typing
-	a command.  If the job is current and has the terminal, DDT
-	prints ":KILL " as for bit 2.6.  If the job is not current,
-	it is killed immediately, with no notification to the user.
-	2.5 and 2.6 both set are slightly different from just bit
-	2.5:  if the job is not current, it is killed instantly, but
-	the user is informed with a "Job <jname> Finished" message.
-   2.4	conditional breakpoint return, used by DDT to implement
-	MAR and breakpoint conditional instructions.  Bit 2.8, if on
-	says that the condition is true.
-*  2.3	inhibits all typeout associated with the .BREAK 16,.  Bit
-	2.3 may be combined with the other options.  It prevents
-	the normal printout of <crlf>*;  it prevents the printout
-	of ":KILL " if the job is killed.  In addition, if this
-	bit is set, the open location is not closed.  DDT uses
-	bit 2.3 when invoking user-defined typeout modes, but its
-	effects are simple enough to be described, so it is O.K.
-	to use for other reasons.
+@multitable {*} {2.5 and 2.6} {@altk{X} return, used by DDT to implement the @altk{X} command.}
+@headitem @tab bit  @tab meaning if on
+@item @tab 2.9  @tab @altk{X} return, used by DDT to implement the @altk{X} command.
+@item * @tab 2.8  @tab type an extra carriage return in DDT.  Normally, .BREAK 16, causes DDT to type <cr><lf>*.  With this bit, two <crlf>'s are printed.  This is used to indicate that the program "did something" - it looks like what @altk{X} does when an instruction skips (can you guess why?).
+@item * @tab 2.7  @tab do not reset teletype input (effective only if job has TTY) If this bit is not set, any typed-ahead input will be discarded, and any execute file or valret in progress  will be suspended.  This bit should always be used unless the program is reporting some sort of error.
+@item * @tab 2.6 @tab kill this job, because it is finished.  The job is killed immediately if it owns the terminal.  Otherwise, it is killed when it is either selected with @altk{J} (with no arguments) or given control of the terminal.  In any case, when the job is killed, DDT types ":KILL ", unless bit 2.5 or 2.3 is set.
+@item * @tab 2.5 @tab kill this job as soon as possible.  The job is killed instantly unless it is current but doesn't own the terminal. That exception is because it is very embarrassing for the current job to vanish while you are in the middle of typing a command.  If the job is current and has the terminal, DDT prints ":KILL " as for bit 2.6.  If the job is not current, it is killed immediately, with no notification to the user.
+@item @tab 2.5 and 2.6 both set @tab are slightly different from just bit 2.5:  if the job is not current, it is killed instantly, but the user is informed with a "Job <jname> Finished" message.
+@item @tab 2.4 @tab conditional breakpoint return, used by DDT to implement MAR and breakpoint conditional instructions.  Bit 2.8, if on says that the condition is true.
+@item * @tab 2.3 @tab inhibits all typeout associated with the .BREAK 16,.  Bit 2.3 may be combined with the other options.  It prevents the normal printout of <crlf>*;  it prevents the printout of ":KILL " if the job is killed.  In addition, if this bit is set, the open location is not closed.  DDT uses bit 2.3 when invoking user-defined typeout modes, but its effects are simple enough to be described, so it is O.K. to use for other reasons.
+@end multitable
 
    If ..PERMIT is nonnegative, .BREAK 16,'s that kill the job or type
 nothing out are illegal, and DDT treats them like .BREAK 0,'s. 
