@@ -554,41 +554,57 @@ argument, we use that argument instead.
 Here follow the DIR: arguments provided in DIRFN1.
 You can patch them with :SELF if you have another preference.
 
-DIRFN1:	SIXBIT /NAME1/	;Table of $$^F DIR: search options.
-DIRFN2:	SIXBIT /UP/
-	SIXBIT /FIRST/	;$$1^F finds FN1
-	0
-	SIXBIT /SECOND/	;$$2^F finds FN2
-	SIXBIT /BIN/
-	SIXBIT /CDATE/	;$$3^F ascending in creation age
-	SIXBIT /DOWN/
-	SIXBIT /SIZE/	;$$4^F descending in size
-	SIXBIT /DOWN/
-	SIXBIT /NOT/	;$$5^F not backed up
-	SIXBIT /DUMPED/
-	SIXBIT /ONLY/	;$$6^F just link pointers
-	SIXBIT /LINKS/
+@example
+DIRFN1: SIXBIT /NAME1/  ;Table of $$^F DIR: search options.
+DIRFN2: SIXBIT /UP/
+        SIXBIT /FIRST/  ;$$1^F finds FN1
+        0
+        SIXBIT /SECOND/ ;$$2^F finds FN2
+        SIXBIT /BIN/
+        SIXBIT /CDATE/  ;$$3^F ascending in creation age
+        SIXBIT /DOWN/
+        SIXBIT /SIZE/   ;$$4^F descending in size
+        SIXBIT /DOWN/
+        SIXBIT /NOT/    ;$$5^F not backed up
+        SIXBIT /DUMPED/
+        SIXBIT /ONLY/   ;$$6^F just link pointers
+        SIXBIT /LINKS/
+@end example
 
 Examples of use:
 
-FOO@altalt{1} 	Shows DIR:FIRST FOO and sets FN1 to FOO
-LISP@altalt{2}	Shows DIR:SECOND LISP
-@altalt{2}		Shows DIR:SECOND BIN
-@altalt{3}		Shows DIR:CDATE DOWN
-UP@altalt{3}		Shows DIR:CDATE UP
-PACK13@altalt{6}	Shows DIR:ONLY PACK13
+@table @asis
+@item FOO@altalt{1^F}
+Shows DIR:FIRST FOO and sets FN1 to FOO
+@item LISP@altalt{2^F}
+Shows DIR:SECOND LISP
+@item @altalt{2^F}
+Shows DIR:SECOND BIN
+@item @altalt{3^F}
+Shows DIR:CDATE DOWN
+@item UP@altalt{3^F}
+Shows DIR:CDATE UP
+@item PACK13@altalt{6^F}
+Shows DIR:ONLY PACK13
+@end table
 
 As an additional feature, if you set the DDT variable DIRDIR
-to -1, $$^F (without a numeric argument) sets your default
+to -1, @altalt{^F} (without a numeric argument) sets your default
 :PRINT SNAME and otherwise ignores the argument.  This lets
 you look at other directories.
 
 Examples:
-$$0^F		Does DIR:NAME1 UP
-$$^F		Still does DIR:NAME1 UP 
-FOOBAR$$^F	Changes default dir to FOOBAR and does DIR:NAME1 UP
-DOWN$$0^F	Changes no defaults (now FOOBAR), does DIR:NAME1 DOWN
 
+@table @asis
+@item @altalt{0^F}
+		Does DIR:NAME1 UP
+@item @altalt{^F}
+		Still does DIR:NAME1 UP 
+@item FOOBAR@altalt{^F}
+	Changes default dir to FOOBAR and does DIR:NAME1 UP
+@item DOWN@altalt{0^F}
+	Changes no defaults (now FOOBAR), does DIR:NAME1 DOWN
+@end table
 
 :RENAME <file>,<newname>      or	@altalt{^O} <file>,<newname>
 
