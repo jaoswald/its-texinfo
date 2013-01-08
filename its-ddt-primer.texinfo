@@ -2836,15 +2836,28 @@ relatively according to the current typeout mode.
 If left-half bits from a full-word byte-decomposition mask are being
 used to print out a half-word, the names of the bits are enclosed in
 parentheses.  Thus: 
+
+@example
 		TLNE TT,(%QXABC+%QXDEF+%QXGHI)
+@end example
 
 Example:
+
+@example
 		201140000701    %TX@altk{?#}
+@end example
+
 	would type out
+
+@example
 		MOVEI C,%TXMTA+%TXCTL @altk{1#}A
+@end example
+
 or something like that.
 
 Example:	consider these definitions in a program:
+
+@example
 	%QXSYM==400000		;funny bits
 	%QXLET==200000
 	%QXNUM==100000
@@ -2854,6 +2867,7 @@ Example:	consider these definitions in a program:
 	%QXERS==100		;name for its low bit
 	$QXQTY==77		;another field
 	%QXQTY==1		;name for its low bit
+@end example
 
 Then these quantities would type out as follows:
 
@@ -2942,9 +2956,11 @@ is @altk{<n>Q} with its halves swapped:  <(@altk{<n>Q})>.
    One use for @altk{<n>Q} is to move a series of words up or down one word. 
 That is done by depositing @altk{2Q} into each word: 
 
+@example
 	103/   51   0
 	104/   57   @altk{2Q}
 	105/   3    @altk{2Q}
+@end example
 
 When depositing into 104, @altk{Q} would be 57, @altk{1Q} would be 0, and @altk{2Q} is
 51.  The 104 does not count because it is used as an address, and will
@@ -3157,7 +3173,9 @@ when stopped at a breakpoint, clears that breakpoint.
    When a job stops at a breakpoint (breakpoint 3, say) and returns to
 DDT, DDT's message to the user looks like
 
+@example
 	@altk{3B}; <pc> >> <insn>
+@end example
 
 <pc> is the job's PC, and will usually be the address where the
 breakpoint was set (but might be the address of an XCT instruction
@@ -3462,12 +3480,14 @@ patch is finished.  Here is an example:  assume that 105 contains
 ADDI A,1 before which LSH A,1 must be inserted.  Typing
 105/^\<rubout>LSH A,1@altk{^]} produces this printout: 
 
+@example
 	105/   ADDI A,1   ^\
 	PATCH/   0   ADDI A,1<ADDI A,1> LSH A,1@altk{^]}
 	PATCH+1/   0   ADDI A,1
 	PATCH+2/   0   JUMPA 1,106
 	PATCH+3/   0   JUMPA 1,107
 	105/   JUMPA 2,PATCH
+@end example
 
    To patch "after" an instruction, two things must be changed:  The
 instruction must be deposited as the first of the patch, and it must
@@ -3478,12 +3498,14 @@ rubbing it out.  Consider putting the LSH A,1 after the ADDI A,1
 instead of before it.  Typing 105/^\<lf>LSH A,1^] will do it, and
 produce this printout: 
 
+@example
 	105/   ADDI A,1   ^\
 	PATCH/   0   ADDI A,1
 	PATCH+1/   0   LSH A,1^]
 	PATCH+2/   0   JUMPA 3,106
 	PATCH+3/   0   JUMPA 3,107
 	105/   ADDI A,1   JUMPA 2,PATCH
+@end example
 
 Notice that JUMPA 3, is used to return from the patch, instead of
 JUMPA 1,.  JUMPA ignores its AC field, and the different numbers are
@@ -3586,8 +3608,10 @@ more, and if the obstruction has been removed in the meanwhile the
 program will proceed with its task.  The most common instruction to
 put before a .LOSE is a system call: 
 
-	.OPEN CHN,[SIXBIT /   DSK/ ? SIXBIT /FOO/ ? SIXBIT />/]
-	 .LOSE %LSSYS		;report failure of the .OPEN
+@example
+    .OPEN CHN,[SIXBIT /   DSK/ ? SIXBIT /FOO/ ? SIXBIT />/]
+     .LOSE %LSSYS          ;report failure of the .OPEN
+@end example
 
 the %LSSYS, or the address field of the .LOSE in general, says what
 kind of error happened, or where to find that information.  %LSSYS in
