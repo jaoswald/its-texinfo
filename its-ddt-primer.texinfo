@@ -2623,91 +2623,74 @@ in, and that it be printed in the syntax used by that operator.
 
 Here follow descriptions of the fixed built-in typeout modes. 
 
-@altk{C}	selects Constant mode, in which words are typed out
-	 as numbers, using the currently selected output radix. 
+@table @asis
+@item @altk{C}
+selects Constant mode, in which words are typed out as numbers, using the currently selected output radix.
 
-@altk{E}	selects E&S mode, in which words are typed out as E&S
-	 display processor instructions. 
+@item @altk{E}
+selects E&S mode, in which words are typed out as E&S display processor instructions. 
 
-@altk{F}	selects Floating point mode, in which words are typed out
-	 as floating point numbers.  The radix is always decimal. 
+@item @altk{F}
+selects Floating point mode, in which words are typed out as floating point numbers.  The radix is always decimal.
 
-@altk{H}	selects Halfword mode, in which words are typed out
-	 as <lh>,,<rh>, with each halfword printed as an address. 
+@item @altk{H}
+selects Halfword mode, in which words are typed out as <lh>,,<rh>, with each halfword printed as an address.
 
-@altk{S}	selects Symbolic mode, in which words are typed out as
-	 cleverly as DDT can manage, either as a PDP-10 instruction,
-	 in halfword mode, or as a number.  In the first case,
-	 the address, index and AC fields are printed as addresses.
-	 In the other two cases, the ordinary @altk{C} and @altk{H} mode
-	 actions are used.  The decision of which format to use
-	 is complicated, but PDP-10 instruction printout is used
-	 whenever it makes sense.  With I/O instructions, the user
-	 can control the decision;  see ..D010 in the section on
-	 Specially used symbols.  The .CALL UUO is printed specially;
-	 DDT prints in parentheses the name of the call (eg, OPEN).
+@item @altk{S}
+selects Symbolic mode, in which words are typed out as cleverly as DDT can manage, either as a PDP-10 instruction, in halfword mode, or as a number.  In the first case, the address, index and AC fields are printed as addresses. In the other two cases, the ordinary @altk{C} and @altk{H} mode actions are used.  The decision of which format to use is complicated, but PDP-10 instruction printout is used whenever it makes sense.  With I/O instructions, the user can control the decision;  see ..D010 in the section on Specially used symbols.  The .CALL UUO is printed specially; DDT prints in parentheses the name of the call (eg, OPEN).
 
-@altk{<n>T}	selects typeout of words as decomposed into <n>-bit bytes.
-@altk{<pat>T}	selects typeout of words as decomposed into bytes in
-	 an arbitrary pattern specified by <pat>.  The byte
-	 boundaries occur where two adjacent bits in <pat> differ.
-	 Thus, the pattern 707070,,631463 divides the LH into
-	 3-bit bytes and the RH into 2-bit bytes.
+@item @altk{<n>T}
+selects typeout of words as decomposed into <n>-bit bytes.
 
-@altk{T}	selects typeout of words as decomposed into bytes
-	 according to the last byte size or pattern specified.
+@item @altk{<pat>T}
+selects typeout of words as decomposed into bytes in an arbitrary pattern specified by <pat>.  The byte boundaries occur where two adjacent bits in <pat> differ. Thus, the pattern 707070,,631463 divides the LH into 3-bit bytes and the RH into 2-bit bytes.
 
+@item @altk{T}
+selects typeout of words as decomposed into bytes according to the last byte size or pattern specified.
+@end table
 
-Here follow the descriptions of the built-in typeout modes
- that are the initial settings of the variable commands @altk{"}, etc.
+Here follow the descriptions of the built-in typeout modes that are the initial settings of the variable commands @altk{"}, etc.
 
-@altk{"}	is initially set to select full-word ASCII typeout mode,
-	 in which ASCII /<foo>/ types out as @altk{0"}<foo>@value{altchar}, and
-	 ASCII /<foo>/+1 types out as @altk{1"}<foo>@value{altchar}.  Control
-	 characters in <foo> are typed as uparrow followed
-	 by the appropriate non-control character.  Uparrow
-	 is preceded by a ^Q.  Rubout is typed as uparrow-?.
-	 Altmode is typed as uparrow-[.
+@table @asis
+@item @altk{"}
+is initially set to select full-word ASCII typeout mode, in which ASCII /<foo>/ types out as @altk{0"}<foo>@value{altchar}, and ASCII /<foo>/+1 types out as @altk{1"}<foo>@value{altchar}.  Control characters in <foo> are typed as uparrow followed by the appropriate non-control character.  Uparrow is preceded by a ^Q.  Rubout is typed as uparrow-?. Altmode is typed as uparrow-[.
 
-@altk{#}	is initially set to select single-character ASCII
-	 typeout mode, in which the ASCII code for <char>
-	 is typed out as @altk{1#}<char>.  As in full-word ASCII
-	 typeout mode, control characters are typed out with
-	 uparrows and ^ and ^Q are preceded by ^Q.
-	 Altmode, however, is typed as an altmode.
+@item @altk{#}
+is initially set to select single-character ASCII typeout mode, in which the ASCII code for <char> is typed out as @altk{1#}<char>.  As in full-word ASCII typeout mode, control characters are typed out with uparrows and ^ and ^Q are preceded by ^Q. Altmode, however, is typed as an altmode.
 
-@altk{&}	is initially set to select SQUOZE typeout mode, in
-	 which SQUOZE <flags>,<symbol> types out as
-	 @altk{<flags>&}<symbol>.  <flags> will always be a
-	 multiple of 4, and less than 100 .
+@item @altk{&}
+is initially set to select SQUOZE typeout mode, in which SQUOZE <flags>,<symbol> types out as @altk{<flags>&}<symbol>.  <flags> will always be a multiple of 4, and less than 100 .
 
-@altk{'}	is initially set to select SIXBIT typeout mode, in
-	 which SIXBIT /<foo>/ is typed out as @altk{0'}<foo>@value{altchar}.
-
+@item @altk{'}
+is initially set to select SIXBIT typeout mode, in which SIXBIT /<foo>/ is typed out as @altk{0'}<foo>@value{altchar}.
+@end table
 
 Here are the commands that control how addresses are printed:
 
-@altk{A}	selects typeout of addresses as numbers (in the
-	 selected radix).
+@table @asis
+@item @altk{A}
+selects typeout of addresses as numbers (in the selected radix).
 
-@altk{R}	selects typeout of addresses symbolically, when possible.
-	 An address which is not equal to any symbol will be
-	 typed as <symbol>+<number>, provided that <number> is
-	 less than the current contents of ..SYMOFS (initially
-	 100).
+@item @altk{R}
+selects typeout of addresses symbolically, when possible. An address which is not equal to any symbol will be typed as <symbol>+<number>, provided that <number> is less than the current contents of ..SYMOFS (initially 100).
 
-@altk{?}	selects bit typeout mode, which is complicated, and
-	 is described in a later section.
-
+@item @altk{?}
+selects bit typeout mode, which is complicated, and is described in a later section.
+@end table
 
 Here are the commands that select the output radix, in which
  numbers are printed:
 
-@altk{D}	selects base 10.
+@table @asis
+@item @altk{D}
+selects base 10.
 
-@altk{O}	selects base 8.
+@item @altk{O}
+selects base 8.
 
-@altk{<n>R}	selects base <n>.
+@item @altk{<n>R}
+selects base <n>.
+@end table
 
 @node Type-out
 @chapter Type-out Commands
