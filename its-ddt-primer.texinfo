@@ -1412,8 +1412,10 @@ Kills a word
   The message can be any number of lines long.  When the ^C is typed,
 <user> will see printed on his console:
 
-	[MESSAGE FROM <sender> at <machine>  <time of day>]
-	<message>
+@example
+[MESSAGE FROM <sender> at <machine>  <time of day>]
+<message>
+@end example
 
 <sender> is your UNAME, and <machine> is the name of the machine you
 are on (MIT-AI, MIT-ML, MIT-MC or MIT-DM).  <machine> is included in
@@ -1574,7 +1576,9 @@ specifies an alarm at an absolute time of day in 24-hour form.
 specifies an alarm relative to the time the command is given.  As
 soon as DDT reads the command it will print
 
-	Alarm set for .+<duration as hours:minutes:seconds>
+@example
+Alarm set for .+<duration as hours:minutes:seconds>
+@end example
 
 telling how far away the specified time is.  If it says "Alarm reset"
 instead of "Alarm set", there was a previously specified alarm in
@@ -1802,8 +1806,10 @@ allow both conditionals and loops.
 
    Conditionals use the :IF command: 
 
-	:IF <condition> <argument>
-	@altk{(} <conditionalized commands> @altk{)}
+@example
+:IF <condition> <argument>
+@value{altchar}( <conditionalized commands> @value{altchar})
+@end example
 
 executes <conditionalized commands> or does not execute them,
 according to <condition> and <argument>.  The simplest conditions are
@@ -1818,10 +1824,12 @@ including an extra @altk{(} or @altk{)} to balance the string.  Conditionals are
 strong enough to affect even the output-control characters ^V, ^W, ^B,
 ^E.  Thus,
 
-	^W :IF N @altk{Q}
-	@altk{(} :@value{altchar}^VThis is a printed message
-	^W@value{altchar}
-	@altk{)}^V
+@example
+^W :IF N @value{altchar}Q
+@value{altchar}( :@value{altchar}^VThis is a printed message
+^W@value{altchar}
+@value{altchar})^V
+@end example
 
 conditionally prints "This is a printed message<cr>".  The <cr> before
 the @altk{)} is necessary to end the :@value{altchar} ... @altk{<cr>} comment construction.  The
@@ -1833,15 +1841,19 @@ returns 0 if <file> can be successfully opened for reading.  If it
 can't be, the I/O channel status containing the error code is returned
 (it will be nonzero).  Thus,
 
-	:EXISTS FOO
-	=
+@example
+:EXISTS FOO
+=
+@end example
 
 would print 0 if FOO exists.  :EXISTS is very useful in arithmetic
 conditionals: 
 
-	^W :IF E :EXISTS FOO NOTE
-	> @altk{(} :PRINT FOO NOTE^V
-	^W @altk{)} ^V
+@example
+^W :IF E :EXISTS FOO NOTE
+> @value{altchar}( :PRINT FOO NOTE^V
+^W @value{altchar}) ^V
+@end example
 
 prints the file FOO NOTE if it exists.  The ^V<cr>^W construct causes
 typeout to be enabled when the :PRINT is executed - otherwise, the
@@ -1854,8 +1866,10 @@ have done just as well.
    If you want to have an else clause in your conditional, use the
 :ELSE command.
 
-	:ELSE
-	@altk{(} <commands> @altk{)}
+@example
+:ELSE
+@value{altchar}( <commands> @value{altchar})
+@end example
 
 is a conditional which succeeds if the preceding conditional failed.
 The "preceding conditional" is the last one which ended;  it may have
@@ -1891,12 +1905,14 @@ the terminal type, you will screw up your connection.  Here is how
 to conditionalize the :TCTYP which sets the parameters for your home
 terminal so that it is done only on remote terminals:
 
-	:DDTSYM TTYTYP/			(this tests for STY or dialup)
-	:IF N @altk{Q}&<%TYSTY+%TYDIL>
-	@altk{(} :DDTSYM TCTYP/		(this makes SUPDUP terminals
-	   :IF N @altk{Q}-%TNSFW		 not count)
-	   @altk{(} :TCTYP LINEL 69. etc.
-	@altk{)}@altk{)}
+@example
+:DDTSYM TTYTYP/           @r{(this tests for STY or dialup)}
+:IF N @value{altchar}Q&<%TYSTY+%TYDIL>
+@value{altchar}( :DDTSYM TCTYP/         @r{(this makes SUPDUP terminals}
+   :IF N @value{altchar}Q-%TNSFW        @r{ not count)}
+   @value{altchar}( :TCTYP LINEL 69. etc.
+@value{altchar})@value{altchar})
+@end example
 
    To test, in a conditional, whether a symbol is defined, the command
 :SYMTYP can be used - see the reference section. 
@@ -1914,10 +1930,12 @@ requires a numeric argument;  at the moment, its value is ignored.
 The following code declares the terminal to be a tektronix, if the
 user says <space>. 
 
-	^W :@value{altchar} ^V--Tektronix--^W@value{altchar}
-	:IF MORE 0
-	@altk{(} :TCTYP TEKTRONIX
-	@altk{)} ^V
+@example
+^W :@value{altchar} ^V--Tektronix--^W@value{altchar}
+:IF MORE 0
+@value{altchar}( :TCTYP TEKTRONIX
+@value{altchar}) ^V
+@end example
 
 :MORE <line>
 
@@ -1953,10 +1971,12 @@ waits (doing nothing) for <30'ths> 30'ths of a second.  This command
 is useful for execute files that loop, doing something at fixed time
 intervals: 
 
-	^V :TAG LOOP
-	<do something>
-	^W :SLEEP 5.*30. 
-	:JUMP LOOP
+@example
+^V :TAG LOOP
+<do something>
+^W :SLEEP 5.*30. 
+:JUMP LOOP
+@end example
 
    Init and exit files often want to perform the normal actions in
 addition to the particular actions which make the init or exit file
@@ -2186,7 +2206,9 @@ are remembered as the values of the special symbols "." and @altk{Q},
 respectively.  Here is an example, which assumes that symbolic typeout
 mode is selected (as is usually the case): 
 
-	107/   MOVE A,FOO+3
+@example
+107/   MOVE A,FOO+3
+@end example
 
 "107/" was typed by the user, and the contents of 107 were printed, as
 a PDP-10 instruction, by DDT.  After this command, the value of "."
@@ -2233,8 +2255,10 @@ opening, followed by a slash, before it prints the contents.  For
 example, if after opening 107 as above you type <lf>, the typescript
 might appear as follows: 
 
-	107/   MOVE A,FOO+3
-	START+10/   JRST START1
+@example
+107/   MOVE A,FOO+3
+START+10/   JRST START1
+@end example
 
 This assumes that START has the value 100 (a likely possibility), so
 that START+10 is just the symbolic expression of 110.  The entire line
