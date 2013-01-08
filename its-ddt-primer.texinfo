@@ -2326,10 +2326,16 @@ page in a job.
    :CORBLK <type> <addr> is provided to manipulate in a general way pages
 of a job's memory.  <type> is one of the following:
 
-PURE   -- Makes the page at <addr> pure, that is not writable.
-FRESH  -- Puts a fresh page at <addr>
-NONE   -- Deletes the page containing <addr>
-IMPURE -- Same as :UNPURE <addr>
+@table @asis
+@item PURE
+Makes the page at <addr> pure, that is not writable.
+@item FRESH
+Puts a fresh page at <addr>
+@item NONE
+Deletes the page containing <addr>
+@item IMPURE
+Same as :UNPURE <addr>
+@end table
 
     :CORBLK PURE <loc> is good for re-purifying pages of jobs that have
 been patched, prior to :PDUMPing.
