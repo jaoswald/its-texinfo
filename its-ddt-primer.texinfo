@@ -17,7 +17,7 @@
 @set altchar $
 @end ifset
 @ifset altmodeliteral
-@set altchar ^
+@set altchar 
 @end ifset
 @ifclear altchar
 @iftex
