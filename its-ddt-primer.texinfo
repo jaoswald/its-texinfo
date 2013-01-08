@@ -1094,13 +1094,14 @@ arithmetic instructions.
 
 Here is a list of all DDT arithmetic operators: 
 
-+	fixed addition		@altk{+}	floating addition	 
--	fixed subtraction	@altk{-}	floating subtraction
-*	fixed multiplication	@altk{*}	floating multiplication	
-!	fixed division		@altk{!}	floating division
-#	bitwise exclusive-or
-&	bitwise and
-@altk{_}	logical shift		@altalt{_}	floating scale
+@multitable {MMM} {fixed multiplication} {MMMM} {floating multiplication}
+@item + @tab fixed addition @tab @altk{+} @tab floating addition	 
+@item -	@tab fixed subtraction @tab @altk{-} @tab floating subtraction
+@item *	@tab fixed multiplication @tab @altk{*} @tab floating multiplication	
+@item ! @tab fixed division @tab @altk{!} @tab floating division
+@item #	@tab bitwise exclusive-or @tab & @tab bitwise and
+@item @value{altchar}_ @tab logical shift @tab @altalt{_} @tab floating scale
+@end multitable
 
 The &, # and _ operations are done first, multiplication and division
 second, and addition and subtraction last.  The subtraction and
@@ -2871,12 +2872,14 @@ Example:	consider these definitions in a program:
 
 Then these quantities would type out as follows:
 
-	Quantity	Bit Typeout
+@multitable {Quantity} {%QXNUM+3000&%QXCNT+4*%QXERS+56*%QXQTY+20000}
+@headitem Quantity @tab Bit Typeout
 
-	43		43*%QXQTY
-	123456		%QXNUM+3000&%QXCNT+4*%QXERS+56*%QXQTY+20000
-	500000		%QXSYM+%QXNUM
-	665400		%QXSYM+%QXLET+5000&%QXCNT+4*%QXERS+60000
+@item 43 @tab 43*%QXQTY
+@item 123456 @tab %QXNUM+3000&%QXCNT+4*%QXERS+56*%QXQTY+20000
+@item 500000 @tab %QXSYM+%QXNUM
+@item 665400 @tab %QXSYM+%QXLET+5000&%QXCNT+4*%QXERS+60000
+@end multitable
 
    There are predefined bit typeout prefixes for all the the series of
 system symbols starting with "%";  for example, "%TS" for the symbols
@@ -3713,27 +3716,22 @@ followed by three more characters mnemonic of the type of information.
 Here is a list of the defined sub-operation codes, followed by a more
 detailed description of them. 
 
-   #	symbols		 meaning
-
-   0			 illegal
-   1	..RSTA,..SSTA	 read or write job's starting address.
-   2	..RLFI		 loaded file name (4 words:  device,
-			 SNAME, FN1, FN2) (read only).
-   3    ..RSTP		 read DDT's symbol table pointer for this job.
-			 The left half is minus the length of the
-			 symbol table.
-   4	..RSYM,..SSYM	 read or set value of a symbol.
-   5	..RJCL,..SJCL	 read or clear the job's :JCL command.
-   6    ..RPFILE,..SPFILE
-			 read or set DDT's default :PRINT filenames.
-   7	..RSTB,..SSTB	 read or write the whole symbol table.
-   10   ..RCONV		 read the symbolic equivalent of a number.
-   11 and 12		 illegal (their old meanings were obsolete)
-   13   ..RLJB		 read the job number of the previously
-			 selected job.
-   14   ..RRND,..SRND	 read or set per-job miscelaneous flags.
-   15 & up		 illegal
-
+@multitable {88 &} {..RPFILE,..SPFILE} {read DDT's symbol table pointer for this job}
+@headitem # @tab symbols @tab meaning
+@item 0 @tab @tab illegal
+@item 1 @tab ..RSTA,..SSTA @tab read or write job's starting address.
+@item 2 @tab ..RLFI @tab loaded file name (4 words:  device, SNAME, FN1, FN2) (read only).
+@item 3 @tab ..RSTP @tab read DDT's symbol table pointer for this job.  The left half is minus the length of the symbol table.
+@item 4 @tab ..RSYM,..SSYM @tab read or set value of a symbol.
+@item 5 @tab ..RJCL,..SJCL @tab read or clear the job's :JCL command.
+@item 6 @tab ..RPFILE,..SPFILE @tab read or set DDT's default :PRINT filenames.
+@item 7 @tab ..RSTB,..SSTB @tab read or write the whole symbol table.
+@item 10 @tab ..RCONV @tab read the symbolic equivalent of a number.
+@item 11 and 12 @tab @tab illegal (their old meanings were obsolete)
+@item 13 @tab ..RLJB @tab read the job number of the previously selected job.
+@item 14 @tab ..RRND,..SRND @tab read or set per-job miscelaneous flags.
+@item 15 and up @tab  @tab illegal
+@end multitable
 
    Types 1, 3, 11 and 12 read or write one word, at the address
 pointed to by the right half of the operation word.  The other types
