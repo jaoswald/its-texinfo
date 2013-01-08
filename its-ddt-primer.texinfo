@@ -1391,13 +1391,23 @@ implemented by ITS directly.  For information on them, see the file
 
 sends <message> to <user>.  Nothing actually happens until the ^C is
 type.
-^C -- Sends the message
-^D -- Flushes the message
-^K -- Retypes the message, without clearing the screen
-^L -- Clears the screen and retypes the message
-^R -- Retypes the current line
-^U -- Kills the an input line
-^W -- Kills a word
+
+@table @asis
+@item ^C
+Sends the message
+@item ^D
+Flushes the message
+@item ^K 
+Retypes the message, without clearing the screen
+@item ^L
+Clears the screen and retypes the message
+@item ^R
+Retypes the current line
+@item ^U
+Kills the an input line
+@item ^W
+Kills a word
+@end table
 
   The message can be any number of lines long.  When the ^C is typed,
 <user> will see printed on his console:
