@@ -3831,7 +3831,7 @@ to DDT.
 A couple of examples will make this clear.
 in a init file:
 
-:@value{altchar}Where Are You?  @value{altchar}:INLINE :TTYLOC<CR>
+:@value{altchar}^VWhere Are You? ^W@value{altchar}:INLINE :TTYLOC<CR>
 will type out
 "Where Are You?  "
 and the user may then type "836A Hacker's Haven<CR>"
