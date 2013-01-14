@@ -296,8 +296,9 @@ terminal at the moment.  :TCTYP HELP<cr> will print more information
 on the TCTYP program. 
 
    When you log in, if you have received mail from other users, or if
-there are announcements on the system that you have not yet seen (see
-:MSGS), DDT will normally offer to show them to you.  The offer will
+there are announcements on the system that you have not yet seen
+ @ref{Announcements}, DDT will normally offer to show them to you.
+  The offer will
 look like "--Mail--" or "--MSGS--", and the proper responses are
 <space> meaning "yes, show me the mail or the MSGS", or anything else,
 meaning "save them for later".  This scheme has the property that an
@@ -369,8 +370,8 @@ error.
 executed when he logs out.  See :LOGOUT and :OUTTEST in the reference
 section for full details.  One commonly used exit file prints an
 amusing message or fortune;  the file is called STAN.K;ML EXIT and you
-can use it by making your exit file be a link to it (see :LINK,
-below). 
+can use it by making your exit file be a link to it (
+@pxref{LINK,,the LINK command}.)
 
 :DETACH
 
@@ -634,6 +635,7 @@ the :COPYN command.
 This is like :COPY, except that it deletes the old one when it's done.
 It defaults the filenames like :COPY does, as well.
 
+@anchor{LINK}
 :LINK <newlink>,<linked to>
 
 creates a "link", which is a type of file that actually contains the
