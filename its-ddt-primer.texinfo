@@ -76,39 +76,39 @@ will function as intended.
 @end ifnottex
 
 @menu
-* Conventions::		Conventions Used in This Document
-* Rubout::		Type-in Conventions
-* Startup::		When DDT Starts Up
-* Login::		Logging in and out
-* Files::		File-Manipulation Commands
-* Programs::		Running Programs with DDT
-* Jobs::		Job Manipulation
-* Returning::		Returning Control to DDT from an Inferior Job
-* Arithmetic::		Arithmetic in DDT
-* Sophisticated::	Sophisticated Job Manipulation
-* Loading::		Loading and Dumping Jobs
-* Communication::	Communication with Other Users
-* Announcements::	Announcements
-* XFILE::		Commands from Files or Programs
-* Symbols::		Symbols
-* Memory::		Examining and Altering Memory
-* Insns::		PDP-10 Instruction Type-in
-* Literals::		Literals
-* Text::		Text Type-in
-* Modes::		Type-out Modes
-* Type-out::		Type-out Commands
-* Bit::			Bit Typeout Mode
-* Pseudo::		Pseudo-memory locations in DDT
-* Rings::		Address and Value Ring Buffers
-* Execution::		Controlling Execution While Debugging
-* MAR::			The MAR or address stop.
-* Breakpoints::		Breakpoints
-* Stepping::		Stepping
-* Raid::		Raid Registers (Self-updating display of memory)
-* Searches::		Word Searches
-* Patching::		Patching Several Instructions over One.
-* Services::		Services for Programs Running under DDT
-* INLINE::		Allows reading commands from TTY in XFILES etc.
+* Conventions::         Conventions Used in This Document
+* Rubout::              Type-in Conventions
+* Startup::             When DDT Starts Up
+* Login::               Logging in and out
+* Files::               File-Manipulation Commands
+* Programs::            Running Programs with DDT
+* Jobs::                Job Manipulation
+* Returning::           Returning Control to DDT from an Inferior Job
+* Arithmetic::          Arithmetic in DDT
+* Sophisticated::       Sophisticated Job Manipulation
+* Loading::             Loading and Dumping Jobs
+* Communication::       Communication with Other Users
+* Announcements::       Announcements
+* XFILE::               Commands from Files or Programs
+* Symbols::             Symbols
+* Memory::              Examining and Altering Memory
+* Insns::               PDP-10 Instruction Type-in
+* Literals::            Literals
+* Text::                Text Type-in
+* Modes::               Type-out Modes
+* Type-out::            Type-out Commands
+* Bit::                 Bit Typeout Mode
+* Pseudo::              Pseudo-memory locations in DDT
+* Rings::               Address and Value Ring Buffers
+* Execution::           Controlling Execution While Debugging
+* MAR::                 The MAR or address stop.
+* Breakpoints::         Breakpoints
+* Stepping::            Stepping
+* Raid::                Raid Registers (Self-updating display of memory)
+* Searches::            Word Searches
+* Patching::            Patching Several Instructions over One.
+* Services::            Services for Programs Running under DDT
+* INLINE::              Allows reading commands from TTY in XFILES etc.
 * Concept-Index::               Complete index
 * Key-Index::           Index of short-form (keystroke) commands
 @end menu
@@ -326,7 +326,7 @@ Commands from Files.
    Here is a description of the :LOGIN command, in the format that
 will be used throughout this document: 
 
-:LOGIN <name>		or		<name>@altk{U}
+:LOGIN <name>           or              <name>@altk{U}
 
 logs in as <name>.  Then, if there is a DDT init file, it is executed
 as DDT commands.  Otherwise, DDT will offer to print user <name>'s
@@ -359,7 +359,7 @@ terminal becomes free again, and will ignore everything typed on it
 except for ^Z (or CALL) and ^_.  ITS types a message on the console
 stating that it is free and also giving the time of day. 
 
-:LOGOUT			or		    @altalt{U}
+:LOGOUT                 or                  @altalt{U}
 
 logs the user out.  Only the top-level job (HACTRN) can log out;  if
 the command is given to a DDT in a job that is not top-level, it is an
@@ -413,12 +413,12 @@ be ended with a <cr>.  If not enough arguments are given before the
 <cr>, DDT will read another line of input, after describing what it
 wants for the next argument.  Examples of file commands are
 
-	:DELETE FOO BAR<cr>
+        :DELETE FOO BAR<cr>
 
 which deletes the file named FOO BAR in the current default directory,
 and
 
-	:PRINT INFO;DDT > <cr>
+        :PRINT INFO;DDT > <cr>
 
 which prints the file DDT > in the directory INFO (this file!). 
 
@@ -444,7 +444,7 @@ filenames.  A device name should be followed by a colon;  an SNAME, by
 a semicolon.  The FN1 and FN2 have no special delimiter, but are
 identified by their order of appearance.  Thus,
 
-	DSK:RMS;FOO 100
+        DSK:RMS;FOO 100
 
 specifies DSK as the device name, RMS as the SNAME, FOO as the FN1 and
 100 as the FN2. 
@@ -502,7 +502,7 @@ equivalent unless otherwise noted.  Since all commands that take a
 filespec as an argument must be terminated by a <cr>, the <cr> is not
 explicitly mentioned. 
 
-:PRINT <file>		or		^R <file>
+:PRINT <file>           or              ^R <file>
 
 types the file on the terminal.  On display terminals, at the bottom
 of the screen DDT will pause and offer to print the rest of the file: 
@@ -510,7 +510,7 @@ of the screen DDT will pause and offer to print the rest of the file:
 the file.  Any other command will be obeyed instead of printing the
 rest of the file. 
 
-:DELETE <file>		or		^O <file>
+:DELETE <file>          or              ^O <file>
 
 deletes the specified file.  It cannot be undone.  If you screw
 yourself, there is some chance that the file can be recovered from the
@@ -519,7 +519,7 @@ altmode, so that you see exactly what file will be deleted, and have a
 chance for a second thought.  Unless you tell it otherwise, DDT will
 supply the altmode for you (ref ..DELWARN). 
 
-:LISTF <directory>	or		<dev>^F or <sname>^F
+:LISTF <directory>      or              <dev>^F or <sname>^F
 
 lists the files in the directory.  A directory is specified in :LISTF
 just like a file, except that only the device name and SNAME are
@@ -597,16 +597,16 @@ Examples:
 
 @table @asis
 @item @altalt{0^F}
-		Does DIR:NAME1 UP
+                Does DIR:NAME1 UP
 @item @altalt{^F}
-		Still does DIR:NAME1 UP 
+                Still does DIR:NAME1 UP 
 @item FOOBAR@altalt{^F}
-	Changes default dir to FOOBAR and does DIR:NAME1 UP
+        Changes default dir to FOOBAR and does DIR:NAME1 UP
 @item DOWN@altalt{0^F}
-	Changes no defaults (now FOOBAR), does DIR:NAME1 DOWN
+        Changes no defaults (now FOOBAR), does DIR:NAME1 DOWN
 @end table
 
-:RENAME <file>,<newname>      or	@altalt{^O} <file>,<newname>
+:RENAME <file>,<newname>      or        @altalt{^O} <file>,<newname>
 
 changes the specified file's name.  Only the FN1 and FN2 can be
 renamed, so the second argument to :RENAME must not contain a device
@@ -616,7 +616,7 @@ name or an SNAME.
 
 queues the file for printing on the line printer.  Ref also :TPLN. 
 
-:COPY <oldfile>,<newfile>	or	@altk{^R} <oldfile>,<newfile>
+:COPY <oldfile>,<newfile>       or      @altk{^R} <oldfile>,<newfile>
 
 makes a new file containing the same data as an old one.  The new
 file's creation date is made the same as the old one.  When you are
@@ -789,7 +789,7 @@ don't say which job.  Instead, most of them act implicitly on the job
 DDT calls the "current" job.  The :JOB command can be used to make any
 of the existing jobs current, so it can be operated on: 
 
-:JOB <jname>		or		<jname>@altk{J}
+:JOB <jname>            or              <jname>@altk{J}
 
 if DDT knows about a job named <jname>, makes the job current. 
 Otherwise, if such a job actually exists (presumably not a direct
@@ -809,7 +809,7 @@ DDT and executing them.
 types a "#" to tell the user.  Whenever :JOB selects a job that DDT
 didn't already know about, "!" is typed. 
 
-:JOB			or		    @altk{J}
+:JOB                    or                  @altk{J}
 
 picks a new current job "conveniently".  If DDT knows about any jobs
 other than the current one, one of those others becomes current.  Its
@@ -822,7 +822,7 @@ any job until all the other jobs have been current.  Thus, repeated
 
    Once a job is current, it can be acted on with these commands: 
 
-:CONTINUE		or		     @altk{P}
+:CONTINUE               or                   @altk{P}
 
 makes the current job resume running, and gives it control of the
 terminal.  DDT stops reading commands, and type-in goes to the program
@@ -835,7 +835,7 @@ up to DDT", and @altk{P} can then be used to go "back down into the
 program".  If the current job is already running, but without the
 terminal (see :PROCEED below), @altk{P} just gives it the terminal. 
 
-:PROCEED		or		     ^P
+:PROCEED                or                   ^P
 
 makes the current job resume running, but DDT keeps control of the
 terminal.  The job's program is not allowed to read from or type on
@@ -876,7 +876,7 @@ whatever job has the terminal, while ^X is a DDT command, and can't be
 obeyed by DDT if DDT has given the terminal away and isn't paying any
 attention to it. 
 
-:KILL			or		   @altk{^X}. 
+:KILL                   or                 @altk{^X}. 
 
 "kills" the current job.  It ceases to exist, and any data in it is
 lost.  Be sure not to kill a TECO without filing away any information
@@ -904,7 +904,7 @@ explicitly.
 
    The :MASSACRE command kills all your jobs. 
 
-:LISTJ			or		   @altalt{V}
+:LISTJ                  or                 @altalt{V}
 
 prints a list of all the jobs DDT knows about.  Each job gets its own
 line, which contains the job's JNAME, status, and job number.  The
@@ -914,16 +914,16 @@ running;  other states include "-" meaning "never started" (@altk{P} isn't
 allowed), and W meaning "interrupted and waiting to return to DDT". 
 Example: 
 
-	  TECO P 34
-	* DEBUG - 25
-	  SRCCOM R 7
+          TECO P 34
+        * DEBUG - 25
+          SRCCOM R 7
 
 TECO is stopped, DEBUG has never been started, and SRCCOM is running. 
 See the reference section for more details.  For users on slow
 terminals, the @altalt{J} command prints out just the line describing the
 current job. 
 
-:START			or		    @altk{G}
+:START                  or                  @altk{G}
 
 starts a job at the starting address of the program in it, unlike @altk{P},
 which starts a job where it last stopped.  Many programs do something
@@ -943,7 +943,7 @@ described when they are relevant (ref ..MSNAME).  For convenience's
 sake, 0^F is equivalent to <msname>^F;  it lists the working
 directory.  The MSNAME can be set explicitly: 
 
-:CWD <new msname>	or	<new msname>@altalt{^S}
+:CWD <new msname>       or      <new msname>@altalt{^S}
 
 sets the MSNAME to <new msname>.  Any jobs created subsequently will
 be passed <new msname> as the default SNAME to use.  Jobs that already
@@ -953,7 +953,7 @@ as the MSNAME but which is not changed by :CWD.  Most programs do
 not refer to the HSNAME;  it is used for finding files that "belong to
 you", such as your RMAIL file.
 
-:CWD <return>		or	@altalt{^S}
+:CWD <return>           or      @altalt{^S}
 
 Reset your MSNAME to be your HSNAME.
 
@@ -994,9 +994,9 @@ program.  From then on, DDT expects that your commands are intended
 for the program instead of for DDT.  Three things can change DDT's
 mind: 
 
-	The program can get into severe trouble
-	The program can tell DDT that it is finished
-	You can insist, by typing ^Z or ^_D.
+        The program can get into severe trouble
+        The program can tell DDT that it is finished
+        You can insist, by typing ^Z or ^_D.
 
 If any of those three happens, DDT takes the terminal back from the
 inferior job and resumes reading commands.  We say that the job has
@@ -1021,12 +1021,12 @@ message  containing the job's PC and the next instruction it will
 execute if @altk{P}'d.  This information is provided for debugging's sake,
 and you should not be worried by it.
 
-	105)   JRST 105
+        105)   JRST 105
 
 is the sort of message DDT prints when a program is stopped with a ^Z
 (or a ^X!). 
 
-	ILOPR; 0>>   0
+        ILOPR; 0>>   0
 
 indicates that the program ran into trouble:  namely, an ILOPR
 (illegal operation, in this case executing a zero).  In general, the
@@ -1046,7 +1046,7 @@ instruction) points to it.
 
    If you see other names in parentheses, as in
 
-	ILOPR; (REALTM;) 0>> 0
+        ILOPR; (REALTM;) 0>> 0
 
 they are names of other non-fatal interrupts which are pending for the
 job.  They are printed for debuggers' convenience, and have no
@@ -1111,11 +1111,11 @@ arithmetic instructions.
 Here is a list of all DDT arithmetic operators: 
 
 @multitable {MMM} {fixed multiplication} {MMMM} {floating multiplication}
-@item + @tab fixed addition @tab @altk{+} @tab floating addition	 
-@item -	@tab fixed subtraction @tab @altk{-} @tab floating subtraction
-@item *	@tab fixed multiplication @tab @altk{*} @tab floating multiplication	
+@item + @tab fixed addition @tab @altk{+} @tab floating addition         
+@item - @tab fixed subtraction @tab @altk{-} @tab floating subtraction
+@item * @tab fixed multiplication @tab @altk{*} @tab floating multiplication    
 @item ! @tab fixed division @tab @altk{!} @tab floating division
-@item #	@tab bitwise exclusive-or @tab & @tab bitwise and
+@item # @tab bitwise exclusive-or @tab & @tab bitwise and
 @item @value{altchar}_ @tab logical shift @tab @altalt{_} @tab floating scale
 @end multitable
 
@@ -1168,7 +1168,7 @@ foreign job.  Commands to run programs, such as ^K, ignore totally any
 jobs whose unames differ from yours;  they go ahead and create an
 inferior in addition to the unsuitable job. 
 
-:DISOWN			or		   @altalt{^K}
+:DISOWN                 or                 @altalt{^K}
 
 "disowns" the current job.  The job continues to exist, and if it was
 running continues to run, but it ceases to be DDT's inferior.  Any
@@ -1259,7 +1259,7 @@ previous .BREAK instructions have read.
 @node Loading
 @chapter Loading and Dumping Jobs
 
-:LOAD <file><cr>	or		@altk{L} <file><cr>
+:LOAD <file><cr>        or              @altk{L} <file><cr>
 
 loads the binary file <file> into the current job, after resetting
 it.  Resetting a job destroys all its core and reinitializes most
@@ -1430,11 +1430,11 @@ overwritten on the screen, just print that file to see it.  In
 addition, if you are not in DDT when you receive the message, the
 message will be printed again when you return to DDT.
 
-:PRSEND<cr>		or 0^A
+:PRSEND<cr>             or 0^A
 
 prints out your SENDS file.
 
-:PRSEND <user><cr>	or <user>^A
+:PRSEND <user><cr>      or <user>^A
 
 prints out <user>'s SENDS file.
 
@@ -1519,14 +1519,14 @@ specified by the Network Address field in INQUIR.  Knowing that, you can use
 :PRINT to read it.  In addition, there is a special command to do
 that: 
 
-:PRMAIL<cr>		or 0@altk{^A}
+:PRMAIL<cr>             or 0@altk{^A}
 
 prints out your mail file.  In addition, if you did :PRMAIL rather
 than 0@altk{^A}, it will offer to delete it for you.  (If you get mail while
 printing your mail, there is no danger that this new mail may be
 deleted...the new mail will go in a separate file.)
 
-:PRMAIL <user>		or <user>@altk{^A}
+:PRMAIL <user>          or <user>@altk{^A}
 
 prints out <user>'s mail file, without renaming it or otherwise
 altering anything.  :PRMAIL <self> is good for looking at your own
@@ -2117,7 +2117,7 @@ provided for manipulating symbol tables:
 deletes the current job's entire symbol table.  It is equivalent to
 fully killing each of the symbols with <symbol>@altalt{K}. 
 
-:SYMLOD	<file>		or		:SL <file>
+:SYMLOD <file>          or              :SL <file>
 
 reads the symbol table from the binary file <file> and makes it the
 new symbol table of the current job.  Any symbols the current job
@@ -2441,15 +2441,15 @@ specified to be taken over from the value of @altk{Q}.  DDT's heuristics for
 deciding what fields to default are complicated (ref @altk{>}).  Here are
 some examples, which assume that you or DDT just typed MOVE A,B(C): 
 
-	Typing		Gives
+        Typing          Gives
 
-	FOO@altk{>}		MOVE A,FOO(C)
-	FOO(0)@altk{>}	MOVE A,FOO
-	MOVNS@altk{>}		MOVNS A,B(C)
-	MOVNS 0,@altk{>}	MOVNS B(C)
-	@@@altk{>}		MOVE A,@@B(C)
-	0,,@altk{>}		B
-	,0@altk{>}		MOVE A,(C)
+        FOO@altk{>}             MOVE A,FOO(C)
+        FOO(0)@altk{>}  MOVE A,FOO
+        MOVNS@altk{>}           MOVNS A,B(C)
+        MOVNS 0,@altk{>}        MOVNS B(C)
+        @@@altk{>}              MOVE A,@@B(C)
+        0,,@altk{>}             B
+        ,0@altk{>}              MOVE A,(C)
 
 @node Literals
 @chapter Literals
@@ -2819,38 +2819,38 @@ half (0 = RH, 1 = LH) which the mask applies to.
 
 Bit-typeout mode is actually superimposed on other modes: 
 
-	@altk{H} typeout types the left half using left-half
-	bits, and the right half using right-half bits.
+        @altk{H} typeout types the left half using left-half
+        bits, and the right half using right-half bits.
 
-	@altk{S} typeout, if it converts itself to @altk{H}, follows
-	@altk{H} rules.  Otherwise, the instruction is typed as
-	usual, except for the address field, which may or
-	may not be typed as as bits, according to the
-	type of instruction.  For example, TLNE uses
-	left-half bits, TRNE uses right-half bits,
-	HRLI uses left-half, HRRI uses right half,
-	HRRZ does not use bits, JRST does not use bits.
-	These op-codes use left-half bits:
-		MOVSI
-		HRLI	HRLZI	HRLOI	HRLEI
-		TL--
-	These op-codes use right-half bits:
-		MOVEI
-		SETCMI	SETMI
-		HRRI	HRRZI	HRROI	HRREI
-		ANDI	ANDCAI	ANDCMI	ANDCBI
-		IORI	ORCAI	ORCMI	ORCBI
-		XORI	EQVI
-		TR--
-	Op-codes which do not use bits always use the most
-	recent setting by @altk{A} or @altk{R}.  "?", which means "@altk{H;}",
-	can always be used to see bits explicitly
-	as left-half,,right-half, if @altk{S} doesn't give
-	exactly what is desired.  To see "the other kind"
-	of bits, @altalt{Q?}  can always be used.
+        @altk{S} typeout, if it converts itself to @altk{H}, follows
+        @altk{H} rules.  Otherwise, the instruction is typed as
+        usual, except for the address field, which may or
+        may not be typed as as bits, according to the
+        type of instruction.  For example, TLNE uses
+        left-half bits, TRNE uses right-half bits,
+        HRLI uses left-half, HRRI uses right half,
+        HRRZ does not use bits, JRST does not use bits.
+        These op-codes use left-half bits:
+                MOVSI
+                HRLI    HRLZI   HRLOI   HRLEI
+                TL--
+        These op-codes use right-half bits:
+                MOVEI
+                SETCMI  SETMI
+                HRRI    HRRZI   HRROI   HRREI
+                ANDI    ANDCAI  ANDCMI  ANDCBI
+                IORI    ORCAI   ORCMI   ORCBI
+                XORI    EQVI
+                TR--
+        Op-codes which do not use bits always use the most
+        recent setting by @altk{A} or @altk{R}.  "?", which means "@altk{H;}",
+        can always be used to see bits explicitly
+        as left-half,,right-half, if @altk{S} doesn't give
+        exactly what is desired.  To see "the other kind"
+        of bits, @altalt{Q?}  can always be used.
 
-	# mode uses @altk{S} mode after extracting the low seven
-	bits, and so follows @altk{S} rules.
+        # mode uses @altk{S} mode after extracting the low seven
+        bits, and so follows @altk{S} rules.
 
 These modes use bit-typeout iff the bit-typeout flag is set. 
 
@@ -2878,35 +2878,35 @@ used to print out a half-word, the names of the bits are enclosed in
 parentheses.  Thus: 
 
 @example
-		TLNE TT,(%QXABC+%QXDEF+%QXGHI)
+                TLNE TT,(%QXABC+%QXDEF+%QXGHI)
 @end example
 
 Example:
 
 @example
-		201140000701    %TX@altk{?#}
+                201140000701    %TX@altk{?#}
 @end example
 
-	would type out
+        would type out
 
 @example
-		MOVEI C,%TXMTA+%TXCTL @altk{1#}A
+                MOVEI C,%TXMTA+%TXCTL @altk{1#}A
 @end example
 
 or something like that.
 
-Example:	consider these definitions in a program:
+Example:        consider these definitions in a program:
 
 @example
-	%QXSYM==400000		;funny bits
-	%QXLET==200000
-	%QXNUM==100000
-				;some bits not defined
-	%QXCNT==7000		;a field
-	$QXERS==700		;another field
-	%QXERS==100		;name for its low bit
-	$QXQTY==77		;another field
-	%QXQTY==1		;name for its low bit
+        %QXSYM==400000          ;funny bits
+        %QXLET==200000
+        %QXNUM==100000
+                                ;some bits not defined
+        %QXCNT==7000            ;a field
+        $QXERS==700             ;another field
+        %QXERS==100             ;name for its low bit
+        $QXQTY==77              ;another field
+        %QXQTY==1               ;name for its low bit
 @end example
 
 Then these quantities would type out as follows:
@@ -2999,9 +2999,9 @@ is @altk{<n>Q} with its halves swapped:  <(@altk{<n>Q})>.
 That is done by depositing @altk{2Q} into each word: 
 
 @example
-	103/   51   0
-	104/   57   @altk{2Q}
-	105/   3    @altk{2Q}
+        103/   51   0
+        104/   57   @altk{2Q}
+        105/   3    @altk{2Q}
 @end example
 
 When depositing into 104, @altk{Q} would be 57, @altk{1Q} would be 0, and @altk{2Q} is
@@ -3216,7 +3216,7 @@ when stopped at a breakpoint, clears that breakpoint.
 DDT, DDT's message to the user looks like
 
 @example
-	@altk{3B}; <pc> >> <insn>
+        @altk{3B}; <pc> >> <insn>
 @end example
 
 <pc> is the job's PC, and will usually be the address where the
@@ -3523,12 +3523,12 @@ ADDI A,1 before which LSH A,1 must be inserted.  Typing
 105/^\<rubout>LSH A,1@altk{^]} produces this printout: 
 
 @example
-	105/   ADDI A,1   ^\
-	PATCH/   0   ADDI A,1<ADDI A,1> LSH A,1@altk{^]}
-	PATCH+1/   0   ADDI A,1
-	PATCH+2/   0   JUMPA 1,106
-	PATCH+3/   0   JUMPA 1,107
-	105/   JUMPA 2,PATCH
+        105/   ADDI A,1   ^\
+        PATCH/   0   ADDI A,1<ADDI A,1> LSH A,1@altk{^]}
+        PATCH+1/   0   ADDI A,1
+        PATCH+2/   0   JUMPA 1,106
+        PATCH+3/   0   JUMPA 1,107
+        105/   JUMPA 2,PATCH
 @end example
 
    To patch "after" an instruction, two things must be changed:  The
@@ -3541,12 +3541,12 @@ instead of before it.  Typing 105/^\<lf>LSH A,1^] will do it, and
 produce this printout: 
 
 @example
-	105/   ADDI A,1   ^\
-	PATCH/   0   ADDI A,1
-	PATCH+1/   0   LSH A,1^]
-	PATCH+2/   0   JUMPA 3,106
-	PATCH+3/   0   JUMPA 3,107
-	105/   ADDI A,1   JUMPA 2,PATCH
+        105/   ADDI A,1   ^\
+        PATCH/   0   ADDI A,1
+        PATCH+1/   0   LSH A,1^]
+        PATCH+2/   0   JUMPA 3,106
+        PATCH+3/   0   JUMPA 3,107
+        105/   ADDI A,1   JUMPA 2,PATCH
 @end example
 
 Notice that JUMPA 3, is used to return from the patch, instead of
