@@ -915,9 +915,11 @@ running;  other states include "-" meaning "never started" (@altk{P} isn't
 allowed), and W meaning "interrupted and waiting to return to DDT". 
 Example: 
 
+@example
           TECO P 34
         * DEBUG - 25
           SRCCOM R 7
+@end example
 
 TECO is stopped, DEBUG has never been started, and SRCCOM is running. 
 See the reference section for more details.  For users on slow
@@ -1022,12 +1024,16 @@ message  containing the job's PC and the next instruction it will
 execute if @altk{P}'d.  This information is provided for debugging's sake,
 and you should not be worried by it.
 
+@example
         105)   JRST 105
+@end example
 
 is the sort of message DDT prints when a program is stopped with a ^Z
 (or a ^X!). 
 
+@example
         ILOPR; 0>>   0
+@end example
 
 indicates that the program ran into trouble:  namely, an ILOPR
 (illegal operation, in this case executing a zero).  In general, the
@@ -1047,7 +1053,9 @@ instruction) points to it.
 
    If you see other names in parentheses, as in
 
+@example
         ILOPR; (REALTM;) 0>> 0
+@end example
 
 they are names of other non-fatal interrupts which are pending for the
 job.  They are printed for debuggers' convenience, and have no
@@ -3861,6 +3869,7 @@ and do something based on that.  INLINE is a program (not a "DDT Command"!)
 to do just that.
 
 :INLINE <initial JCL>
+
 Will read from the TTY one line (or up to a ^C, for JCL lines that want to
 end with ^C, like :SEND's).  This line is added to the end of the JCL and fed
 to DDT.
@@ -3868,18 +3877,28 @@ to DDT.
 A couple of examples will make this clear.
 in a init file:
 
+@example
 :@value{altchar}^VWhere Are You? ^W@value{altchar}:INLINE :TTYLOC<CR>
+@end example
+
 will type out
 "Where Are You?  "
 and the user may then type "836A Hacker's Haven<CR>"
 and it will do a
+
+@example
 :TTYLOC 836A Hacker's Haven
+@end example
 
 Note that the space is inserted between the ":TTYLOC" and the
 "836A Hacker's Haven".  This can be overcome by ending in a rubout.
 
 using the :X program:
+
+@example
 :X :INLINE :DELETE FOO;BAR
+@end example
+
 will save away the :INLINE :Delete FOO;BAR
 in a file _X <uname> (see the documentation on the X program)
 and run it.
