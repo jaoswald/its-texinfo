@@ -321,8 +321,7 @@ other string.  Ref ":DDTSYM PROMPT" for how.
 
    DDT has an "init file" feature that allows a user to customize his
 DDT.  The init file is a file of DDT commands that will be executed
-automatically on logging in.  For details, see the section DDT
-Commands from Files. 
+automatically on logging in.  @xref{XFILE}, for details.
 
    Here is a description of the :LOGIN command, in the format that
 will be used throughout this document: 
@@ -370,15 +369,15 @@ error.
 executed when he logs out.  See :LOGOUT and :OUTTEST in the reference
 section for full details.  One commonly used exit file prints an
 amusing message or fortune;  the file is called STAN.K;ML EXIT and you
-can use it by making your exit file be a link to it (
-@pxref{LINK,,the LINK command}.)
+can use it by making your exit file be a link to it
+ (@pxref{LINK,,the LINK command}.)
 
 :DETACH
 
 detaches the user's whole job-tree.  The console becomes free just as
 if it had logged out, but the jobs are not destroyed.  They remain in
 the system without a console.  A detached job is just like a disowned
-job (see :DISOWN), but got that way differently.  The opposite of
+job (@pxref{DISOWN}), but got that way differently.  The opposite of
 detaching is attaching.  There is a :ATTACH command which performs
 that operation, but it is too primitive to be convenient in the usual
 case (don't use it without reading the reference section).  However,
@@ -780,7 +779,7 @@ operations.
 "top level" or has a specific "superior" job.  A job can have up to
 eight "inferiors";   it is their superior.  The HACTRN job is always
 top-level, and the jobs created by it are its inferiors (unless DDT
-disowns them - see :DISOWN).  DDT is capable of examining any job in
+disowns them - @pxref{DISOWN}).  DDT is capable of examining any job in
 the system, but full control (starting, stopping, and depositing in
 memory) is available only for direct inferiors.  Even indirect
 inferiors (inferiors of DDT's inferiors, etc.) can only be examined. 
@@ -796,7 +795,7 @@ of the existing jobs current, so it can be operated on:
 if DDT knows about a job named <jname>, makes the job current. 
 Otherwise, if such a job actually exists (presumably not a direct
 inferior of DDT, since DDT always keeps track of those) DDT will
-henceforth know about it.  If it was a disowned job (see :DISOWN), and
+henceforth know about it.  If it was a disowned job (@pxref{DISOWN}.), and
 the top of a tree (disowned jobs too can have inferiors), it is
 "reowned", which means that it becomes DDT's inferior.  In that case,
 ``:@value{altchar}REOWNED@value{altchar}'' is printed.  If there is no job at
@@ -835,9 +834,9 @@ job with ^Z (remember that ^Z stops a job and makes DDT take back
 control of the terminal).  Thus, after using a program, ^Z goes "back
 up to DDT", and @altk{P} can then be used to go "back down into the
 program".  If the current job is already running, but without the
-terminal (see :PROCEED below), @altk{P} just gives it the terminal. 
+terminal (@pxref{PROCEED}), @altk{P} just gives it the terminal. 
 
-:PROCEED                or                   ^P
+@anchor{PROCEED}:PROCEED                or                   ^P
 
 makes the current job resume running, but DDT keeps control of the
 terminal.  The job's program is not allowed to read from or type on
@@ -1170,7 +1169,7 @@ foreign job.  Commands to run programs, such as ^K, ignore totally any
 jobs whose unames differ from yours;  they go ahead and create an
 inferior in addition to the unsuitable job. 
 
-:DISOWN                 or                 @altalt{^K}
+@anchor{DISOWN}:DISOWN                 or                 @altalt{^K}
 
 "disowns" the current job.  The job continues to exist, and if it was
 running continues to run, but it ceases to be DDT's inferior.  Any
@@ -1724,8 +1723,7 @@ the ^S is read, so if done while an execute file is running the whole
 execute file will be silenced.
 
    Valret strings are given to DDT by the execution of a .VALUE
-instruction in an inferior job.  .VALUE is described in the section
-"DDT Services for Programs Running Under DDT". 
+instruction in an inferior job.  .VALUE is described in @ref{Services}.
 
    Note that the execute file affects only DDT;  it does not also
 supply input to other programs.  Programs that normally read input
@@ -2070,7 +2068,7 @@ it.
 
    In its attempt to print PDP-10 instructions in a form intelligible
 to the user, DDT tries to find symbolic representations for addresses
-that it types out (see "Typeout Modes).  But this introduces the
+that it types out (@pxref{Modes}).  But this introduces the
 problem of how to decide which symbol is appropriate.  If the address
 405 is to be typed out, and there are two symbols, START and FOOFLG,
 with value 400, either START+5 or FOOFLG+5 might be used.  DDT can't
@@ -2198,7 +2196,7 @@ was no longer obvious.
    Opening a location usually prints out the contents of the location. 
 Just how the contents are printed is up to the user, who can select
 from several built-in "typeout modes" including symbolic mode, numeric
-mode, ascii text mode, etc. (See the section on typeout modes). 
+mode, ascii text mode, etc. (@pxref{Modes}).
 
    The simplest and most frequently used way to open a location is the
 "/" command.  It is preceded by the address of the location to open. 
@@ -2463,8 +2461,8 @@ don't work quite the way they would in an assembler.
 
    DDT stores literals in the job's patch area.  The symbol PATCH points to
 the next word available for use by a literal; as words are used for
-literals PATCH is updated.  See the section on patching for how to create a
-patch area (*note Patching: Patching.).  Every program ought to have one.
+literals PATCH is updated.  @ref{Patching} for how to create a
+patch area.  Every program ought to have one.
 
 @altalt{(}
 
@@ -3583,7 +3581,7 @@ DDT commands to execute.
 system call to cause a fatal interrupt which DDT responds to in a
 conventional way.  The effective address of the .VALUE should point to
 an ASCIZ string containing the DDT commands.  The conventions for
-those commands have been discussed above ("DDT Commands from Files"). 
+those commands have been discussed above (@pxref{XFILE}). 
 Valretting is the most general way for a program to make use of DDT,
 and for that reason it is the ugliest way.  Valretting can be done
 only by a job that has been given the control of the terminal;  if a
