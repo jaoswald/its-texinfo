@@ -413,12 +413,15 @@ be ended with a <cr>.  If not enough arguments are given before the
 <cr>, DDT will read another line of input, after describing what it
 wants for the next argument.  Examples of file commands are
 
+@example
         :DELETE FOO BAR<cr>
-
+@end example
 which deletes the file named FOO BAR in the current default directory,
 and
 
+@example
         :PRINT INFO;DDT > <cr>
+@end example
 
 which prints the file DDT > in the directory INFO (this file!). 
 
@@ -444,7 +447,9 @@ filenames.  A device name should be followed by a colon;  an SNAME, by
 a semicolon.  The FN1 and FN2 have no special delimiter, but are
 identified by their order of appearance.  Thus,
 
+@example
         DSK:RMS;FOO 100
+@end example
 
 specifies DSK as the device name, RMS as the SNAME, FOO as the FN1 and
 100 as the FN2. 
