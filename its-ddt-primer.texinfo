@@ -109,7 +109,7 @@ will function as intended.
 * Patching::            Patching Several Instructions over One.
 * Services::            Services for Programs Running under DDT
 * INLINE::              Allows reading commands from TTY in XFILES etc.
-* Concept-Index::               Complete index
+* Command-Index::       Index of long-form (colon) commands
 * Key-Index::           Index of short-form (keystroke) commands
 @end menu
 
@@ -152,15 +152,19 @@ effect on whatever command is being typed, instead of simply becoming
 part of the command.  They are used for editing input, for aborting
 operations, or for controlling where DDT's output goes. 
 
+@kindex rubout
    The most important input editing character is <rubout> (ASCII code
 177), which deletes the last input character.  If possible, it will
 be erased from the screen;  otherwise, it will be typed back out to
 show what is happening (sometimes <rubout> deletes several characters. 
 When that happens, it types them all out).  Other input editing
+@kindex ^D
 characters are ^D, which cancels ALL unprocessed type-in (in other
+@kindex ^L
 words, as much as it's possible to cancel), and ^L, which clears the
 screen and then retypes the unprocessed input. 
 
+@kindex ^S
    ^S turns off DDT output to the terminal for the command in
 progress, and other all commands before the ^S itself.  ^S is the
 right character to use if you don't want to see all of a file or
@@ -168,6 +172,7 @@ directory listing you have printed.  Many DDT commands will stop
 executing if they are silenced, if they think that they are no longer
 doing anything useful. 
 
+@kindex ^G
    ^G is a powerful abort command.  It will return DDT instantly to
 its main command-reading level at almost any time.  It is so strong
 that it is dangerous, because it can catch DDT in the middle of
@@ -176,6 +181,8 @@ jobs.  ^G should be used as a last resort, when DDT hangs up in the
 middle of a command and ignores other input.  In less extreme
 situations, ^S is usually enough. 
 
+@kindex ^Z
+@kindex CALL
    One time when ^G is ineffective is when DDT has given control of
 the terminal to another program.  To stop the other program and tell
 DDT to resume reading commands, the character ^Z may be typed on the
@@ -187,6 +194,8 @@ type ^Z when DDT itself has control of the terminal (assuming the DDT
 is top level, as usual), and it causes an error message "??" to be
 printed. 
 
+@kindex ^W
+@kindex ^V
    The characters ^W and ^V are used to turn terminal output off and
 on for long periods of time -- for example, if it is desired to
 execute several commands without any printout on the terminal.  ^W
@@ -196,6 +205,8 @@ run by DDT returns abnormally.  There are also characters ^E and ^B
 that turn off and on output to a script file.  See the reference
 section for more details.  
 
+@kindex ^_
+@kindex BACK-NEXT
    ^_ (BACK-NEXT, on TV's) is another character that is interpreted by
 ITS directly.  It is used for communicating with other users, and for
 specifying various options connected with ITS's handling of the
@@ -257,6 +268,7 @@ UNAME is in use already).  Most users use their initials or one of
 their names for a UNAME.  For more information on what DDT does with
 the UNAME specified, see the reference section "DDT's UNAMEs". 
 
+@fnindex LOGIN
    There are two commands for logging in:  :LOGIN, which is a "colon
 command", and @altk{U}, which is a "DDT command".  Colon commands all start
 with a colon, which is followed by the name of the command.  After the
@@ -326,6 +338,8 @@ automatically on logging in.  @xref{XFILE}, for details.
    Here is a description of the :LOGIN command, in the format that
 will be used throughout this document: 
 
+@fnindex LOGIN
+@kindex @altb U
 :LOGIN <name>           or              <name>@altk{U}
 
 logs in as <name>.  Then, if there is a DDT init file, it is executed
@@ -339,6 +353,7 @@ even if it logs in as <name>0, DDT will still remember that it was
 section "DDT's UNAMEs"), so it will print <name>'s mail instead of
 trying to find mail sent to <name>0. 
 
+@fnindex CHUNAM
 :CHUNAM <uname>
 
 changes DDT's UNAME to <uname>.  It has much the same effect as
@@ -359,6 +374,8 @@ terminal becomes free again, and will ignore everything typed on it
 except for ^Z (or CALL) and ^_.  ITS types a message on the console
 stating that it is free and also giving the time of day. 
 
+@fnindex LOGOUT
+@kindex @altb @altb U
 :LOGOUT                 or                  @altalt{U}
 
 logs the user out.  Only the top-level job (HACTRN) can log out;  if
@@ -372,6 +389,7 @@ amusing message or fortune;  the file is called STAN.K;ML EXIT and you
 can use it by making your exit file be a link to it
  (@pxref{LINK,,the LINK command}.)
 
+@fnindex DETACH
 :DETACH
 
 detaches the user's whole job-tree.  The console becomes free just as
@@ -396,6 +414,7 @@ destroyed by the system after an hour goes by, unless it is attached
 first.  As described above, logging back in will automatically tell
 the new DDT to look for the old detached one and offer to attach it. 
 
+@fnindex REATTACH
    There is a program called REATTACH designed specifically for
 detaching jobs from consoles and attaching jobs to consoles.  It can
 be used to move your jobs to another console, from either the old
@@ -507,6 +526,8 @@ equivalent unless otherwise noted.  Since all commands that take a
 filespec as an argument must be terminated by a <cr>, the <cr> is not
 explicitly mentioned. 
 
+@fnindex PRINT
+@kindex ^R
 :PRINT <file>           or              ^R <file>
 
 types the file on the terminal.  On display terminals, at the bottom
@@ -515,6 +536,8 @@ of the screen DDT will pause and offer to print the rest of the file:
 the file.  Any other command will be obeyed instead of printing the
 rest of the file. 
 
+@fnindex DELETE
+@kindex ^O
 :DELETE <file>          or              ^O <file>
 
 deletes the specified file.  It cannot be undone.  If you screw
@@ -524,6 +547,8 @@ altmode, so that you see exactly what file will be deleted, and have a
 chance for a second thought.  Unless you tell it otherwise, DDT will
 supply the altmode for you (ref ..DELWARN). 
 
+@fnindex LISTF
+@kindex ^F
 :LISTF <directory>      or              <dev>^F or <sname>^F
 
 lists the files in the directory.  A directory is specified in :LISTF
@@ -537,6 +562,7 @@ section for more details.  Note that the text of the directory listing
 is generated by ITS, not by DDT.  Many programs on ITS have the
 ability to list a directory, since it is so easy to do. 
 
+@kindex @altb @altb ^F
 <arg>@altalt{<n>^F}
 
 This is one of DDT's harrier commands, but it can make examining a
@@ -611,16 +637,20 @@ Examples:
         Changes no defaults (now FOOBAR), does DIR:NAME1 DOWN
 @end table
 
+@fnindex RENAME
+@kindex @altb @altb ^O
 :RENAME <file>,<newname>      or        @altalt{^O} <file>,<newname>
 
 changes the specified file's name.  Only the FN1 and FN2 can be
 renamed, so the second argument to :RENAME must not contain a device
 name or an SNAME. 
 
+@fnindex TPL
 :TPL <file>
 
 queues the file for printing on the line printer.  Ref also :TPLN. 
 
+@fnindex COPY
 :COPY <oldfile>,<newfile>       or      @altk{^R} <oldfile>,<newfile>
 
 makes a new file containing the same data as an old one.  The new
@@ -635,10 +665,12 @@ places.  See also th program INSTALL, which is useful for copying
 a file from one machine to one or more other machines.  Also ref
 the :COPYN command.
 
+@fnindex MOVE
 :MOVE <old file>,<new file>
 This is like :COPY, except that it deletes the old one when it's done.
 It defaults the filenames like :COPY does, as well.
 
+@fnindex LINK
 @anchor{LINK}
 :LINK <newlink>,<linked to>
 
@@ -651,21 +683,33 @@ overwriting RMS;MIDAS MID will remove the link itself, but not touch
 the file MIDAS;MIDAS > linked to.  :LINK sets the defaults for future
 commands from <newlink>, not from <linked-to>.  If <newlink> already
 exists, :LINK will refuse to work, thus preventing accidental deletion
+@fnindex LINKN
 of a file.  :LINKN is an equivalent command that doesn't check, and
 can be used to replace a file with a link.  Because many inexperienced
 users have assumed that ":LINK" set up a com link between terminals,
 if ..DELWARN is set to 3, :LINK and :LINKN are disabled with warning
+@fnindex LINKF
 messages.  :LINKF ("F" for "File"), however, is the same as :LINK, and
 will still exist.  It does give a warning message, but does not abort
 out of it.
 
+@fnindex SFDATE
+@fnindex SFAUTH
+@fnindex SFREAP
+@fnindex SFDUMP
 The commands :SFDATE, :SFAUTH, :SFREAP, and :SFDUMP set various
 attributes of a file:  its creation date, its author's name, its
 don't-reap bit, and its backed-up-on-tape bit.  The commands ^T, @altk{^T},
-@altalt{^T}, ^U, @altk{^U}, and @altalt{^U} control "filename translations".  See the
-reference section for those commands.  The :REAP command marks a file
+@altalt{^T}, ^U, @altk{^U}, and @altalt{^U} control "filename translations".
+See the reference section for those commands.
+@fnindex REAP
+The :REAP command marks a file
 as unimportant, and worthy of deletion as soon as it is backed up on
 mag tape.  There are several commands for handling microtapes:
+@fnindex UINIT
+@fnindex ASSIGN
+@fnindex DESIGN
+@fnindex FLAP
 :UINIT, :ASSIGN, :DESIGN, and :FLAP.  Since microtapes are hardwarily
 and softwarily unreliable on the ITS systems, their use is
 discouraged.
@@ -680,8 +724,10 @@ work for a program whose name is identical to the name of one of DDT's
 built-in colon commands (such as the DUMP program).  DDT looks for the
 program to be loaded as a file named TS <prgm name>, on any of several
 disk directories:  the user's home directory first, then the several
-system program directories.  The command :NFDIR (which see) can be
-used to add any other directories to the list. 
+system program directories.
+@fnindex NFDIR
+The command :NFDIR (which see) can be used to add any other directories to the
+ list. 
 
    Once the other program is loaded and started, DDT gives it control
 of the terminal.  Commands typed on the terminal will all go to the
@@ -693,6 +739,8 @@ makes no attempt to be sure that the program has finished acting on
 the last command you gave it.  If you tell TECO to write out your
 file, it is your responsibility to wait until the TECO says it is done
 before typing ^Z;  otherwise the file may not really exist yet.
+@kindex ^_D
+@kindex Control-CALL
 If you don't want to wait, you might prefer to use ^_D (Control-_
 followed by D;  on TV's, Control-CALL), which stops the program only
 when the program "tries to read" the ^_D.  Thus, the program will
@@ -700,6 +748,7 @@ not be stopped until it finishes processing all previous input.
 So you can type the ^_D in advance, as well as commands for DDT
 to execute after the ^_D takes effect.
 
+@fnindex INFO
    Every user should know about the INFO program for perusing
 documentation files.  Do :INFO<cr> and follow the instructions, which
 will teach you how to find the topic you are interested in.  The INFO
@@ -741,18 +790,25 @@ options.  The best way to explain them is to describe several other
 commands for running programs, which differ from :<prgm><cr> mainly in
 what they do in this problematical situation. 
 
+@kindex ^H
    The command <prgm>^H will run <prgm> if it isn't already loaded,
 but simply simply give control back to an existing copy of <prgm> if
 there is one.  It can be thought of as giving control to the program
-<prgm>, after loading it if necessary.  The command <prgm>^K, on the
+<prgm>, after loading it if necessary.
+@kindex ^K
+The command <prgm>^K, on the
 other hand, always loads a fresh copy of <prgm>, and destroys any old
 copy.  For naive users (see ..CLOBRF and :LOGIN), ^K asks for
 confirmation when it is about to destroy a program.  Note that "old
 copy" really means "anything in a job named <prgm>".  TECO^K when
 there is already a job named TECO will overwrite whatever is in that
-job, no matter what program it was.  :RETRY <prgm><cr> is equivalent
+job, no matter what program it was.
+@fnindex RETRY
+:RETRY <prgm><cr> is equivalent
 to ^K, but makes it possible to specify an argument between <prgm> and
-the <cr>.  Finally, there is :NEW <prgm><cr>, which always loads a
+the <cr>.
+@fnindex NEW
+Finally, there is :NEW <prgm><cr>, which always loads a
 fresh copy of the program, but never overwrites any old one!  It does
 this by choosing for the new job a JNAME that isn't in use yet.  If
 there is a job named TECO already, :NEW TECO<cr> will load another
@@ -828,6 +884,7 @@ any job until all the other jobs have been current.  Thus, repeated
 
    Once a job is current, it can be acted on with these commands: 
 
+@kindex @altb P
 :CONTINUE               or                   @altk{P}
 
 makes the current job resume running, and gives it control of the
@@ -1250,12 +1307,14 @@ unchanged, and so is what DDT knows about it;  only the name is
 changed.  Another command, :GENJOB, changes the job's name to a
 "generated name" chosen not to conflict with any other job. 
 
+@fnindex GZP
 :GZP<cr>
 
 starts the current job at its program's starting address, without
 giving it control of the terminal.  :GZP is like an instantaneous
 sequece of @altk{G} (:GO), ^Z, and ^P, which is how it got its name. 
 
+@fnindex JCL
 :JCL<cr>
 
 clears out the current job's comand buffer.  <prgm>^K clears the
@@ -1273,6 +1332,8 @@ previous .BREAK instructions have read.
 @node Loading
 @chapter Loading and Dumping Jobs
 
+@fnindex LOAD
+@kindex @altb L
 :LOAD <file><cr>        or              @altk{L} <file><cr>
 
 loads the binary file <file> into the current job, after resetting
@@ -1289,9 +1350,11 @@ DSK:<msname>;<jname> BIN.  Thus, the easiest way to start debugging
 the file TECO BIN is to do TECO@altk{J} @altk{L}<cr>.  When a job is created
 by a program-running command, the loading and dumping filename
 is set to the name of the program run.  You can specify a list of
+@fnindex NFDIR
 directories for @altk{L} to search for files in using :NFDIR (ref :NFDIR). 
 For more information, see the reference section under "Defaulting
 of Filenames", and under @altk{L}.  Some very old binary programs may
+@fnindex OLOAD
 not load with @altk{L} and will require the :OLOAD command (ref :OLOAD). 
 
 @altk{0L} <file>
@@ -1325,6 +1388,7 @@ simply read in starting at <addr>.
 
 dumps the contents of the current job's core as an SBLK file. 
 
+@fnindex PDUMP
 :PDUMP <file>
 
 dumps the contents of the current job's page map as a PDUMP file. 
@@ -1349,6 +1413,7 @@ loaded all read-only pages remain shared with the file, and will
 therefore be shared between all jobs that load the file.  Both kinds
 of binary files will contain the job's symbol table and start address.
 
+@fnindex PDUMPI
 :PDUMPI <dump file>,<symbols file>
 
 This command writes a PDUMP file like :PDUMP, but gives it an indirect
@@ -1376,8 +1441,10 @@ loaded.
 writes out words <low> through <high> of the current job into <file>
 as a direct core image.  Exactly <high>-<low>+1 words are written. 
 
+@fnindex LFILE
    Related commands include :LFILE, which prints out the name of the
 last file loaded (not necessarily the same as the current @altk{L} default
+@kindex @altb @altb Z
 file), and @altalt{Z}, which sets all or a specified range of the job's
 memory to a specified value (usually zero). 
 
@@ -1400,6 +1467,7 @@ Com links really have nothing to do with DDT, since they are
 implemented by ITS directly.  For information on them, see the file
 .INFO.;ITS TTY. 
 
+@fnindex SEND
 :SEND <user> <message>^C
 :SEND <user>@@<its> <message>^C
 
@@ -1444,6 +1512,7 @@ overwritten on the screen, just print that file to see it.  In
 addition, if you are not in DDT when you receive the message, the
 message will be printed again when you return to DDT.
 
+@fnindex PRSEND
 :PRSEND<cr>             or 0^A
 
 prints out your SENDS file.
@@ -1465,6 +1534,7 @@ might still log out while the message is being typed in.  In that
 case, DDT automatically mails the message instead of sending it (and
 types out (MAIL)). 
 
+@fnindex QSEND
    There is also a program QSEND that can be used to send.  It is less
 efficient than :SEND, but it can send to more than user at once, and
 can send to users logged in on other machines.  QSEND is really the
@@ -1474,6 +1544,7 @@ get you the SEND program (normally simply a link to the QSEND program)
 
    There are times when it would be embarrassing to receive a message
 (for example, when printing a copy of this file).  For those times,
+@fnindex GAG
 :GAG is available. 
 
 :GAG 0
@@ -1487,6 +1558,7 @@ tells DDT to resume accepting messages.
 
    To be completely certain that a printout won't be garbaged, :GAG is
 not enough.  For one thing, it is necessary to refuse com links with
+@kindex ^_R
 ^_R (see .INFO.;ITS TTY).  In addition, to stop DDT from notifying you
 of various things, the :NOMSG command can be used.  It looks like
 :GAG, but controls a different switch which is more powerful. :NOMSG 0
@@ -1494,9 +1566,11 @@ won't bother you with anything except an emergency (ITS going down in
 less than 15 minutes).
 
    In emergencies, such as when the disk is almost full, it may be
+@fnindex SHOUT
 necessary to send to all users at once.  The :SHOUT command does that
 -- see the reference section. 
 
+@fnindex MAIL
    To communicate with a user who is not currently logged in, :MAIL
 must be used.  :MAIL is not actually a DDT command;  it runs the MAIL
 program.  :MAIL has many features;  for example, it is easy to mail to
@@ -1511,6 +1585,7 @@ to be called :MAIL, before the more general MAIL program existed.  It
 is kept as a backup for the MAIL program.  Its syntax is exactly like
 :SEND's. 
 
+@fnindex BUG
 :BUG <prgm> <message>^C
 
 mails a complaint about the program <prgm> to the "appropriate"
@@ -1533,6 +1608,7 @@ specified by the Network Address field in INQUIR.  Knowing that, you can use
 :PRINT to read it.  In addition, there is a special command to do
 that: 
 
+@fnindex PRMAIL
 :PRMAIL<cr>             or 0@altk{^A}
 
 prints out your mail file.  In addition, if you did :PRMAIL rather
@@ -1578,6 +1654,7 @@ because some people liked it, you can do :DDTSYM OMAILF/-1, and
 :PRMAIL will rename your mail to OMAIL after printing it.
 
    One other user you might want to comunicate with is yourself at
+@fnindex ALARM
 another time.  The :ALARM command tells DDT to notify you when a
 specific time arrives: 
 
@@ -1619,6 +1696,7 @@ recent than that are eligible for being printed.  The date information
 is kept in the file called <hsname>;<xuname> MSGS, so don't
 delete it. 
 
+@fnindex MSGS
 :MSGS<cr>
 
 prints out any recently created announcements, that you haven't seen
@@ -1648,6 +1726,7 @@ in, if you either have a file directory or have ever done a :MSGS
 before.  However, if you have a DDT init file, to be executed when you
 log in, this default is overridden;  it is the init file's
 responsibiliy to do a :MSGS if that is desired.  An alternative to
+@fnindex GMSGS
 :MSGS is the program :GMSGS, which copies any newly created
 announcements into your mail file.  You can then read the
 announcements along with your mail, using RMAIL or any other
@@ -1789,6 +1868,7 @@ from the terminal again.  The user can recover from the abnormal
 situation and then cause the rest of the file or string to be
 executed, with the :INPOP command: 
 
+@fnindex INPOP
 :INPOP<cr>
 
 causes DDT to resume executing commands from the most recently
@@ -1804,6 +1884,7 @@ program and resume execution of the file's commands by doing
 :INPOP @altk{P}<cr>. 
 
 If the error shows that the rest of the file is not wanted, the
+@fnindex INFLS
 command :INFLS will discard all the suspended files and valret
 strings.  ^G has the same effect.  It is wise to do this because DDT
 is limited in the depth to which it can nest execute files and valret
@@ -1950,6 +2031,7 @@ user says <space>.
 @value{altchar}) ^V
 @end example
 
+@fnindex MORE
 :MORE <line>
 
 is a simpler but less versatile way of asking the user a question.  It
@@ -1963,6 +2045,7 @@ you to complete a command line.  (*note INLINE: INLINE.)
    General transfers of control are available in execute files and
 valret strings with the :TAG and :JUMP commands.
 
+@fnindex JUMP
 :JUMP <tag>
 
 transfers control to the specified tag.  :JUMP is normally allowed
@@ -1973,11 +2056,13 @@ is not allowed, with one exception:  if DDT is reading from the
 terminal after :INPUSH'ing a file or valret string, you can :JUMP to
 a tag in that file or string.
 
+@fnindex TAG
 :TAG <tag>
 
 defines the tag <tag>, for :JUMP's to refer to.  :TAG is a no-op when
 it is encountered in the normal sequence of execution.
 
+@fnindex SLEEP
 :SLEEP <30'ths>
 
 waits (doing nothing) for <30'ths> 30'ths of a second.  This command
@@ -1998,6 +2083,8 @@ perform DDT's default logging-in or logging-out actions (what DDT does
 if there is no init/exit file).  Beware:  :INTEST has that meaning
 only when used in an execute file!  See the reference section.  :MSGS
 and :PRMAIL are also likely to be useful in init files.  The programs
+@fnindex GMSGS
+@fnindex RMAIL
 GMSGS and RMAIL offer alternative ways of reading messages and mail -
 see [*note GMSGS: (RMAIL)GMSGS.] [*note RMAIL: (RMAIL).]
 
@@ -2180,6 +2267,7 @@ into the job's memory, or to read symbol definitions or a whole symbol
 table into DDT out of the job's memory (the linking loader STINK does
 this to give DDT the symbol table constructed by the loading process). 
 The commands ^Y, @altk{^Y} and @altalt{^Y} serve those functions.  The command
+@fnindex SYMTYP
 :SYMTYP takes a symbol as argument and returns information on whether
 the symbol is defined.  See the reference section. 
 
@@ -2311,7 +2399,9 @@ argument;  this is very different from what / does with an  argument.
    More hairy examination commands exist, which either specify a
 typeout mode for printing the contents of the location, or obtain the
 address to open in an unusual way.  The first class of commands
+@kindex ]
 includes ], which prints the opened word's contents symbolically no
+@kindex [
 matter which mode is current, and [, which always prints the contents
 numerically.  The second class actually consists of one- and
 two-altmode variants of the commands already described:  /,[,] and
@@ -2330,12 +2420,16 @@ deposit memory locations, but in view of their special functions they
 are described in a later section (The Address and Value Ring Buffers). 
 
    DDT also provides primitives for manipulation of a job's page map.
+@fnindex UNPURE
 Already mentioned is :UNPURE <addr>, which unpurifies the page <addr>
+@fnindex CORTYP
 was on.  :CORTYP <addr> prints information about the page <addr> is
 on, including how many times the page is shared, and whether it's writable,
+@fnindex CORPRT
 etc.  :CORPRT prints the information given by :CORTYP for each existing
 page in a job.
 
+@fnindex CORBLK
    :CORBLK <type> <addr> is provided to manipulate in a general way pages
 of a job's memory.  <type> is one of the following:
 
@@ -2351,6 +2445,7 @@ Same as :UNPURE <addr>
 @end table
 
     :CORBLK PURE <loc> is good for re-purifying pages of jobs that have
+@fnindex PDUMP
 been patched, prior to :PDUMPing.
 
 @node Insns
@@ -2445,6 +2540,7 @@ instruction field.  Since the 1 in the (1) bypasses the
 format-processor, truncation of addresses to 18. bits has no effect on
 it. 
 
+@kindex @altb >
 @altk{>}
 
 allows you to type in a new instruction slightly different from
@@ -2644,21 +2740,27 @@ in, and that it be printed in the syntax used by that operator.
 Here follow descriptions of the fixed built-in typeout modes. 
 
 @table @asis
+@kindex @altb C
 @item @altk{C}
 selects Constant mode, in which words are typed out as numbers, using the currently selected output radix.
 
+@kindex @altb E
 @item @altk{E}
 selects E&S mode, in which words are typed out as E&S display processor instructions. 
 
+@kindex @altb F
 @item @altk{F}
 selects Floating point mode, in which words are typed out as floating point numbers.  The radix is always decimal.
 
+@kindex @altb H
 @item @altk{H}
 selects Halfword mode, in which words are typed out as <lh>,,<rh>, with each halfword printed as an address.
 
+@kindex @altb S
 @item @altk{S}
 selects Symbolic mode, in which words are typed out as cleverly as DDT can manage, either as a PDP-10 instruction, in halfword mode, or as a number.  In the first case, the address, index and AC fields are printed as addresses. In the other two cases, the ordinary @altk{C} and @altk{H} mode actions are used.  The decision of which format to use is complicated, but PDP-10 instruction printout is used whenever it makes sense.  With I/O instructions, the user can control the decision;  see ..D010 in the section on Specially used symbols.  The .CALL UUO is printed specially; DDT prints in parentheses the name of the call (eg, OPEN).
 
+@kindex @altb T
 @item @altk{<n>T}
 selects typeout of words as decomposed into <n>-bit bytes.
 
@@ -2672,15 +2774,19 @@ selects typeout of words as decomposed into bytes according to the last byte siz
 Here follow the descriptions of the built-in typeout modes that are the initial settings of the variable commands @altk{"}, etc.
 
 @table @asis
+@kindex @altb "
 @item @altk{"}
 is initially set to select full-word ASCII typeout mode, in which ASCII /<foo>/ types out as @altk{0"}<foo>@value{altchar}, and ASCII /<foo>/+1 types out as @altk{1"}<foo>@value{altchar}.  Control characters in <foo> are typed as uparrow followed by the appropriate non-control character.  Uparrow is preceded by a ^Q.  Rubout is typed as uparrow-?. Altmode is typed as uparrow-[.
 
+@kindex @altb #
 @item @altk{#}
 is initially set to select single-character ASCII typeout mode, in which the ASCII code for <char> is typed out as @altk{1#}<char>.  As in full-word ASCII typeout mode, control characters are typed out with uparrows and ^ and ^Q are preceded by ^Q. Altmode, however, is typed as an altmode.
 
+@kindex @altb &
 @item @altk{&}
 is initially set to select SQUOZE typeout mode, in which SQUOZE <flags>,<symbol> types out as @altk{<flags>&}<symbol>.  <flags> will always be a multiple of 4, and less than 100 .
 
+@kindex @altb '
 @item @altk{'}
 is initially set to select SIXBIT typeout mode, in which SIXBIT /<foo>/ is typed out as @altk{0'}<foo>@value{altchar}.
 @end table
@@ -2688,12 +2794,15 @@ is initially set to select SIXBIT typeout mode, in which SIXBIT /<foo>/ is typed
 Here are the commands that control how addresses are printed:
 
 @table @asis
+@kindex @altb A
 @item @altk{A}
 selects typeout of addresses as numbers (in the selected radix).
 
+@kindex @altb R
 @item @altk{R}
 selects typeout of addresses symbolically, when possible. An address which is not equal to any symbol will be typed as <symbol>+<number>, provided that <number> is less than the current contents of ..SYMOFS (initially 100).
 
+@kindex @altb ?
 @item @altk{?}
 selects bit typeout mode, which is complicated, and is described in a later section.
 @end table
@@ -3437,6 +3546,7 @@ regarded as a PDP-10 instruction, have a particular effective address
 (using the current contents, in the job, of any index registers and
 indirect address words required in the address calculation). 
 
+@kindex @altb W
 <value>@altk{W}
 
 finds all words in the current job which contain <value>.  Each word
@@ -3453,6 +3563,7 @@ variable in DDT (ref ..LIMIT).
 finds all words between the addresses <low> and <high>, inclusive,
 that contain <value>.  ..LIMIT is overridden. 
 
+@kindex @altb N
 <value>@altk{N}
 
 finds all words in the current job which do NOT contain <value>.  In
@@ -3460,6 +3571,7 @@ other respects just like <value>@altk{W}.  0@altk{N} is a convenient way to prin
 all the memory of a job, saving lines by not mentioning words which
 are zero. 
 
+@kindex @altb M
 <mask>@altk{M}
 
 sets the mask for @altk{W} and @altk{N} searches.  Only the bits of the word which
@@ -3489,6 +3601,7 @@ by the mask.  If <mask> is between 0 and 7, it is the number of one of
 the prespecified masks to use.  Otherwise, <mask> itself is the mask
 to use.  Thus, 5,,@altk{<-1,,>W} compares all left halves against 5. 
 
+@kindex @altb E
 <address>@altk{E}
 
 finds all words in the current job whose effective address is
@@ -3810,6 +3923,7 @@ the symbol was and the following location is unaffected.  A type 4
 write defines the symbol pointed to by the right half to have the
 value specified in the location following it. 
 
+@fnindex JCL
    Type 5 allows an inferior to read its command string (set by :JCL
 <string> or :<prgm> <string>) from DDT. The job's .OPTION variable's
 bit 4.6 (OPTCMD bit) will be set by DDT if a command is available.  If
@@ -3874,6 +3988,7 @@ Often in writing a DDT init, you want to read a single line of input,
 and do something based on that.  INLINE is a program (not a "DDT Command"!)
 to do just that.
 
+@fnindex INLINE
 :INLINE <initial JCL>
 
 Will read from the TTY one line (or up to a ^C, for JCL lines that want to
@@ -3926,9 +4041,9 @@ rubout rubs out the last character.  It does EMACS style rubout on printing
 terminals.  On displays it erases.  On printing terminals without backspace
 (ugh) it will echo as it rubs out.
 
-@node Concept-Index
-@unnumbered Concept Index
-@printindex cp
+@node Command-Index
+@unnumbered Command Index
+@printindex fn
 @node Key-Index
 @unnumbered Short-form command index
 @printindex ky
