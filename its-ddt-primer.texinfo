@@ -2449,15 +2449,16 @@ specified to be taken over from the value of @altk{Q}.  DDT's heuristics for
 deciding what fields to default are complicated (ref @altk{>}).  Here are
 some examples, which assume that you or DDT just typed MOVE A,B(C): 
 
-        Typing          Gives
-
-        FOO@altk{>}             MOVE A,FOO(C)
-        FOO(0)@altk{>}  MOVE A,FOO
-        MOVNS@altk{>}           MOVNS A,B(C)
-        MOVNS 0,@altk{>}        MOVNS B(C)
-        @@@altk{>}              MOVE A,@@B(C)
-        0,,@altk{>}             B
-        ,0@altk{>}              MOVE A,(C)
+@multitable @columnfractions 0.5 0.5
+@headitem Typing @tab Gives
+@item @code{FOO@value{altchar}>} @tab @code{MOVE A,FOO(C)}
+@item @code{FOO(0)@value{altchar}>} @tab @code{MOVE A,FOO}
+@item @code{MOVNS@value{altchar}>} @tab @code{MOVNS A,B(C)}
+@item @code{MOVNS 0,@value{altchar}>} @tab @code{MOVNS B(C)}
+@item @code{@@@value{altchar}>} @tab @code{MOVE A,@@B(C)}
+@item @code{0,,@value{altchar}>} @tab @code{B}
+@item @code{,0@value{altchar}>} @tab @code{MOVE A,(C)}
+@end multitable
 
 @node Literals
 @chapter Literals
