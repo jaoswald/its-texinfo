@@ -180,25 +180,32 @@ where <device> = DSK, <directory> = MYDIR, <file-name1> = MYPROG, and
 
 What follows is a description of the four fields of a file name:
 
-<device> - the hardware/software device on which the file lives.
-           For the naive user this should always be DSK, which is the
-           normal disk packs.  The device is DSK by default, so, if you
-           pretend it isn't there, and if you leave it out of every
-           file name that you ever deal with, then the whole world
-           should continue to function properly.
+@table @var
+@item device
+the hardware/software device on which the file lives.  For the naive
+user this should always be DSK, which is the normal disk packs.  The
+device is DSK by default, so, if you pretend it isn't there, and if
+you leave it out of every file name that you ever deal with, then the
+whole world should continue to function properly.
 
-<directory> - the name of the directory (if applicable).  Most devices
-              (like DSK for example) do use directories of some sort.
+@item directory
+the name of the directory (if applicable).  Most devices (like DSK for
+example) do use directories of some sort.
 
-<file-name1> - the first 1-6 characters of the file name.
+@item file-name1
+the first 1-6 characters of the file name.
 
-<file-name2> - the second 1-6 characters of the file name. 
+@item file-name2
+the second 1-6 characters of the file name. 
+@end table
 
 To specify files to DDT (the top-level job that you are running) --
 and to almost any other job, since all try to adhere to the convention
 -- you should type:
 
+@example
 <device>:<directory>;<file-name1> <file-name2>
+@end example
 
 @node Abbrevs
 @subsection Abbreviations for and alternate forms of file names.
@@ -289,7 +296,9 @@ file in existence.
 DDT treats files specially that have a first file name of TS. 
 When a user types
 
-        :<job-name>
+@example
+:<job-name>
+@end example
 
 DDT will look for a file named "TS <job-name>" in the directories in
 the user's search rules.  If DDT finds such a file, the file is
@@ -298,47 +307,62 @@ expected to be in a runnable binary format.
 Traditionally, many second file names of files have been treated
 specially.  The following is a list of some of those file names.
 
-COMPRS  This is a TECO compressed library.
-:EJ     This is a TECO compiled library.  (Note that ':' is special
-        to file naming and usually means the end of a device field.
-        To type in a file name with a ":" in it, you must type a ^Q
-        (control-Q) immediately before the colon.
-        Example: "DSK:FOO;BAR :EJ"
+@table @file
+@item COMPRS
+This is a TECO compressed library.
 
-OUTPUT  This is a temporary file output by a program.  Such files
-        should be renamed to something more useful when the program
-        is finished with them.  The GFR (Grim File Reaper) has been
-        known to delete files with  this name without asking.
+@item :EJ
+This is a TECO compiled library.  (Note that ':' is special
+to file naming and usually means the end of a device field.
+To type in a file name with a ":" in it, you must type a ^Q
+(control-Q) immediately before the colon.
+Example: "DSK:FOO;BAR ^Q:EJ"
 
-@@XGP   This is a temporary file created by the ":@@" command.  The @@ program
-        normally queues this file for output on the XGP, and later deletes
-        this file automatically.
-XGP     This is a file created by some text-justifying program (for
-        example, TJ6) for output on the XGP.  Such files are also
-        usually considered temporary.
-PRESS   This is a file, also temporary, created for output on the
-        Dover printer.
+@item OUTPUT
+This is a temporary file output by a program.  Such files
+should be renamed to something more useful when the program
+is finished with them.  The GFR (Grim File Reaper) has been
+known to delete files with  this name without asking.
 
-LAP     This is a file containing a lisp-assembly program (compiled,
-        not assembled).
-FASL    This is a file containing a fast-loading lisp binary program
-        (compiled and assembled).
+@item @@XGP
+This is a temporary file created by the ":@@" command.  The @@ program
+normally queues this file for output on the XGP, and later deletes
+this file automatically.
 
-(INIT)  In the past, initialization files had funny first file names
-        and '(INIT)' as a second file name.  This convention has been
-        flushed, in favor of a first file name the same as the
-        user's login name and a second file name the same as the
-        program name.
+@item XGP
+This is a file created by some text-justifying program (for
+example, TJ6) for output on the XGP.  Such files are also
+usually considered temporary.
 
-        Thus, the following old file names now convert into the new
-        file names as shown:
+@item PRESS
+This is a file, also temporary, created for output on the
+Dover printer.
 
+@item LAP
+This is a file containing a lisp-assembly program (compiled, not assembled).
+
+@item FASL
+This is a file containing a fast-loading lisp binary program (compiled and assembled).
+
+@item (INIT)
+In the past, initialization files had funny first file names
+and '(INIT)' as a second file name.  This convention has been
+flushed, in favor of a first file name the same as the
+user's login name and a second file name the same as the
+program name.
+
+Thus, the following old file names now convert into the new
+file names as shown:
+
+@example
                 .DDT.   (INIT)  =>      <uname> LOGIN
                 .DDT_   (INIT)  =>      <uname> LOGOUT
                 .EMACS  (INIT)  =>      <uname> EMACS
                 .TECO.  (INIT)  =>      <uname> TECO
                 .LISP.  (INIT)  =>      <uname> LISP
                 MACSYM  (INIT)  =>      <uname> MACSYM
+@end example
+@end table
 
 @node Manipulation
 @section How to manipulate files with DDT.
@@ -557,50 +581,53 @@ Shift key.)  Control characters are printed usually as up-arrow ("^")
 followed by the character.  Don't type the "^" -- just hold down
 "control" and type the character following the "^".
 
-<Altmode>, @altb{}, or ^[ 
-                Many programs, including DDT, treat this character 
-                specially.  Note that there is a character $ (dollar sign)
-                on your terminal, and it probably echoes the same as @altb{} 
-                (Altmode).  To get <Altmode>, type the key marked <ESC> or
-                <ALT> or <SEL> on your terminal.  It will echo as a @altb{}.
-                Very few programs mean $ (dollar sign) when they echo the 
-                dollarsign - most mean <Alt>.  But be aware that there is
-                a difference, so you're not completely lost.
+@table @kbd
+@item <Altmode>
+@itemx @altb
+@itemx ^[ 
+Many programs, including DDT, treat this character specially.  Note
+that there is a character $ (dollar sign) on your terminal, and it
+probably echoes the same as @altb (Altmode).  To get <Altmode>, type
+the key marked <ESC> or <ALT> or <SEL> on your terminal.  It will echo
+as a $ (or @altb{}).  Very few programs mean $ (dollar sign) when they
+echo the dollarsign - most mean <Alt>.  But be aware that there is a
+difference, so you're not completely lost.
 
-                If you're using a very fancy TV keyboard, there may be
-                two keys - one marked ESC and one marked ALT.  Use ONLY
-                the key marked ALT in that case.
+If you're using a very fancy TV keyboard, there may be two keys - one
+marked ESC and one marked ALT.  Use ONLY the key marked ALT in that
+case.
 
-^D              This flushes any partial input to DDT.
+@item ^D
+This flushes any partial input to DDT.
 
-^G              This is DDT's quit character.  If you are at DDT
-                level, this will echo "QUIT?" (which doesn't mean it
-                wants an answer).  You are then ready to type a new
-                command to DDT.
+@item ^G
+This is DDT's quit character.  If you are at DDT level, this will echo
+"QUIT?" (which doesn't mean it wants an answer).  You are then ready
+to type a new command to DDT.
 
-                If you are using another program, ^G will be handled
-                by the program.  Most programs will handle ^G by
-                quitting and going back to the main command reader.
+If you are using another program, ^G will be handled by the program.
+Most programs will handle ^G by quitting and going back to the main
+command reader.
 
-^L              This clears the screen.  If there are pending,
-                unprocessed characters (that is, you're in the
-                middle of typing a command) it will redisplay those
-                characters.
+@item ^L
+This clears the screen.  If there are pending, unprocessed characters
+(that is, you're in the middle of typing a command) it will redisplay
+those characters.
 
-^S              This flushes output at DDT level.  Once a given
-                output is flushed, you must type the command again
-                and restart the output all over.  There is no way to
-                resume a flushed output from the point it was
-                stopped.  This command is not meant to stop a
-                command from working.  It just stops its output.
+@item ^S
+This flushes output at DDT level.  Once a given output is flushed, you
+must type the command again and restart the output all over.  There is
+no way to resume a flushed output from the point it was stopped.  This
+command is not meant to stop a command from working.  It just stops
+its output.
 
-^Z              This causes a program interrupt asking a job to
-                return to its superior.  If you are running a
-                program, EMACS for example, and wish to exit for a
-                moment to do something else, type ^Z.  This will
-                bring you back to DDT, suspending your EMACS job.
-                (For more info on job selection and re-entering
-                jobs, see the section on job manipulation.)
+@item ^Z
+This causes a program interrupt asking a job to return to its
+superior.  If you are running a program, EMACS for example, and wish
+to exit for a moment to do something else, type ^Z.  This will bring
+you back to DDT, suspending your EMACS job.  (For more info on job
+selection and re-entering jobs, see the section on job manipulation.)
+@end table
 
 @node Detached Trees
 @section How to get back a detached tree.
@@ -653,30 +680,38 @@ gives a brief description of what each does.
 The following commands will give info about who's on the system (in 
 increasing levels of verbosity):
 
-:U or :USERS
-  lists the user names only of all users logged in.
+@table @command
+@item :U
+@itemx :USERS
+lists the user names only of all users logged in.
 
-:W or :WHO
-  lists the user names and TTY (terminal) numbers of all logged in.
+@item :W
+@itemx :WHO
+lists the user names and TTY (terminal) numbers of all logged in.
 
-:WHOJ
-  lists the user names, TTY numbers, and job names of all logged in.
+@item :WHOJ
+lists the user names, TTY numbers, and job names of all logged in.
 
-:NAME, :FINGER, :F
-  lists the user names, affiliations, real names, job names, idle time
-  (time since the user typed on the terminal) if any, TTY number, and
-  TTY location for all logged in.
+@item :NAME
+@itemx :FINGER
+@itemx :F
+lists the user names, affiliations, real names, job names, idle time
+(time since the user typed on the terminal) if any, TTY number, and
+TTY location for all logged in.
 
-:WHOIS
-  lists the same as :NAME plus an incredible array of extra stuff like
-  home addresses, nicknames, remarks to INQUIR, etc. for all logged in.
+@item :WHOIS
+lists the same as :NAME plus an incredible array of extra stuff like
+home addresses, nicknames, remarks to INQUIR, etc. for all logged in.
+@end table
 
 Some of the commands do different things with something on the same
 line as the command (JCL line).  Examples:
 
-:WHOIS <name>
-  lists personal description of <name> regardless of whether he or
-  she is logged in.
+@table @command
+@item :WHOIS <name>
+lists personal description of <name> regardless of whether he or
+she is logged in.
+@end table
 
 @node Communication
 @section Communicating with other users using MAIL and SEND.
@@ -711,7 +746,7 @@ I have a problem. I don't know how to use :SEND
 [Message from <Yourname> at <Machine>  <Time>]
 Hi. How are you.
 I have a problem. I don't know how to use :SEND
-@example
+@end example
 
   He can then respond to you with a message explaining that you are 
   bothering him with untrue complaints since you had to know about 
@@ -978,39 +1013,42 @@ INFO.
 The following other methods of obtaining info on this machine's
 programs are available (in addition to the INFO which you are now running):
 
-:?
-  This will give a full list of DDT commands.
+@table @command
+@item :?
+This will give a full list of DDT commands.
 
-:LUSER
-  This will send a message to any system people now logged in,
-  saying that you are in trouble or greatly confused and need help.
-  It will send to a large number of people if all the helpers are
-  logged in, so try not to rely on it always, but these people can
-  be very helpful if you are really lost.
+@item :LUSER
+This will send a message to any system people now logged in, saying
+that you are in trouble or greatly confused and need help.  It will
+send to a large number of people if all the helpers are logged in, so
+try not to rely on it always, but these people can be very helpful if
+you are really lost.
 
-:SEND
-  (fully described in the section on SEND/MAIL commands in this
-  file) can be used of course, too.  If you're wondering whom to
-  ask, do :NAME and pick a system native out of the logged-in users.
-  Natives to MC  will have an "M" by their names, natives to ML a
-  "P" or "Z",  natives to AI an "A", and natives to DM a "D".  They
-  can  probably either answer your question or suggest someone else
-  who can  help.
+@item :SEND
+(fully described in the section on SEND/MAIL commands in this file)
+can be used of course, too.  If you're wondering whom to ask, do :NAME
+and pick a system native out of the logged-in users.  Natives to MC
+will have an "M" by their names, natives to ML a "P" or "Z", natives
+to AI an "A", and natives to DM a "D".  They can probably either
+answer your question or suggest someone else who can help.
+@end table
 
 >>> How NEVER to request info:
 
-:SHOUT
-  This is a command to send a message to all users.  It works like
-  :SEND but doesn't need a name of a person to send to, since it
-  sends to all logged-in users.  This is NOT for casual use, since
-  it interrupts everyone.  If you are thinking of using this to find
-  out the answer to a question, don't.  Use :LUSER, which will
-  bother only people who have volunteered to help out in such
-  situations.
+@table @command
+@item :SHOUT
+This is a command to send a message to all users.  It works like
+:SEND but doesn't need a name of a person to send to, since it
+sends to all logged-in users.  This is NOT for casual use, since
+it interrupts everyone.  If you are thinking of using this to find
+out the answer to a question, don't.  Use :LUSER, which will
+bother only people who have volunteered to help out in such
+situations.
 
-  This command also DOES NOT put something in the system messages
-  that you see when you log in.  The way to send a system message is
-  documented elsewhere in this file.
+This command also DOES NOT put something in the system messages
+that you see when you log in.  The way to send a system message is
+documented elsewhere in this file.
+@end table
 
 @node Teachers
 @section Programs that teach things.
@@ -1020,23 +1058,27 @@ to teach you how to use themselves: EMACS (a text editor) and
 MACSYMA (a symbolic algebra system (running on MC only)).  This
 node will tell you about how to start them up in teaching mode.
 
-:TEACHE
-  This program works only if you are on a display terminal (CRT
-  which can display on other than just the bottom line of the
-  screen) and ITS knows your terminal type (via :TCTYP).  This
-  program will teach the EMACS editor -- by far the fanciest and
-  most powerful of the editors available.
+@table @command
+@item :TEACHE
+This program works only if you are on a display terminal (CRT which
+can display on other than just the bottom line of the screen) and ITS
+knows your terminal type (via :TCTYP).  This program will teach the
+EMACS editor -- by far the fanciest and most powerful of the editors
+available.
+@end table
 
 On the MC machine (ARPAnet host 236 decimal), the following are also available:
 
-:TEACHM
-  This program goes through a basic primer for the Macsyma language,
-  interactively.  Macsyma doesn't run on ITS machines other than MC,
-  so neither does this program.
+@table @command
+@item :TEACHM
+This program goes through a basic primer for the Macsyma language,
+interactively.  Macsyma doesn't run on ITS machines other than MC,
+so neither does this program.
 
-:TEACH;LISP
-  This program offers an interactive introduction to the Maclisp language.
-  It is also available at MIT-OZ as <KMP.TEACH>TEACH-LISP.
+@item :TEACH;LISP
+This program offers an interactive introduction to the Maclisp language.
+It is also available at MIT-OZ as <KMP.TEACH>TEACH-LISP.
+@end table
 
 @node Other
 @section How to order other documentation (besides manuals).
