@@ -85,7 +85,9 @@ advantage.
 TCTYP knows about many standard types of terminal.  For instance, if
 you are on a VT52, you should just type
 
-  :TCTYP VT52
+@example
+:TCTYP VT52
+@end example
 
 and all programs on the system will be able to do appropriate things
 with your output to take advantage of your terminal type.  (":TCTYP ?"
@@ -136,7 +138,7 @@ finite number of directories, all at one level, and no subdirectories.
 To see the files in a directory, use:
 
 @example
-        :LISTF directory-name
+:LISTF directory-name
 @end example
 
 @node Names
@@ -163,14 +165,14 @@ field.
 A file specification will normally look something like this:
 
 @example
-        DSK: MYDIR; MYPROG NEW
+DSK: MYDIR; MYPROG NEW
 @end example
 
 and is organized into four fields.  The structure of the above file
 specification is as follows:
 
 @example
-        <device>: <directory>; <file-name1> <file-name2>
+<device>: <directory>; <file-name1> <file-name2>
 @end example
 
 where <device> = DSK, <directory> = MYDIR, <file-name1> = MYPROG, and
@@ -210,7 +212,7 @@ Example: The disk file on directory "JOE" with File-name1="MY" and
          File-name2="FILE" would look like:
 
 @example
-                DSK: JOE; MY FILE
+DSK: JOE; MY FILE
 @end example
 
 Spaces may be included between any of the four items.  They are
@@ -218,11 +220,11 @@ necessary at the end of file-name1 and the beginning of file-name2, of
 course.  Other valid ways of naming the same file are:
 
 @example
-        DSK: JOE; MY FILE
-        JOE; DSK: MY FILE
-        DSK:JOE;MY FILE
-        DSK:MY FILE JOE;
-        MY JOE; FILE DSK:
+DSK: JOE; MY FILE
+JOE; DSK: MY FILE
+DSK:JOE;MY FILE
+DSK:MY FILE JOE;
+MY JOE; FILE DSK:
 @end example
 
 and probably anything else that is similar -- except, of course, that
@@ -391,11 +393,15 @@ mention that most of these commands have control-character
 abbreviations to aid in typing speed.  ":PRINT" can be abbreviated as
 "^R" (Control-R).  Thus you can do
 
+@example
 ^R .INFO.;DDTORD >
+@end example
 
 to print DDT documentation if you don't like typing all of
 
+@example
 :PRINT .INFO.;DDTORD >
+@end example
 
 With such power comes danger.  ^O (control-O) deletes files.  If you
 are a TENEX hacker, DON'T use ^O thinking it means to stop output!!
@@ -462,9 +468,9 @@ name of your DDT).  If you create two jobs (called FOO and BAR, for
 instance), your tree would look like this:
 
 @example
-                        HACTRN
-                       /      \
-                    FOO        BAR
+    HACTRN
+   /      \
+FOO        BAR
 @end example
 
 DDT itself is a job.  Other jobs can be created by DDT.  DDT is
@@ -523,7 +529,9 @@ For example, the ":JOB" command -- that we mentioned will rotate your
 tree to the next job -- may be given JCL to get it to do something
 different.  If you do something like
 
+@example
 :JOB FOO
+@end example
 
 you will reselect the job FOO, no matter where it is in your job tree.
 (Note: If no such job FOO exists in this case, a slot will be allocated
@@ -604,14 +612,14 @@ If you miss your chance, type the following magic incantation immediately
 after you have logged in (if you want the old tree back):
 
 @example
-                :REATTACH <your-name>
+:REATTACH <your-name>
 @end example
 
 where <your-name> gets replaced by the login name you use.  For example, if
 you log in as JSMITH, you do
 
 @example
-                :REATTACH JSMITH
+:REATTACH JSMITH
 @end example
 
 and your old tree will be magically reowned.  If this doesn't work, or you
@@ -681,23 +689,29 @@ SEND is something that you use to send a message to a person who is
   currently logged in and whom you want to get the message right away.
   The usage is:
 
+@example
 :SEND <name> <message> ^C
+@end example
 
   Note that since the message is terminated with a control-C, it may extend
   over more than one line.  So something like:
 
+@example
 :SEND JOHN Hi. How are you.
 I have a problem. I don't know how to use :SEND
 ^C
+@end example
 
   is perfectly acceptable.
 
   When you type the control-C at the end of the send, JOHN will immediately
   receive the message on his terminal.  It will look like:
 
+@example
 [Message from <Yourname> at <Machine>  <Time>]
 Hi. How are you.
 I have a problem. I don't know how to use :SEND
+@example
 
   He can then respond to you with a message explaining that you are 
   bothering him with untrue complaints since you had to know about 
@@ -766,18 +780,18 @@ If you want to find out about system status, you can call the LOADP
 program by typing
 
 @example
-                :LOADP
+:LOADP
 @end example
 
 If you type ^Z and :LOADP now, you'll see something which looks like this:
 
 @example
-     12 users idle less than 1 minute.
-     5 idle 1 to 5 minutes.
-     3 idle 5 to 10 minutes.
-     4 free net ports.
-     3 free job slots.
-     :KILL INFO@altb J
+12 users idle less than 1 minute.
+ 5 idle 1 to 5 minutes.
+ 3 idle 5 to 10 minutes.
+ 4 free net ports.
+ 3 free job slots.
+ :KILL INFO@altb J
 @end example
 
 Type "@altb P" (or ":CONTIN ", since they do the same thing) to return to INFO.
@@ -938,7 +952,7 @@ chapters are in the ARChive file DM:MUDMAN;ARC MANUAL.  You can
 "step through" it a chapter at a time by
 
 @example
-   :PRINT MUDMAN;ARC:CHAP01 >
+:PRINT MUDMAN;ARC:CHAP01 >
 @end example
 
 and incrementing the chapter number until you run out of them.
