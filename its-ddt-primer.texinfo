@@ -2054,7 +2054,7 @@ as many ^V's as are necessary to make the line actually appear on the
 terminal. 
 
 If a Yes-No answer won't do, there is a program INLINE which will allow
-you to complete a command line.  (*note INLINE: INLINE.)
+you to complete a command line.  (@pxref{INLINE})
    General transfers of control are available in execute files and
 valret strings with the :TAG and :JUMP commands.
 
@@ -2606,7 +2606,7 @@ of the literal.
    But when do you supply the data for the literal?  Usually, as soon as
 you deposit the expression that contained it, DDT will ask you to do so.
 But if you use nested literals, or use a literal while making a patch
-(*note Patching: Patching.), DDT will have to wait for a while before
+(@pxref{Patching}), DDT will have to wait for a while before
 asking for the data.  In any case, DDT will ask for the data eventually, by
 typing out "$LT001/ 0 ".  The symbol name typed tells you which literal DDT
 is asking for - just match it up with the symbol printed by the @altalt{(} before.
