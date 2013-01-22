@@ -263,6 +263,7 @@ your name, etc.) and respectful to the other users.
    Logging in involves specifying a UNAME, or user name, of 6
 characters or less (preferably letters).  Each user has his own
 customary UNAME (or several).  If you don't have your own UNAME, pick
+@fnindex WHOIS
 one that nobody else uses (do :WHOIS <uname><cr> to find out whether a
 UNAME is in use already).  Most users use their initials or one of
 their names for a UNAME.  For more information on what DDT does with
@@ -300,6 +301,7 @@ the short form "@altk{U}".
    ITS normally knows the characteristics of hardwired terminals.  For
 non-local terminals, it may not know them automatically.  In that
 case, before you log in, you should tell ITS the terminal
+@fnindex TCTYP
 characteristics using the TCTYP program.  In the simplest case, that
 is done by :TCTYP <terminal type><cr>.
 For example, :TCTYP EXECUPORT<cr> tells ITS to treat the terminal as
@@ -939,6 +941,7 @@ whatever job has the terminal, while ^X is a DDT command, and can't be
 obeyed by DDT if DDT has given the terminal away and isn't paying any
 attention to it. 
 
+@fnindex KILL
 :KILL                   or                 @altk{^X}. 
 
 "kills" the current job.  It ceases to exist, and any data in it is
@@ -965,8 +968,10 @@ finishing their work;  when that happens, DDT informs the user by
 printing out ":KILL " just as if the user had killed the program
 explicitly. 
 
+@fnindex MASSACRE
    The :MASSACRE command kills all your jobs. 
 
+@fnindex LISTJ
 :LISTJ                  or                 @altalt{V}
 
 prints a list of all the jobs DDT knows about.  Each job gets its own
@@ -988,6 +993,7 @@ See the reference section for more details.  For users on slow
 terminals, the @altalt{J} command prints out just the line describing the
 current job. 
 
+@fnindex START
 :START                  or                  @altk{G}
 
 starts a job at the starting address of the program in it, unlike @altk{P},
@@ -1008,6 +1014,7 @@ described when they are relevant (ref ..MSNAME).  For convenience's
 sake, 0^F is equivalent to <msname>^F;  it lists the working
 directory.  The MSNAME can be set explicitly: 
 
+@fnindex CWD
 :CWD <new msname>       or      <new msname>@altalt{^S}
 
 sets the MSNAME to <new msname>.  Any jobs created subsequently will
@@ -1215,6 +1222,7 @@ This section describes other things that DDT can do with jobs, that
 are less often useful or more difficult to understand than those in
 the previous section. 
 
+@fnindex UJOB
 :UJOB <uname> <jname>
 
 is somewhat like :JOB.  It is used to select some other user's job,
@@ -1239,6 +1247,7 @@ foreign job.  Commands to run programs, such as ^K, ignore totally any
 jobs whose unames differ from yours;  they go ahead and create an
 inferior in addition to the unsuitable job. 
 
+@fnindex DISOWN
 @anchor{DISOWN}:DISOWN                 or                 @altalt{^K}
 
 "disowns" the current job.  The job continues to exist, and if it was
@@ -1257,6 +1266,7 @@ more, any user can reown a job no matter who disowned it, using the
 :UJOB FOOSH TECO to reown the TECO that user FOOSH disowned.  This
 makes it possible to hand a job to another user. 
 
+@fnindex ATTACH
 :ATTACH
 
 makes the current job (which must be running) become the top level
@@ -1270,6 +1280,7 @@ or HACTRP or ...) using :JOB, and then :ATTACH it.  However, it is
 probably safer to use the REATTACH program.  Type :REATTACH ?<cr> for
 information. 
 
+@fnindex FORGET
 :FORGET
 
 makes DDT forget that the current job exists.  The job is untouched,
@@ -1278,6 +1289,7 @@ Why do this?  So that DDT will no longer mention the job,
 and :MASSACRE won't kill it, but the job will remain in your tree
 (so it can type out on the terminal if it has been @altalt{^P}'d).
 
+@fnindex SNARF
 :SNARF <jname>
 
 When a HACTRN is detached because of trouble with the terminal, but is
@@ -1580,6 +1592,7 @@ like :SEND:
 
 :MAIL <user> <message>^C
 
+@fnindex OMAIL
 There is also a DDT command :OMAIL, which is the operation that used
 to be called :MAIL, before the more general MAIL program existed.  It
 is kept as a backup for the MAIL program.  Its syntax is exactly like
@@ -2217,6 +2230,8 @@ provided for manipulating symbol tables:
 deletes the current job's entire symbol table.  It is equivalent to
 fully killing each of the symbols with <symbol>@altalt{K}. 
 
+@fnindex SYMLOD
+@fnindex SL
 :SYMLOD <file>          or              :SL <file>
 
 reads the symbol table from the binary file <file> and makes it the
@@ -2237,6 +2252,7 @@ loaded by a command to run a program, such as <prgm>^K or :<prgm>.
 Notice that <prgm>@altk{^K} is equivalent to <prgm>^K with a @altk{^K} done before
 starting the program. 
 
+@fnindex LISTS
 :LISTS
 
 lists the names of all the symbols in the current job. 
@@ -2257,9 +2273,11 @@ from the selected block, but it is defined in some other block, the
 other block's definition is still visible.  Use of such a symbol as
 input will select the block that the symbol is defined in, leaving the
 previously selected block.  The user will be notified with a message
-such as "<newblock>@altk{:}".  Not surprisingly, <newblock>@altk{:} is a command
-that selects the specified block;  see the reference section.  :LISTP
-prints the block structure of the current job's symbol table, and
+such as "<newblock>@altk{:}".  Not surprisingly, <newblock>@altk{:} is a
+command that selects the specified block;  see the reference section.
+@fnindex LISTP
+:LISTP prints the block structure of the current job's symbol table, and
+@fnindex PRGM
 :PRGM prints the name of the selected block. 
 
    At times it is necessary to store a copy of a job's symbol table
