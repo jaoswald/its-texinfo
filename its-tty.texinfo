@@ -34,7 +34,7 @@ on the ITS operating system.
 * Vars::                        Per-TTY/per-job variables.
 * Perm::                        Permanent and semipermanent tty information.
 * STYs::                        Pseudo-teletypes (STYs).
-* Smart::                       The intelligent terminal protocol.
+* Intelligent Terminal Protocol::
 * SofTTYs::                     Software TTYs and ITS output buffer codes.
 
 @detailmenu
@@ -74,12 +74,12 @@ Control of the TTY.
 
 Opening TTY channels.
 
-* Opening::                     Opening "TTY:" and "Tmn:"
+* Opening-TTY::
 * Bits::                        Device-dependent bits in the OPEN mode
 
 Device-dependent bits in the OPEN mode
 
-* Bits::                        Per-channel bits
+* Per-Channel-Bits::
 * Other::                       Other Per-channel bits on input and output
 * First::                       First-time bits on output and input
 
@@ -96,16 +96,16 @@ Input from terminals.
 
 Output to terminals.
 
-* Output::                      How to cause characters to be output.
+* Output-Chars::
 * Normal::                      Normal output (sequential access).
 * Display::                     Display-mode channels.  ^P-codes.
-* Echo::                        The echo area.
+* Echo-Area::
 * Cursorpos::                   Reading the cursor position.
 * Super::                       Superimage output.
-* TTYOPT::                      Relevant TTYOPT bits.
+* TTYOPT Bits::
 * Flush::                       Throwing away typeout.
 * Waiting::                     Waiting for output to be sent to the terminal.
-* .STATUS::                     STATUS on tty output channels.
+* .STATUS-on-output::
 
 Normal output (sequential access).
 
@@ -133,13 +133,13 @@ Wraparound and Scrolling - the Results of Page-overflow
 
 The echo area.
 
-* How::                         How the Echo Area Works.
+* How-Echo-Works::
 * Creating::                    Creating an Echo Area.
 
 **MORE** processing.
 
 * When::                        When **MORE** processing is triggered.
-* How::                         How **MORE** processing operates.
+* How-More-operates::
 * Programmed::                  Programmed invocation of **MORE** processing.
 * Inhibition::                  Inhibition of **MORE** processing by input.
 
@@ -167,12 +167,12 @@ Symbolic system calls.
 
 Permanent and semipermanent tty information.
 
-* Variables::                   The variables.
-* Calls::                       System calls.
+* Permanent Variables::
+* Permanent Calls::
 
 The variables.
 
-* Size::                        The Screen Size.
+* Screen Size::
 * TTYOPT::                      The TTYOPT variable.
 * TCTYP::                       The TCTYP variable.
 * TTYTYP::                      The TTYTYP variable.
@@ -191,9 +191,9 @@ System calls.
 
 Pseudo-teletypes (STYs).
 
-* Opening::                     Opening STYs.
-* Output::                      Output to STYs.
-* Input::                       Input from STYs.
+* Opening STYs::
+* STY Output::
+* STY Input::
 * Closing::                     Closing STYs.
 * Controlling::                 Controlling the tty associated with a STY.
 * Direct::                      Direct connections to network channels:  STYNET.
@@ -202,22 +202,22 @@ Pseudo-teletypes (STYs).
 Output to STYs.
 
 * Empty::                       What happens when the buffer is empty.
-* Interrupts::                  Interrupts.
+* STY Output Interrupts::
 * Reset::                       RESET on sty output channels.
 * Status::                      STATUS on sty output channels.
 
 Input from STYs.
 
-* Empty::                       What happens when the buffer is empty.
-* Interrupts::                  Interrupts.
-* Status::                      STATUS on sty input channels.
-* Reset::                       RESET on sty input channels.
+* STY Empty::
+* STY Interrupts::
+* STY Status::
+* STY Input Reset::
 
 The intelligent terminal protocol.
 
 * Escape::                      Escape sequences.
 * Alloc::                       Allocation.
-* Reset::                       Output-reset.
+* Output Reset::
 
 Software TTYs and ITS output buffer codes.
 
@@ -787,11 +787,11 @@ device" - that is, to open a tty that is not the console of the
 job doing the opening.
 
 @menu
-* Opening::                     Opening "TTY:" and "Tmn:"
+* Opening-TTY::                 Opening TTY: and Tmn:
 * Bits::                        Device-dependent bits in the OPEN mode
 @end menu
 
-@node Opening
+@node Opening-TTY
 @section Opening "TTY:"
 Device TTY may only be successfully opened by a job in a console-
 -controlled tree which is in posession of the tty.  If a job which
@@ -837,12 +837,12 @@ named bits, as described below.  They exist for historical reasons.
 
 
 @menu
-* Bits::                        Per-channel bits
+* Per-Channel-Bits::
 * Other::                       Other Per-channel bits on input and output
 * First::                       First-time bits on output and input
 @end menu
 
-@node Bits
+@node Per-Channel-Bits
 @subsection Per-channel bits
 
 3.1	1 => output; 0 => input.  Affects the interpretation of the
@@ -1300,19 +1300,19 @@ CNSGET symbolic system call, that give information on which functions
 the particular terminal can perform.
 
 @menu
-* Output::                      How to cause characters to be output.
+* Output-Chars::                How to cause characters to be output.
 * Normal::                      Normal output (sequential access).
 * Display::                     Display-mode channels.  ^P-codes.
-* Echo::                        The echo area.
+* Echo-Area::                   The echo area.
 * Cursorpos::                   Reading the cursor position.
 * Super::                       Superimage output.
-* TTYOPT::                      Relevant TTYOPT bits.
+* TTYOPT Bits::                 Relevant TTYOPT bits.
 * Flush::                       Throwing away typeout.
 * Waiting::                     Waiting for output to be sent to the terminal.
-* .STATUS::                     STATUS on tty output channels.
+* .STATUS-on-output::           STATUS on TTY output channels.
 @end menu
 
-@node Output
+@node Output-Chars
 @section      How to cause characters to be output.
 User programs output characters by means of the .IOT UUO or the
 symbolic system calls IOT or SIOT.  .IOT is pretty much equivalent to
@@ -1675,7 +1675,7 @@ _	delete character.  The character at the cursor disappears, and
 	position.  A space appears at the end of the line.  The cursor
 	does not move.
 
-@node Echo
+@node Echo-Area
 @section        The echo area.
 
 Normally there is only one cursor, used by all output, including
@@ -1691,11 +1691,11 @@ The normal cursor is known as the "main-program cursor"; the other, as
 the "echo area cursor".
 
 @menu
-* How::                         How the Echo Area Works.
+* How-Echo-Works::              How the Echo Area Works.
 * Creating::                    Creating an Echo Area.
 @end menu
 
-@node How
+@node How-Echo-Works
 @subsection         How the Echo Area Works.
 
 One of the per-tty/per-job variables in the system is the size of the
@@ -1772,7 +1772,7 @@ If the characters output in superimage mode will move the cursor,
 the SCPOS system call must be used to tell ITS about it.
 *Note SCPOS: K/3.
 
-@node TTYOPT
+@node TTYOPT Bits
 @section      Relevant TTYOPT bits.
 
 %TOERS says that the tty can erase selectively.  If this bit is not
@@ -1863,7 +1863,7 @@ The call's only argument is a tty output channel number:
 FINISH does not require ownership of the terminal;  just output
 permission (*Note Permit: B/3.).
 
-@node .STATUS
+@node .STATUS-on-output
 @section     .STATUS on tty output channels.
 
 The information returned as the STATUS of an output channel resembles
@@ -1885,7 +1885,7 @@ program is not clever.
 
 @menu
 * When::                        When **MORE** processing is triggered.
-* How::                         How **MORE** processing operates.
+* How-More-operates::           How **MORE** processing operates.
 * Programmed::                  Programmed invocation of **MORE** processing.
 * Inhibition::                  Inhibition of **MORE** processing by input.
 @end menu
@@ -1909,7 +1909,7 @@ The user may trigger a **MORE** whenever he wishes to stop output
 temporarily, by typing "^_B".  %TSMOR does not
 inhibit this, and scroll mode does not affect it.
 
-@node How
+@node How-More-operates
 @section         How **MORE** processing operates.
 
 Once one of the events described above has triggered it, **MORE**
@@ -2313,15 +2313,15 @@ is freed, the permanent information is reinitialized.  When an STY is
 opened after being free its alter ego is similarly reinitialized.
 
 @menu
-* Variables::                   The variables.
-* Calls::                       System calls.
+* Permanent Variables::         The variables.
+* Permanent Calls::             System calls.
 @end menu
 
-@node Variables
+@node Permanent Variables
 @section   The variables.
 
 @menu
-* Size::                        The Screen Size.
+* Screen Size::                 The Screen Size.
 * TTYOPT::                      The TTYOPT variable.
 * TCTYP::                       The TCTYP variable.
 * TTYTYP::                      The TTYTYP variable.
@@ -2332,7 +2332,7 @@ opened after being free its alter ego is similarly reinitialized.
 			  it supports graphics.
 @end menu
 
-@node Size
+@node Screen Size
 @subsection        The Screen Size.
 
 The horizontal screen size is the number of character positions on a
@@ -2598,7 +2598,7 @@ signifies a bit or field in the right half.
 %TRGHC==200000	;2.8 Terminal provides has graphic hardcopy.
 %TRSCN==040000	;2.6 Terminal implements scan-line output.
 
-@node Calls
+@node Permanent Calls
 @section       System calls.
 
 @menu
@@ -2719,16 +2719,16 @@ net is fed to the sty and all input from the sty is fed to the net,
 without having to run the actual server program.
 
 @menu
-* Opening::                     Opening STYs.
-* Output::                      Output to STYs.
-* Input::                       Input from STYs.
+* Opening STYs::                Opening STYs.
+* STY Output::                  Output to STYs.
+* STY Input::                   Input from STYs.
 * Closing::                     Closing STYs.
 * Controlling::                 Controlling the tty associated with a STY.
 * Direct::                      Direct connections to network channels:  STYNET.
 * STYGET::                      STYGET.
 @end menu
 
-@node Opening
+@node Opening STYs
 @section     Opening STYs.
 
 There are two ways to open a sty: opening the STY device, and
@@ -2764,7 +2764,7 @@ has been thrown away.
 These modes are not remembered separately for each channel;
 each open sets the modes for all channels in that direction.
 
-@node Output
+@node STY Output
 @section      Output to STYs.
 
 IOT'ing a character to a sty output channel is like typing the
@@ -2780,7 +2780,7 @@ the tty, which will treat it the way a TV would.
 
 @menu
 * Empty::                       What happens when the buffer is empty.
-* Interrupts::                  Interrupts.
+* STY Output Interrupts::       Interrupts.
 * Reset::                       RESET on sty output channels.
 * Status::                      STATUS on sty output channels.
 @end menu
@@ -2797,7 +2797,7 @@ will be thrown away, and "^G" echoed, just as on a physical
 terminal.  This mode is good for programs that simulate special
 types of terminals for the user.
 
-@node Interrupts
+@node STY Output Interrupts
 @subsection  Interrupts.
 If a sty output channel is enabled to interrupt, an interrupt will
 happen whenever a job attempts to read from the associated tty and
@@ -2818,7 +2818,7 @@ A .STATUS UUO or STATUS symbolic system call done on a sty output
 channel will return the device code 25, and will set bit 2.2 or bit
 2.1 if the tty's input buffer is empty or almost full, respectively.
 
-@node Input
+@node STY Input
 @section       Input from STYs.
 
 Characters read in by a sty are like characters received by a
@@ -2831,13 +2831,13 @@ TTYOPT variable, but the initial setting given to the tty when the
 sty is first opened causes padding not to be done.
 
 @menu
-* Empty::                       What happens when the buffer is empty.
-* Interrupts::                  Interrupts.
-* Status::                      STATUS on sty input channels.
-* Reset::                       RESET on sty input channels.
+* STY Empty::           What happens when the buffer is empty.
+* STY Interrupts::      Interrupts.
+* STY Status::          STATUS on STY input channels.
+* STY Input Reset::     RESET on STY input channels.
 @end menu
 
-@node Empty
+@node STY Empty
 @subsection       What happens when the buffer is empty.
 
 There are two modes of input from sty's, distinguished by what
@@ -2851,7 +2851,7 @@ Block mode IOT's have a kludgerous scheme and should be avoided.
 "Don't hang" mode is selected by opening an input
 channel with the 20 bit in the open-mode set to 1.
 
-@node Interrupts
+@node STY Interrupts
 @subsection  Interrupts.
 
 A sty input channel may be enabled to interrupt.  It will do so
@@ -2862,14 +2862,14 @@ occur.  In "don't hang" mode, the interrupt routine should continue
 reading until it reads a -1, indicating that no more input is
 available at the moment.
 
-@node Status
+@node STY Status
 @subsection      .STATUS on sty input channels.
 
 A .STATUS UUO or STATUS symbolic system call on a sty input channel
 returns bit 2.1 as 1 iff the tty's output buffer is full, and 2.2 as
 1 iff it is empty.
 
-@node Reset
+@node STY Input Reset
 @subsection       .RESET on sty input channels.
 
 A .RESET UUO or RESET symbolic system call on a sty input channel
@@ -3026,7 +3026,7 @@ and returns the following five values:
 	ints for.  This is used for the arg chars that follow Top-E, Top-S,
 	Top-Y, etc. 
 
-@node Smart
+@node Intelligent Terminal Protocol
 @chapter The intelligent terminal protocol.
 
 The %TPCBS bit in the RH of TTYOPT turns on the intelligent terminal
@@ -3044,7 +3044,7 @@ protocol to pass the user's ^\ up to higher levels.
 @menu
 * Escape::                      Escape sequences.
 * Alloc::                       Allocation.
-* Reset::                       Output-reset.
+* Output Reset::
 @end menu
 
 @node Escape
@@ -3141,7 +3141,7 @@ always reinitialize without fear using ^\ ^Z ^\ ^A <buffer size>.
 
 To stop using the allocation feature, just do ^\ ^I.
 
-@node Reset
+@node Output Reset
 @section       Output-reset.
 
 If the TTY is a software-tty (*Note Soft: K.), uses the
