@@ -25,17 +25,207 @@ on the ITS operating system.
 @end ifnottex
 
 @menu
-* Special::     Characters specially interpreted when typed on the TTY.
-* Control::     Control of the TTY.
-* Opening::     Opening TTY channels.
-* Input::       Input from terminals.
-* Output::      Output to terminals.
-* More::        **MORE** processing.
-* Vars::        Per-TTY/per-job variables.
-* Perm::        Permanent and semipermanent tty information.
-* STYs::        Pseudo-teletypes (STYs).
-* Smart::       The intelligent terminal protocol.
-* SofTTYs::     Software TTYs and ITS output buffer codes.
+* Special::                     Characters specially interpreted when typed on the TTY.
+* Control::                     Control of the TTY.
+* Opening::                     Opening TTY channels.
+* Input::                       Input from terminals.
+* Output::                      Output to terminals.
+* More::
+* Vars::                        Per-TTY/per-job variables.
+* Perm::                        Permanent and semipermanent tty information.
+* STYs::                        Pseudo-teletypes (STYs).
+* Smart::                       The intelligent terminal protocol.
+* SofTTYs::                     Software TTYs and ITS output buffer codes.
+
+@detailmenu
+ --- The Detailed Node Listing ---
+
+Characters Specially Interpreted When Typed on the TTY.
+
+* Interrupting::                Interrupting the program - the CALL function
+* Strange::                     Entering strange characters - the ESCAPE function
+* Mode Setting::                Mode setting using ESACPE
+* Communicate::                 Communicate mode
+* Escape Codes::                List of ESCAPE codes
+
+Entering strange characters - the ESCAPE function
+
+* Quoting::                     Quoting the chars used for CALL and ESCAPE
+* ^_<number>::
+* Meta-bits::                   Supplying Meta-Bits on Non-TV's
+
+Communicate mode
+
+* Entering::                    Entering a COM link
+* Querying::
+* Leaving::                     Leaving a COM link
+* ^_N::                         When the system prints "^_N"
+* Overrides::                   Input and output overrides.  "^_I" and "^_O".
+* Slaving::                     Slaving another terminal.  "^_S" and "^_E".
+* Respond::                     Telling the system how to respond to "^_C" requests
+
+Control of the TTY.
+
+* Who Has::                     What determines who has the TTY
+* ATTY::                        ATTY and .DTTY
+* Permission::                  Permission to type out
+* .TTY::                        The .TTY variable
+* .CNSL::                       The .CNSL variable
+
+Opening TTY channels.
+
+* Opening::                     Opening "TTY:" and "Tmn:"
+* Bits::                        Device-dependent bits in the OPEN mode
+
+Device-dependent bits in the OPEN mode
+
+* Bits::                        Per-channel bits
+* Other::                       Other Per-channel bits on input and output
+* First::                       First-time bits on output and input
+
+Input from terminals.
+
+* Echo::                        Echo
+* MP Input::                    Main-program input.
+* Activation::                  Activation.
+* Interrupts::                  Input interrupts.
+* Throw::                       Throwing away type-in.
+* Avail::                       Testing for the availability of input.
+* .STATUS::                     STATUS on tty input channels.
+* Char Set::                    The character set
+
+Output to terminals.
+
+* Output::                      How to cause characters to be output.
+* Normal::                      Normal output (sequential access).
+* Display::                     Display-mode channels.  ^P-codes.
+* Echo::                        The echo area.
+* Cursorpos::                   Reading the cursor position.
+* Super::                       Superimage output.
+* TTYOPT::                      Relevant TTYOPT bits.
+* Flush::                       Throwing away typeout.
+* Waiting::                     Waiting for output to be sent to the terminal.
+* .STATUS::                     STATUS on tty output channels.
+
+Normal output (sequential access).
+
+* How::                         How the System Goes about Outputting.
+* Contin::                      Continuation - the Result of Line-overflow.
+* Wrap::                        Wraparound and Scrolling - the Results of Page-overflow
+
+How the System Goes about Outputting.
+
+* Ascii::                       ASCII Graphic Characters.
+* ^G::
+* CR::                          Carriage-return.
+* LF::                          Linefeed.
+* Tab::                         Tab.
+* ^L::                          Control-L (Formfeed).
+* Altmode::                     Altmode.
+* ^P::                          Control-P, the escape code.
+* BS::                          Backspace.
+* Random::                      Random Control Characters, and Rubout.
+
+Wraparound and Scrolling - the Results of Page-overflow
+
+* Scrolling::
+* Wraparound::
+
+The echo area.
+
+* How::                         How the Echo Area Works.
+* Creating::                    Creating an Echo Area.
+
+**MORE** processing.
+
+* When::                        When **MORE** processing is triggered.
+* How::                         How **MORE** processing operates.
+* Programmed::                  Programmed invocation of **MORE** processing.
+* Inhibition::                  Inhibition of **MORE** processing by input.
+
+How **MORE** processing operates.
+
+* Stupid::                      Stupid Programs.
+* Smart::                       Smart Programs.
+
+Per-TTY/per-job variables.
+
+* Variables::                   The variables.
+* Calls::                       Symbolic system calls.
+
+The variables.
+
+* ST1&2::                       The TTYST1 and TTYST2 variables.
+* STS::                         The TTYSTS variable.
+* Size::                        The Size of the Echo Area.
+
+Symbolic system calls.
+
+* Get::                         TTYGET - read TTYST1, TTYST2, TTYSTS.
+* Set::                         TTYSET - set TTYST1, TTYST2, TTYSTS.
+* SCML::                        SCML - Set Number of Command Lines.
+
+Permanent and semipermanent tty information.
+
+* Variables::                   The variables.
+* Calls::                       System calls.
+
+The variables.
+
+* Size::                        The Screen Size.
+* TTYOPT::                      The TTYOPT variable.
+* TCTYP::                       The TCTYP variable.
+* TTYTYP::                      The TTYTYP variable.
+* TTYCOM::                      The TTYCOM Variable.
+* TTYROL::                      The TTYROL variable or "Scroll Count".
+* TTYSMT::                      The TTYSMT variable.  Says what sort of
+			  CPU the terminal is, and to what extent
+			  it supports graphics.
+
+System calls.
+
+* RSSIZE::                      RSSIZE.
+* CNSGET::                      CNSGET.
+* CNSSET::                      CNSSET.
+* TTYVAR::                      TTYVAR.
+
+Pseudo-teletypes (STYs).
+
+* Opening::                     Opening STYs.
+* Output::                      Output to STYs.
+* Input::                       Input from STYs.
+* Closing::                     Closing STYs.
+* Controlling::                 Controlling the tty associated with a STY.
+* Direct::                      Direct connections to network channels:  STYNET.
+* STYGET::                      STYGET.
+
+Output to STYs.
+
+* Empty::                       What happens when the buffer is empty.
+* Interrupts::                  Interrupts.
+* Reset::                       RESET on sty output channels.
+* Status::                      STATUS on sty output channels.
+
+Input from STYs.
+
+* Empty::                       What happens when the buffer is empty.
+* Interrupts::                  Interrupts.
+* Status::                      STATUS on sty input channels.
+* Reset::                       RESET on sty input channels.
+
+The intelligent terminal protocol.
+
+* Escape::                      Escape sequences.
+* Alloc::                       Allocation.
+* Reset::                       Output-reset.
+
+Software TTYs and ITS output buffer codes.
+
+* Codes::                       ITS output buffer codes.
+* TDORS::                       Handling %TDORS.
+* SCPOS::                       The SCPOS system call.
+
+@end detailmenu
 @end menu
 
 @node Special
@@ -46,11 +236,11 @@ by being read and acted on by user programs.  There are, however,
 a few important exceptions.
 
 @menu
-* Interrupting::        Interrupting the program - the CALL function
-* Strange::             Entering strange characters - the ESCAPE function
-* Mode Setting::        Mode setting using ESACPE
-* Communicate::         Communicate mode
-* Escape Codes::        List of ESCAPE codes
+* Interrupting::                Interrupting the program - the CALL function
+* Strange::                     Entering strange characters - the ESCAPE function
+* Mode Setting::                Mode setting using ESACPE
+* Communicate::                 Communicate mode
+* Escape Codes::                List of ESCAPE codes
 @end menu
 
 @node Interrupting
@@ -111,9 +301,9 @@ otherwise stated, regardless of whether it is actually obtained by
 the character "^_".
 
 @menu
-* Quoting::     Quoting the chars used for CALL and ESCAPE
+* Quoting::                     Quoting the chars used for CALL and ESCAPE
 * ^_<number>::
-* Meta-bits::   Supplying Meta-Bits on Non-TV's
+* Meta-bits::                   Supplying Meta-Bits on Non-TV's
 @end menu
 
 @node Quoting
@@ -210,13 +400,13 @@ one of the terminals in a com link to supply input for and view
 the output from another (see "^_S" and "^_E").
 
 @menu
-* Entering::    Entering a COM link
+* Entering::                    Entering a COM link
 * Querying::
-* Leaving::     Leaving a COM link
-* ^_N::         When the system prints "^_N"
-* Overrides::   Input and output overrides.  "^_I" and "^_O".
-* Slaving::     Slaving another terminal.  "^_S" and "^_E".
-* Respond::     Telling the system how to respond to "^_C" requests
+* Leaving::                     Leaving a COM link
+* ^_N::                         When the system prints "^_N"
+* Overrides::                   Input and output overrides.  "^_I" and "^_O".
+* Slaving::                     Slaving another terminal.  "^_S" and "^_E".
+* Respond::                     Telling the system how to respond to "^_C" requests
 @end menu
 
 @node Entering
@@ -450,12 +640,12 @@ of the tty", or to "have the tty".  The .ATTY and .DTTY UUO's
 allow control of the tty to be passed between the jobs in a
 tree.
 
-@menu 
-* Who Has::     What determines who has the TTY
-* ATTY::        .ATTY and .DTTY
-* Permission::  Permission to type out
-* .TTY::        The .TTY variable
-* .CNSL::       The .CNSL variable
+@menu
+* Who Has::                     What determines who has the TTY
+* ATTY::                        ATTY and .DTTY
+* Permission::                  Permission to type out
+* .TTY::                        The .TTY variable
+* .CNSL::                       The .CNSL variable
 @end menu
 
 @node Who Has
@@ -597,8 +787,8 @@ device" - that is, to open a tty that is not the console of the
 job doing the opening.
 
 @menu
-* Opening:: Opening "TTY:" and "Tmn:"
-* Bits:: Device-dependent bits in the OPEN mode
+* Opening::                     Opening "TTY:" and "Tmn:"
+* Bits::                        Device-dependent bits in the OPEN mode
 @end menu
 
 @node Opening
@@ -647,9 +837,9 @@ named bits, as described below.  They exist for historical reasons.
 
 
 @menu
-* Bits:: Per-channel bits
-* Other:: Other Per-channel bits on input and output
-* First:: First-time bits on output and input
+* Bits::                        Per-channel bits
+* Other::                       Other Per-channel bits on input and output
+* First::                       First-time bits on output and input
 @end menu
 
 @node Bits
@@ -730,14 +920,14 @@ If %TOALT is set, and %TSALT is not, characters 175 and 176 will
 be turned into 33 (this is "standardization of altmodes").
 
 @menu
-* Echo::        Echo
-* MP Input::    Main-program input.
-* Activation::  Activation.
-* Interrupts::  Input interrupts.
-* Throw::       Throwing away type-in.
-* Avail::       Testing for the availability of input.
-* .STATUS::     .STATUS on tty input channels.
-* Char Set::    The character set
+* Echo::                        Echo
+* MP Input::                    Main-program input.
+* Activation::                  Activation.
+* Interrupts::                  Input interrupts.
+* Throw::                       Throwing away type-in.
+* Avail::                       Testing for the availability of input.
+* .STATUS::                     STATUS on tty input channels.
+* Char Set::                    The character set
 @end menu
 
 @node Echo
@@ -1110,16 +1300,16 @@ CNSGET symbolic system call, that give information on which functions
 the particular terminal can perform.
 
 @menu
-* Output::      How to cause characters to be output.
-* Normal::      Normal output (sequential access).
-* Display::     Display-mode channels.  ^P-codes.
-* Echo::        The echo area.
-* Cursorpos::   Reading the cursor position.
-* Super::       Superimage output.
-* TTYOPT::      Relevant TTYOPT bits.
-* Flush::       Throwing away typeout.
-* Waiting::     Waiting for output to be sent to the terminal.
-* .STATUS::     .STATUS on tty output channels.
+* Output::                      How to cause characters to be output.
+* Normal::                      Normal output (sequential access).
+* Display::                     Display-mode channels.  ^P-codes.
+* Echo::                        The echo area.
+* Cursorpos::                   Reading the cursor position.
+* Super::                       Superimage output.
+* TTYOPT::                      Relevant TTYOPT bits.
+* Flush::                       Throwing away typeout.
+* Waiting::                     Waiting for output to be sent to the terminal.
+* .STATUS::                     STATUS on tty output channels.
 @end menu
 
 @node Output
@@ -1165,9 +1355,9 @@ cursor in the appropriate way (that is, they are really display
 commands).
 
 @menu
-* How::         How the System Goes about Outputting.
-* Contin::      Continuation - the Result of Line-overflow.
-* Wrap::        Wraparound and Scrolling - the Results of Page-overflow
+* How::                         How the System Goes about Outputting.
+* Contin::                      Continuation - the Result of Line-overflow.
+* Wrap::                        Wraparound and Scrolling - the Results of Page-overflow
 @end menu
 
 @node How
@@ -1188,16 +1378,16 @@ you want the effects described below for image mode, you should
 probably open a channel in superimage mode and use it at such times.
 
 @menu
-* Ascii::       ASCII Graphic Characters.
-* ^G::          "^G".
-* CR::          Carriage-return.
-* LF::          Linefeed.
-* Tab::         Tab.
-* ^L::          Control-L (Formfeed).
-* Altmode::     Altmode.
-* ^P::          Control-P, the escape code.
-* BS::          Backspace.
-* Random::      Random Control Characters, and Rubout.
+* Ascii::                       ASCII Graphic Characters.
+* ^G::
+* CR::                          Carriage-return.
+* LF::                          Linefeed.
+* Tab::                         Tab.
+* ^L::                          Control-L (Formfeed).
+* Altmode::                     Altmode.
+* ^P::                          Control-P, the escape code.
+* BS::                          Backspace.
+* Random::                      Random Control Characters, and Rubout.
 @end menu
 
 @node Ascii
@@ -1501,8 +1691,8 @@ The normal cursor is known as the "main-program cursor"; the other, as
 the "echo area cursor".
 
 @menu
-* How::         How the Echo Area Works.
-* Creating::    Creating an Echo Area.
+* How::                         How the Echo Area Works.
+* Creating::                    Creating an Echo Area.
 @end menu
 
 @node How
@@ -1694,10 +1884,10 @@ system to wait for the user to order typeout to proceed if the
 program is not clever.
 
 @menu
-* When::        When **MORE** processing is triggered.
-* How::         How **MORE** processing operates.
-* Programmed::  Programmed invocation of **MORE** processing.
-* Inhibition::  Inhibition of **MORE** processing by input.
+* When::                        When **MORE** processing is triggered.
+* How::                         How **MORE** processing operates.
+* Programmed::                  Programmed invocation of **MORE** processing.
+* Inhibition::                  Inhibition of **MORE** processing by input.
 @end menu
 
 @node When
@@ -1728,8 +1918,8 @@ out to the terminal, except for output done with %TIMOR set to 1.
 The details differ depending on how clever the program wishes to be.
 
 @menu
-* Stupid::      Stupid Programs.
-* Smart::       Smart Programs.
+* Stupid::                      Stupid Programs.
+* Smart::                       Smart Programs.
 @end menu
 
 @node Stupid
@@ -1872,17 +2062,17 @@ in the open-mode for tty opens.
 
 
 @menu
-* Variables::   The variables.
-* Calls::       Symbolic system calls.
+* Variables::                   The variables.
+* Calls::                       Symbolic system calls.
 @end menu
 
 @node Variables
 @section The variables.
 
 @menu
-* ST1&2::       The TTYST1 and TTYST2 variables.
-* STS::         The TTYSTS variable.
-* Size::        The Size of the Echo Area.
+* ST1&2::                       The TTYST1 and TTYST2 variables.
+* STS::                         The TTYSTS variable.
+* Size::                        The Size of the Echo Area.
 @end menu
 
 
@@ -2015,9 +2205,9 @@ at the time, the call will wait until the tty is given back by the
 superiors.
 
 @menu
-* Get::         TTYGET - read TTYST1, TTYST2, TTYSTS.
-* Set::        TTYSET - set TTYST1, TTYST2, TTYSTS.
-* SCML::       SCML - Set Number of Command Lines.
+* Get::                         TTYGET - read TTYST1, TTYST2, TTYSTS.
+* Set::                         TTYSET - set TTYST1, TTYST2, TTYSTS.
+* SCML::                        SCML - Set Number of Command Lines.
 @end menu
 
 @node Get
@@ -2123,21 +2313,21 @@ is freed, the permanent information is reinitialized.  When an STY is
 opened after being free its alter ego is similarly reinitialized.
 
 @menu
-* Variables::   The variables.
-* Calls::       System calls.
+* Variables::                   The variables.
+* Calls::                       System calls.
 @end menu
 
 @node Variables
 @section   The variables.
 
 @menu
-* Size::        The Screen Size.
-* TTYOPT::      The TTYOPT variable.
-* TCTYP::       The TCTYP variable.
-* TTYTYP::      The TTYTYP variable.
-* TTYCOM::      The TTYCOM Variable.
-* TTYROL::      The TTYROL variable or "Scroll Count".
-* TTYSMT::      The TTYSMT variable.  Says what sort of
+* Size::                        The Screen Size.
+* TTYOPT::                      The TTYOPT variable.
+* TCTYP::                       The TCTYP variable.
+* TTYTYP::                      The TTYTYP variable.
+* TTYCOM::                      The TTYCOM Variable.
+* TTYROL::                      The TTYROL variable or "Scroll Count".
+* TTYSMT::                      The TTYSMT variable.  Says what sort of
 			  CPU the terminal is, and to what extent
 			  it supports graphics.
 @end menu
@@ -2412,10 +2602,10 @@ signifies a bit or field in the right half.
 @section       System calls.
 
 @menu
-* RSSIZE::      RSSIZE.
-* CNSGET::      CNSGET.
-* CNSSET::      CNSSET.
-* TTYVAR::      TTYVAR.
+* RSSIZE::                      RSSIZE.
+* CNSGET::                      CNSGET.
+* CNSSET::                      CNSSET.
+* TTYVAR::                      TTYVAR.
 @end menu
 
 @node RSSIZE
@@ -2529,13 +2719,13 @@ net is fed to the sty and all input from the sty is fed to the net,
 without having to run the actual server program.
 
 @menu
-* Opening::     Opening STYs.
-* Output::      Output to STYs.
-* Input::       Input from STYs.
-* Closing::     Closing STYs.
-* Controlling:: Controlling the tty associated with a STY.
-* Direct::      Direct connections to network channels:  STYNET.
-* STYGET::      STYGET.
+* Opening::                     Opening STYs.
+* Output::                      Output to STYs.
+* Input::                       Input from STYs.
+* Closing::                     Closing STYs.
+* Controlling::                 Controlling the tty associated with a STY.
+* Direct::                      Direct connections to network channels:  STYNET.
+* STYGET::                      STYGET.
 @end menu
 
 @node Opening
@@ -2589,10 +2779,10 @@ any character in the 12-bit TV character set may be output to
 the tty, which will treat it the way a TV would.
 
 @menu
-* Empty::       What happens when the buffer is empty.
-* Interrupts::  Interrupts.
-* Reset::       RESET on sty output channels.
-* Status::      STATUS on sty output channels.
+* Empty::                       What happens when the buffer is empty.
+* Interrupts::                  Interrupts.
+* Reset::                       RESET on sty output channels.
+* Status::                      STATUS on sty output channels.
 @end menu
 
 @node Empty
@@ -2641,10 +2831,10 @@ TTYOPT variable, but the initial setting given to the tty when the
 sty is first opened causes padding not to be done.
 
 @menu
-* Empty::       What happens when the buffer is empty.
-* Interrupts::  Interrupts.
-* Status::      .STATUS on sty input channels.
-* Reset::       .RESET on sty input channels.
+* Empty::                       What happens when the buffer is empty.
+* Interrupts::                  Interrupts.
+* Status::                      STATUS on sty input channels.
+* Reset::                       RESET on sty input channels.
 @end menu
 
 @node Empty
@@ -2852,9 +3042,9 @@ should send ^\^\, which is how to cause the intelligent terminal
 protocol to pass the user's ^\ up to higher levels.
 
 @menu
-* Escape::      Escape sequences.
-* Alloc::       Allocation.
-* Reset::       Output-reset.
+* Escape::                      Escape sequences.
+* Alloc::                       Allocation.
+* Reset::                       Output-reset.
 @end menu
 
 @node Escape
@@ -2989,9 +3179,9 @@ the capabilities all real terminals supported by ITS, and
 therefore more convenient than the code of any actual terminal.
 
 @menu
-* Codes::       ITS output buffer codes.
-* TDORS::       Handling %TDORS.
-* SCPOS::       The SCPOS system call.
+* Codes::                       ITS output buffer codes.
+* TDORS::                       Handling %TDORS.
+* SCPOS::                       The SCPOS system call.
 @end menu
 
 @node Codes
