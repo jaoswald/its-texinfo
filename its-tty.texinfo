@@ -626,42 +626,65 @@ and %TCQRY in the TTYCOM variable (@pxref{TTYCOM}).
 In most cases, the escape code name is also the name of a footnote
 leading to a node containing more details on the specific code.
 
-^_^Z	Program receives "^Z".  No quitting action, etc.
-^_^_	  "   "  "^_".  No special action
-^_"	Complement %TSSAI for the job which has the tty.
-	That flag, if 1, says that the SAIL character set should be
-	used for echo mode and ascii mode output.  *Note ": E/2/a.
-^_<number>
-	Enter the character whose ASCII code is <number>.
-	  *Note nnn: A/2/b.
-^_A	Set "accept mode".  *Note A: A/4/g.
-^_B	Cause typeout to pause.  *Note B: F/1.
-^_C	Communicate with another terminal.  *Note C: A/4/a.
-^_D	Deferred Call.  *Note D: A/1/a.
-^_E	Start or stop sending input to a slaved terminal.
-	  *Note E: A/4/f.
-^_I	Complement the input override flag (%TCICO).  *Note I: A/4/e.
-^_J	Give a %PIJST interrupt to the job that has the tty, or the closest
-	superior that has the interrupt enabled.
-^_K	Take some other terminal out of com link.  *Note K: A/4/c.
-^_L	Clears the screen (echoes "^PC").
-^_M	Complement **MORE** processing for job that has the tty.
-	*Note M: F/2.
-^_N	Leave com link or quit waiting for answer to query.
-	*Note N: A/4/c.
-^_O	Complement the output override flag (%TCOCO).  *Note O: A/4/e.
-^_Q	Set "query mode" (%TCQRY).  *Note Q: A/4/g.
-^_R	Set "refuse mode" (%TCRFS).  *Note R: A/4/g.
-^_S	Slave a specified terminal.  *Note S: A/4/f.
-^_U	Complement conversion of to upper case (%TOCLC).
-	  *Note U: A/3/d.
-^_Y	Say yes to a query.  *Note Y: A/4/b.
-^_Z	Say no to a query.  *Note Z: A/4/b.
-^_^	Complement scroll mode for job that has the tty.
-	  *Note ^: A/3/b.
-^_^U	Clear input for this TTY.  This completely flushes what
-	is in the input buffer and is useful for getting rid of
-	unwanted typeahead.
+@table @asis
+@item ^_^Z
+Program receives "^Z".  No quitting action, etc.
+@item ^_^_
+@itemx "   "
+@itemx "^_"
+No special action
+
+@item ^_"
+Complement %TSSAI for the job which has the tty.  That flag, if 1, says that
+the SAIL character set should be used for echo mode and ascii mode output.
+@xref{How}.
+
+@item ^_<number>
+Enter the character whose ASCII code is <number>. @xref{^_<number>}.
+@item ^_A
+Set "accept mode".  @xref{Respond}.
+@item ^_B
+Cause typeout to pause.  @xref{When}.
+@item ^_C
+Communicate with another terminal.  @xref{Entering}.
+@item ^_D
+Deferred Call.  @xref{Deferred}.
+@item ^_E
+Start or stop sending input to a slaved terminal. @xref{Slaving}.
+@item ^_I
+Complement the input override flag (%TCICO).  @xref{Overrides}.
+@item ^_J
+Give a %PIJST interrupt to the job that has the tty, or the closest superior
+that has the interrupt enabled.
+@item ^_K
+Take some other terminal out of com link.  @xref{Leaving}.
+@item ^_L
+Clears the screen (echoes "^PC").
+@item ^_M
+Complement **MORE** processing for job that has the tty.
+@xref{How-More-operates}.
+@item ^_N
+Leave com link or quit waiting for answer to query. @xref{Leaving}.
+@item ^_O
+Complement the output override flag (%TCOCO). @xref{Overrides}.
+@item ^_Q
+Set "query mode" (%TCQRY).  @xref{Respond}.
+@item ^_R
+Set "refuse mode" (%TCRFS).  @xref{Respond}.
+@item ^_S
+Slave a specified terminal.  @xref{Slaving}.
+@item ^_U
+Complement conversion of to upper case (%TOCLC). @xref{^_U}.
+@item ^_Y
+Say yes to a query.  @xref{Querying}.
+@item ^_Z
+Say no to a query.  @xref{Querying}.
+@item ^_^
+Complement scroll mode for job that has the tty.  @xref{^_^}.
+@item ^_^U
+Clear input for this TTY.  This completely flushes what is in the input buffer
+and is useful for getting rid of unwanted typeahead.
+@end table
 
 @node Control
 @chapter Control of the TTY.
