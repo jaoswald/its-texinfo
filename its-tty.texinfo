@@ -299,7 +299,8 @@ the CALL function is disabled - attempts to use it merely
 generate input to the program.  Programs should not lightly enter
 this mode.
 
-  a. Deferred CALL
+@anchor{Deferred}
+@subsection Deferred CALL
 
 If you want to return from a program to DDT after the program is
 finished, if you use ordinary CALL you must not type it until then. 
