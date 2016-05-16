@@ -2537,23 +2537,39 @@ this variable;  use TTYOPT instead.
 
 The possible values are:
 
-%TNPRT==0	;printing terminal.
-%TNDP==1	;good datapoint.
-%TNODP==2	;"bad" datapoint or "loser".
-%TNIML==3	;IMLAC.
-%TNTEK==4	;Tektronix 4000 series.
-%TNTV==5	;PDP-11 TV.
-%TNMEM==6	;Memowreck.
-%TNSFW==7	;"software" terminal that expects internal ITS
-		;display commands ("SUPDUP" codes).
-		; *Note SUPDUP: I/3/e.
-%TNTRM==10	;Terminet.
-%TNESC==11	;Display using ASCII standard display codes.
-%TNDTM==12	;A Datamedia 2500.
-%TNRAY==13	;Teleray 1061
-%TNHDS==14	;Concept-100
-%TNH19==15	;H19
-%TNAAA==16	;Ann Arbor Ambassador
+@table @code
+@item %TNPRT==0
+printing terminal.
+@item %TNDP==1
+good datapoint.
+@item %TNODP==2
+"bad" datapoint or "loser".
+@item %TNIML==3
+IMLAC.
+@item %TNTEK==4
+Tektronix 4000 series.
+@item %TNTV==5
+PDP-11 TV.
+@item %TNMEM==6
+Memowreck.
+@item %TNSFW==7
+"software" terminal that expects internal ITS display commands ("SUPDUP"
+codes).  *Note SUPDUP: I/3/e.
+@item %TNTRM==10
+Terminet.
+@item %TNESC==11
+Display using ASCII standard display codes.
+@item %TNDTM==12
+A Datamedia 2500.
+@item %TNRAY==13
+Teleray 1061
+@item %TNHDS==14
+Concept-100
+@item %TNH19==15
+H19
+@item %TNAAA==16
+Ann Arbor Ambassador
+@end table
 
 @node TTYTYP
 @subsection      The TTYTYP variable.
