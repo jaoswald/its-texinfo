@@ -396,18 +396,24 @@ default values of the switches, which are used to initialize new jobs.
 ESCAPE codes are provided for complementing the switch associated with
 the job that the terminal belongs to at the moment.
 
-  a. "^_M" - Complement **MORE** Processing (%TSMOR).
+@table @asis a
+@item "^_M"
+Complement **MORE** Processing (%TSMOR).
 
 When **MORE** processing is enabled, the system causes output to
 pause at the bottom of the screen, until a space is typed.
 
-  b. "^_^" - Complement Scroll-mode (%TSROL).
+@item "^_^"
+@anchor{^_^}
+Complement Scroll-mode (%TSROL).
 
 When a terminal is in scroll mode, linefeeding past the bottom
 of the screen causes everything on the screen to move up,
 instead of wrapping around to write at the top of the screen.
 
-  c. "^_""" - Complement Use of SAIL Character Set (%TSSAI).
+@item "^_"""
+@anchor{^_"}
+Complement Use of SAIL Character Set (%TSSAI).
 
 When %TSSAI is set, ascii mode and echo mode output of
 non-formatting control characters will send the character
@@ -415,10 +421,13 @@ unmodified, assuming it to be a graphic character.  Thus, "^B"
 will echo as an alpha, etc., on terminals that can handle the
 SAIL character set.
 
-  d. "^_U" - Complement conversion to upper case (%TOCLC)
+@item "^_U"
+@anchor{^_U}
+Complement conversion to upper case (%TOCLC)
 
 When %TOCLC is set, characters typed at the terminal are converted
 to uppercase.
+@end table
 
 @node Communicate
 @section Communicate mode
