@@ -2675,34 +2675,53 @@ some user options associated with com links, and internal
 system flags.  The following bits may be set with a CNSSET:
 %TCICO, %TCOCO, %TCRFS, %TCQRY.
 
-		;4.9 => tty in communicate mode
-%TCLFT==200000	;4.8 => Local Feed Through (set if my program receiving his chars)
-%TCRFT==100000	;4.7 => Remote Feed Through (set if his program receiving my chars)
-		;All characters typed on ttys with %TCRFT are given to all ttys
-		;with %TCLFT.  ^_S and ^_E control these bits.
-%TCICO==40000	;4.6 => Input Communicate Override (allows program to read and
-		;type out, even if the tty is in com mode.
-%TCOCO==20000	;4.5 => Output Communicate Override (allows program to type out
-		;even if the tty is in com mode.
-		;4.4-4.3 => message receipt switch
-		;00 => accept
-%TCRFS==10000	;10 => refuse
-%TCQRY==4000	;01 => interrogate
-%TCMTR==2000	;4.2 => tty's motor is off & must be turned
-		;on before any other output is done
-		;(only terminets have their motors shut off by ITS).
-%TCECH==1000	;4.1 => the last output to this tty was PI echoing
-		;(used to prevent output RESET from throwing away echo).
-%TCDET==200	;3.8 console's tree detached by top level interrupt.
-		;Set by NDETAC as signal to SYSCFM (console-free-msg typer)
-%TCDNG==100	;3.7 => type bell on this tty (because input buffer full).
-%TCCBK==40	;3.6 => reading args for a ^_K on this tty.
-%TCCBS==20	;3.5 => reading args for a ^_S on this tty.
-%TCFPD==10	;3.4 => First part of an output code sequence is done.
-%TCTPN==4	;3.3 type ^_N on leaving com mode (unless user explicitly types ^_N)
-%TCPAD==2	;3.2 0 => padding necessary on datapoint.
-%TCHNG==1	;3.1 line seems not to be interrupting for output,
-		;so don't try to wait for output to get out.
+@table @code
+@item
+4.9 => tty in communicate mode
+@item %TCLFT==200000
+4.8 => Local Feed Through (set if my program receiving his chars)
+@item %TCRFT==100000
+4.7 => Remote Feed Through (set if his program receiving my chars).
+All characters typed on ttys with %TCRFT are given to all ttys with %TCLFT.
+^_S and ^_E control these bits.
+@item %TCICO==40000
+4.6 => Input Communicate Override (allows program to read and type out, even
+if the tty is in com mode.
+@item %TCOCO==20000
+4.5 => Output Communicate Override (allows program to type out even if the tty
+is in com mode.
+
+@item %TCRFS==10000
+@itemx %TCQRY==4000
+4.4-4.3 => message receipt switch@*
+00 => accept@*
+10 => refuse@*
+01 => interrogate
+@item %TCMTR==2000
+4.2 => tty's motor is off & must be turned on before any other output is done
+(only terminets have their motors shut off by ITS).
+@item TCECH==1000
+4.1 => the last output to this tty was PI echoing (used to prevent output
+RESET from throwing away echo).
+@item %TCDET==200
+3.8 console's tree detached by top level interrupt.
+Set by NDETAC as signal to SYSCFM (console-free-msg typer)
+@item %TCDNG==100
+3.7 => type bell on this tty (because input buffer full).
+@item %TCCBK==40
+3.6 => reading args for a ^_K on this tty.
+@item %TCCBS==20
+3.5 => reading args for a ^_S on this tty.
+@item %TCFPD==10
+3.4 => First part of an output code sequence is done.
+@item %TCTPN==4
+3.3 type ^_N on leaving com mode (unless user explicitly types ^_N)
+@item %TCPAD==2
+3.2 0 => padding necessary on datapoint.
+@item %TCHNG==1
+3.1 line seems not to be interrupting for output, so don't try to wait for
+output to get out.
+@end table
 
 The right half is -1 for a tty that is not in a com link.
 For ttys in com links, the RH's are the links in a cirular
