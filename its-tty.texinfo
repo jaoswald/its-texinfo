@@ -3234,117 +3234,115 @@ of terminals.  Programs outputting them in superimage mode
 must be careful to use codes that work on the terminal
 they have.
 
- 0 - 177	Characters, to be output as is.
-		Normally, only single-spacing graphic characters
-		will be sent this way.  Other characters will
-		appear if programs output them in image mode.
-%TDMOV=200	Move cursor.  followed by 4 bytes of arguments:
-		first, the old vertical and horizontal positions
-		(these are probably not needed by the sty
-		handling program); next, the desired vertical
-		and horizontal positions.
-		Should not be used on "raw" ttys (%TORAW set),
-		though it will work.
-%TDMV1==201	Should never be encountered.  If it is, it is
-		followed by 2 bytes of args - the desired
-		vertical and horizontal positions.
-		Should not be used on "raw" ttys (%TORAW set).
-%TDEOF==202	Clear rest of line and rest of page.
-		Does not move the cursor.
-		Does nothing on terminals that aren't selectively
-		erasable, even if they are displays.
-%TDEOL==203	Clear rest of line
-%TDDLF==204	Clear out character after cursor, without moving cursor.
-%TDMTF==205	Turn off motor (should not come out except on terminets).
-%TDMTN==206	Turn on motor (" ").
-%TDCRL==207	Move cursor to beginning of next line,
-		and clear that line.  If done when the cursor is on
-		the bottom line, it causes the terminal to scroll
-		its whole screen up.  The TTYROL variable tells ITS
-		how many lines the terminal WILL scroll.
-%TDNOP==210	No-op.
-%TDBS==211	Backspace - used only on tty's with %TORAW set.
-%TDLF==212	Linefeed -		 (").
-%TDRCR==213	Carriage return -	 (").
-%TDORS==214	Output reset.  Put in the buffer when a tty
-		output reset is done, to inform the sty handling
-		program or the terminal.  Should never be sent by
-		a program explicitly.
-%TDQOT==215	Quote the next character so that it is output to the
-		terminal without being interpreted by ITS.
-%TDFS==216	Move cursor forward one column.
-		This is identical to an appropriate %TDMOV command, and
-		exists to increase the efficiency of utilisation of
-		space in the output buffer.
-%TDMV0==217	Move cursor, followed by 2 args: the desired
-		vertical and horizontal positions.
-		Should not be used on "raw" ttys (%TORAW set).
-%TDCLR==220	Clear the screen, and move the cursor to the top left.
-		On printing terminals, it does nothing.
-%TDBEL==221	Produce a sound on the terminal, or otherwise try
-		to attract the user's attention, without permanently
-		altering the contents of the screen.
-%TDINI==222	Sent at system start-up to all terminals,
-		to tell them to reset themselves.
-%TDILP==223	Insert Line Positions.  Followed by a byte containing
-		the number of lines to insert.  The current line and
-		all lines below it are pushed down on the screen that
-		many positions.  Lines pushed off the bottom of the
-		screen are lost.  Blank lines appear at the cursor to
-		replace the lines shifted downward.  The cursor does
-		not move.
-		This code and the following one should be used only
-		on terminals which have %TOLID set, and only with the
-		cursor at the beginning of a line.
-%TDDLP==224	Delete Line Positions.  Followed by a byte containing
-		the number of positions to delete.  That many lines,
-		starting with the current line, disappear.  The lines
-		below them are shofted up to take their places.  Blank
-		lines are shifted in as necessary at the bottom of the
-		screen.  The cursor does not move.
-%TDICP==225	Insert Character Positions.  Followed by a byte
-		containing the number of spaces to insert.  All of the
-		characters on the current line from the cursor to the
-		end move that many positions to the right.  The last
-		few move off the right margin and disappear.  The
-		terminal is not expected to know anything about
-		continuation lines.  Spaces are shifted in at the
-		cursor to replace the characters that are moving
-		right.
-		This code and the following one should be used only
-		on terminals which have %TOCID set.
-%TDDCP==226	Delete Character Positions.  Followed by a byte
-		containing the number of character positions to
-		delete.  All of the characters to the right of the
-		cursor move that many positions left, except for the
-		first few, which disappear rather than move past the
-		cursor.  Spaces appear at the right margin to replace
-		them.
-%TDBOW==227	Turns on inverse video mode for characters which are
-		output subsequently.  The terminal should use some
-		sort of alternate display mode to emphasize them.
-%TDRST==230	Turns off inverse video mode.  If any other similar
-		modes are created, %TDRST will turn them off too.
-%TDGRF==231	This is supposed to be for graphics, but it is not
-		implemented by anything.
-%TDRSU==232	Region scroll upwards.
-%TDRSD==233	Region scroll downwards.  These two commands can be used
-		if the %TPRSC bit is on in TTYOPT.  The %TDRSU/%TDRSD
-		command is followed by two parameter characters.  The
-		first is the number of lines in the region to be scrolled;
-		the second is the number of lines by which the text is
-		to be scrolled.  A region of the screen, which starts at
-		the line containing the cursor and proceeds downward for
-		the specified number of lines, is shifted by the specified
-		amount.  %TDRSU shifts text upwards, bringing in blank lines
-		at the bottom of the region.  %TDRSD shifts text downwards,
-		bringing in blank lines at the top of the region.  The
-		cursor is not moved.  If either parameter is 0 the command
-		should be ignored.  If the size of the region is larger
-		than the size of the screen below the cursor, the region
-		should end at the bottom of the screen.  If the number of
-		lines to scroll by is not less than the size of the region,
-		the region should be cleared.
+@table @code
+@item 0 - 177
+Characters, to be output as is. Normally, only single-spacing graphic characters
+will be sent this way.  Other characters will appear if programs output them
+in image mode.
+@item %TDMOV=200
+Move cursor.  followed by 4 bytes of arguments: first, the old vertical and
+horizontal positions (these are probably not needed by the sty handling
+program); next, the desired vertical and horizontal positions.  Should not be
+used on "raw" ttys (%TORAW set), though it will work.
+@item %TDMV1==201
+Should never be encountered.  If it is, it is followed by 2 bytes of args - the
+desired vertical and horizontal positions.  Should not be used on "raw" ttys
+(%TORAW set).
+@item %TDEOF==202
+Clear rest of line and rest of page. Does not move the cursor. Does nothing on
+terminals that aren't selectively erasable, even if they are displays.
+@item %TDEOL==203
+Clear rest of line
+@item %TDDLF==204
+Clear out character after cursor, without moving cursor.
+@item %TDMTF==205
+Turn off motor (should not come out except on terminets).
+@item %TDMTN==206
+Turn on motor (" ").
+@item %TDCRL==207
+Move cursor to beginning of next line, and clear that line.  If done when the
+cursor is on the bottom line, it causes the terminal to scroll its whole screen
+up.  The TTYROL variable tells ITS how many lines the terminal WILL scroll.
+@item %TDNOP==210
+No-op.
+@item %TDBS==211
+Backspace - used only on tty's with %TORAW set.
+@item %TDLF==212
+Linefeed - (").
+@item %TDRCR==213
+Carriage return - (").
+@item %TDORS==214
+Output reset.  Put in the buffer when a tty output reset is done, to inform the
+sty handling program or the terminal.  Should never be sent by a program
+explicitly.
+@item %TDQOT==215
+Quote the next character so that it is output to the terminal without being
+interpreted by ITS.
+@item %TDFS==216
+Move cursor forward one column.  This is identical to an appropriate %TDMOV
+command, and exists to increase the efficiency of utilisation of space in the
+output buffer.
+@item %TDMV0==217
+Move cursor, followed by 2 args: the desired vertical and horizontal positions.
+Should not be used on "raw" ttys (%TORAW set).
+@item %TDCLR==220
+Clear the screen, and move the cursor to the top left.  On printing terminals,
+it does nothing.
+@item %TDBEL==221
+Produce a sound on the terminal, or otherwise try to attract the user's
+attention, without permanently altering the contents of the screen.
+@item %TDINI==222
+Sent at system start-up to all terminals, to tell them to reset themselves.
+@item %TDILP==223
+Insert Line Positions.  Followed by a byte containing the number of lines to
+insert.  The current line and all lines below it are pushed down on the screen
+that many positions.  Lines pushed off the bottom of the screen are lost.  Blank
+lines appear at the cursor to replace the lines shifted downward.  The cursor
+does not move.  This code and the following one should be used only on terminals
+which have %TOLID set, and only with the cursor at the beginning of a line.
+@item %TDDLP==224
+Delete Line Positions.  Followed by a byte containing the number of positions to
+delete.  That many lines, starting with the current line, disappear.  The lines
+below them are shofted up to take their places.  Blank lines are shifted in as
+necessary at the bottom of the screen.  The cursor does not move.
+@item %TDICP==225
+Insert Character Positions.  Followed by a byte containing the number of spaces
+to insert.  All of the characters on the current line from the cursor to the end
+move that many positions to the right.  The last few move off the right margin
+and disappear.  The terminal is not expected to know anything about continuation
+lines.  Spaces are shifted in at the cursor to replace the characters that are
+moving right.  This code and the following one should be used only on terminals
+which have %TOCID set.
+@item %TDDCP==226
+Delete Character Positions.  Followed by a byte containing the number of
+character positions to delete.  All of the characters to the right of the cursor
+move that many positions left, except for the first few, which disappear rather
+than move past the cursor.  Spaces appear at the right margin to replace them.
+@item %TDBOW==227
+Turns on inverse video mode for characters which are output subsequently.  The
+terminal should use some sort of alternate display mode to emphasize them.
+@item %TDRST==230
+Turns off inverse video mode.  If any other similar modes are created, %TDRST
+will turn them off too.
+@item %TDGRF==231
+This is supposed to be for graphics, but it is not implemented by anything.
+@item %TDRSU==232
+Region scroll upwards.
+@item %TDRSD==233
+Region scroll downwards.  These two commands can be used if the %TPRSC bit is on
+in TTYOPT.  The %TDRSU/%TDRSD command is followed by two parameter characters.
+The first is the number of lines in the region to be scrolled; the second is the
+number of lines by which the text is to be scrolled.  A region of the screen,
+which starts at the line containing the cursor and proceeds downward for the
+specified number of lines, is shifted by the specified amount.  %TDRSU shifts
+text upwards, bringing in blank lines at the bottom of the region.  %TDRSD
+shifts text downwards, bringing in blank lines at the top of the region.  The
+cursor is not moved.  If either parameter is 0 the command should be ignored.
+If the size of the region is larger than the size of the screen below the
+cursor, the region should end at the bottom of the screen.  If the number of
+lines to scroll by is not less than the size of the region, the region should be
+cleared.
+@end table
 
 @node TDORS
 @section       Handling %TDORS.
