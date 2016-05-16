@@ -804,32 +804,44 @@ Most of the fields are set only by the system, but %TBNVR and
 decide what the job will do when it tries to use the tty, but
 doesn't have it.
 
-%TBNOT==400000	;4.9 1 iff the job does not have the tty.
-%TBNVR==200000	;4.8 1 => opens of TTY: should fail when
-		;the job does not have the tty.
-%TBINT==100000	;4.7 1 => all attempts to use the tty when
-		;the job doesn't have the tty, should cause class 2
-		;interrupts on bit 4.2 (%PJTTY) of the first interrupt word.
-		;0 => such attempts wait until the job gets the tty.
-%TBWAT==040000	;4.6 1 => override the settings of %TBNVR and
-		;%TBINT, and always wait for the TTY.  This bit can
-		;be set only by the job's superior, and means "you
-		;are supposed to have the TTY, even though for a
-		;short interval you may not really have it".
-%TBDTY==010000	;4.4 1 iff job doesn't have tty, but wishes
-		;to retain it.  Set by .DTTY, cleared by .ATTY.
-%TBOUT==004000	;4.3 1 => this job can inherit type-out permission
-		;from its superior (can be altered only by superior).
-%TBINF==002000	;4.2 1 => inferiors are allowed to inherit type-out
-		;permission from this job.
-$TBECL==220600	;3.1 - 3.6 the job's setting of the number of
-		;lines in the echo area, if the job doesn't have
-		;the tty.
-RH:		;If the job has the tty, this is the tty number.
-		;If the job is in an .ATTY'ed state, this has the
-		;internal user index of the inferior the tty
-		;should be passed on to.
-		;Otherwise, 0.
+@table @code
+@item %TBNOT==400000
+4.9 1 iff the job does not have the tty.
+
+@item %TBNVR==200000
+4.8 1 => opens of TTY: should fail when the job does not have the tty.
+
+@item %TBINT==100000
+4.7 1 => all attempts to use the tty when the job doesn't have the tty,
+should cause class 2 interrupts on bit 4.2 (%PJTTY) of the first interrupt word.
+@*0 => such attempts wait until the job gets the tty.
+
+@item %TBWAT==040000
+4.6 1 => override the settings of %TBNVR and %TBINT, and always wait for the
+TTY.  This bit can be set only by the job's superior, and means "you are
+supposed to have the TTY, even though for a short interval you may not really
+have it".
+
+@item %TBDTY==010000
+4.4 1 iff job doesn't have tty, but wishes to retain it.  Set by .DTTY,
+cleared by .ATTY.
+
+@item %TBOUT==004000
+4.3 1 => this job can inherit type-out permission from its superior (can be
+altered only by superior).
+
+@item %TBINF==002000
+4.2 1 => inferiors are allowed to inherit type-out permission from this job.
+
+@item $TBECL==220600
+3.1 - 3.6 the job's setting of the number of lines in the echo area, if the
+job doesn't have the tty.
+
+@item RH:
+If the job has the tty, this is the tty number.  If the job is in an .ATTY'ed
+state, this has the internal user index of the inferior the tty should be
+passed on to. Otherwise, 0.
+@end table
 
 @node .CNSL
 @section The .CNSL variable
