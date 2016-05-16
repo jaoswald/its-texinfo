@@ -2949,10 +2949,10 @@ TTYOPT variable, but the initial setting given to the tty when the
 sty is first opened causes padding not to be done.
 
 @menu
-* STY Empty::           What happens when the buffer is empty.
-* STY Interrupts::      Interrupts.
-* STY Status::          STATUS on STY input channels.
-* STY Input Reset::     RESET on STY input channels.
+* STY Empty::                   What happens when the buffer is empty.
+* STY Interrupts::              Interrupts.
+* STY Status::                  STATUS on STY input channels.
+* STY Input Reset::             RESET on STY input channels.
 @end menu
 
 @node STY Empty
