@@ -2744,15 +2744,16 @@ displays that ITS thinks are printing terminals) it should be 1.
 The TTYSMT variable is used to describe smart terminals.
 It contains information on three things:
 
-      What sort of CPU the terminal has (in case you want to load
-      a program into it), and
-
-      To what extent (if at all) the terminal supports the ITS
-      local-editing and line-saving protocols, and
-
-      To what extent (if at all) the terminal supports the ITS
-      terminal-independent graphics protocol.
-      *Note Graphics: (SYSDOC;GRPHCS)*.
+@itemize @bullet
+@item
+What sort of CPU the terminal has (in case you want to load a program into it).
+@item
+To what extent (if at all) the terminal supports the ITS local-editing and
+line-saving protocols.
+@item
+To what extent (if at all) the terminal supports the ITS terminal-independent
+graphics protocol *Note Graphics: (SYSDOC;GRPHCS)*.
+@end itemize
 
 %TQ signifies a bit or field in the left half of TTYSMT, and %TR
 signifies a bit or field in the right half.
