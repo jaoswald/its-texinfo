@@ -1853,61 +1853,61 @@ the SCPOS system call must be used to tell ITS about it.
 @node TTYOPT Bits
 @section      Relevant TTYOPT bits.
 
-%TOERS says that the tty can erase selectively.  If this bit is not
-set, "^PL", and "^PE" cannot be used.  "^PX" and "^PK" will work
-anyway, if %TOOVR is off, since then ITS knows it can use a space
-to erase a single character.
+@table @code
+@item %TOERS
+says that the tty can erase selectively.  If this bit is not set, "^PL", and
+"^PE" cannot be used.  "^PX" and "^PK" will work anyway, if %TOOVR is off, since
+then ITS knows it can use a space to erase a single character.
 
-%TOMVU says that the tty can move its cursor up.  If this bit is not
-set, the tty is a printing terminal.  Any attempt to erase will have no
-effect.  Horizontal and downward cursor motion will work but not upward
-motion.  For the sake of those programs that wish to know about
-displays only to the extent of clearing the screen on them every so
-often, "^PC" on a printing terminal comes out as a CRLF.
+@item %TOMVU
+says that the tty can move its cursor up.  If this bit is not set, the tty is a
+printing terminal.  Any attempt to erase will have no effect.  Horizontal and
+downward cursor motion will work but not upward motion.  For the sake of those
+programs that wish to know about displays only to the extent of clearing the
+screen on them every so often, "^PC" on a printing terminal comes out as a CRLF.
 
-%TOOVR says that the tty can overstrike characters successfully.  The
-effect of attempted overstriking on a terminal that can't handle it is
-undefined, but on a datapoints what will happen is that only the last
-character printed in a given position will be visible.  Note that
-outputting a space character will erase iff the terminal cannot
-overstrike.  Space should be output only when attempted overstriking is
-generally desired - for example, when copying out of a file.  If
-erasing is specifically desired, "^PK" should be used (or "^PK^PF" =
-move forward, erasing).  If it is specifically desired not to erase,
-"^PF" should be used.  For "printing terminals" (or rather, terminals
-on which no cursor motion characters except ASCII format effectors
-are known) which lack %TOOVR, some cursor motion optimizations are not
-done (for example, moving backward can be done only by backspacing,
-since CR'ing and spacing forward might erase something useful).
+@item %TOOVR
+says that the tty can overstrike characters successfully.  The effect of
+attempted overstriking on a terminal that can't handle it is undefined, but on a
+datapoints what will happen is that only the last character printed in a given
+position will be visible.  Note that outputting a space character will erase iff
+the terminal cannot overstrike.  Space should be output only when attempted
+overstriking is generally desired - for example, when copying out of a file.  If
+erasing is specifically desired, "^PK" should be used (or "^PK^PF" = move
+forward, erasing).  If it is specifically desired not to erase, "^PF" should be
+used.  For "printing terminals" (or rather, terminals on which no cursor motion
+characters except ASCII format effectors are known) which lack %TOOVR, some
+cursor motion optimizations are not done (for example, moving backward can be
+done only by backspacing, since CR'ing and spacing forward might erase something
+useful).
 
-%TOMVB, if 0, means that the terminal can't backspace.  This is true
-only of teletypes.  The system will simulate a backspace with a CR and
-spaces, but, since that is so slow, backspace should be avoided on such
-terminals.  For that reason, it echoes as uparrow-H rather than as a
-backspace.
+@item %TOMVB
+if 0, means that the terminal can't backspace.  This is true only of teletypes.
+The system will simulate a backspace with a CR and spaces, but, since that is so
+slow, backspace should be avoided on such terminals.  For that reason, it echoes
+as uparrow-H rather than as a backspace.
 
-%TOSAI, if 1, says that control characters sent to the terminal will
-be one-position graphic characters.  The system will assume that
-control characters output in image mode move the cursor one space
-right.  Also, altmode will be output as itself, rather than as a
-dollarsign, even in ascii or echo mode (but the same is not true of
-random control characters, which check %TSSAI).
+@item %TOSAI
+if 1, says that control characters sent to the terminal will be one-position
+graphic characters.  The system will assume that control characters output in
+image mode move the cursor one space right.  Also, altmode will be output as
+itself, rather than as a dollarsign, even in ascii or echo mode (but the same is
+not true of random control characters, which check %TSSAI).
 
-%TORAW, if 1, says that the various cursor motion characters (space,
-tab, CR, LF, and BS) should be output to the terminal in the same
-order the program gave them to the system, and in the same way, if
-possible.  This bit does not effect the padding done to CR, LF and TAB,
-and will not prevent the system from simulating BS and TAB on tty's
-that require such simulation.  It will prevent the system from combining
-several cursor motion characters to produce their effect more
-efficiently; for example, CR's at the beginning of the line will
-be ignored when %TORAW is 0, but when it is 1, they will cause CR to
-be sent.  Also, CR followed by spaces will always be output in that
-manner even if backspacing would be faster.
-This bit is normally set by the TELNET server except when the foreign
-host is a tip, for the sake
-of terminals that don't even always handle CR and LF correctly, but
-do manage to handle the sequence CR-LF correctly, etc.
+@item %TORAW
+if 1, says that the various cursor motion characters (space, tab, CR, LF, and
+BS) should be output to the terminal in the same order the program gave them to
+the system, and in the same way, if possible.  This bit does not effect the
+padding done to CR, LF and TAB, and will not prevent the system from simulating
+BS and TAB on tty's that require such simulation.  It will prevent the system
+from combining several cursor motion characters to produce their effect more
+efficiently; for example, CR's at the beginning of the line will be ignored when
+%TORAW is 0, but when it is 1, they will cause CR to be sent.  Also, CR followed
+by spaces will always be output in that manner even if backspacing would be
+faster.  This bit is normally set by the TELNET server except when the foreign
+host is a tip, for the sake of terminals that don't even always handle CR and LF
+correctly, but do manage to handle the sequence CR-LF correctly, etc.
+@end table
 
 @node Flush
 @section       Throwing away typeout.
