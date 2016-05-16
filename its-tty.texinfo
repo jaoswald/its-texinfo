@@ -2898,7 +2898,7 @@ for TTYVAR in the ITS .CALLS file for information on the several
 ways of using it.
 
 Variables may be specified by sixbit names and read, written, or
-modified (increased, decreased, bits set, cleared, or complemented). 
+modified (increased, decreased, bits set, cleared, or complemented).
 Of course, some fields of some variables may not be changed;  attempts
 to change them will be ignored.  The variable names now allowed are
 HEIGHT, IDLTIM, ISPEED, OSPEED, SMARTS, TCTYP, TTYCOM, TTYOPT, TTYROL,
@@ -2912,7 +2912,7 @@ in bauds.  Also, you are allowed to set the ISPEED and OSPEED
 variables, while you are not allowed to set the whole TTYTYP variable.
 
   IDLTIM (not at all permanent) is the length of time since the last
-input character was typed on the tty, in 30'ths of a second. 
+input character was typed on the tty, in 30'ths of a second.
 
   Note that the TTYVAR call can fail quite legitimately, if the
 user translates device TTY: to a file of commands for the program.
