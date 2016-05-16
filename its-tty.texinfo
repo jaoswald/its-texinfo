@@ -107,7 +107,7 @@ Control of the TTY.
 
 Opening TTY channels.
 
-* Opening-TTY::
+* Opening-TTY::                 Opening TTY: and Tmn:
 * Bits::                        Device-dependent bits in the OPEN mode
 
 Device-dependent bits in the OPEN mode
@@ -129,16 +129,16 @@ Input from terminals.
 
 Output to terminals.
 
-* Output-Chars::
+* Output-Chars::                How to cause characters to be output.
 * Normal::                      Normal output (sequential access).
 * Display::                     Display-mode channels.  ^P-codes.
-* Echo-Area::
+* Echo-Area::                   The echo area.
 * Cursorpos::                   Reading the cursor position.
 * Super::                       Superimage output.
-* TTYOPT Bits::
+* TTYOPT Bits::                 Relevant TTYOPT bits.
 * Flush::                       Throwing away typeout.
 * Waiting::                     Waiting for output to be sent to the terminal.
-* .STATUS-on-output::
+* .STATUS-on-output::           STATUS on TTY output channels.
 
 Normal output (sequential access).
 
@@ -166,13 +166,13 @@ Wraparound and Scrolling - the Results of Page-overflow
 
 The echo area.
 
-* How-Echo-Works::
+* How-Echo-Works::              How the Echo Area Works.
 * Creating::                    Creating an Echo Area.
 
 **MORE** processing.
 
 * When::                        When **MORE** processing is triggered.
-* How-More-operates::
+* How-More-operates::           How **MORE** processing operates.
 * Programmed::                  Programmed invocation of **MORE** processing.
 * Inhibition::                  Inhibition of **MORE** processing by input.
 
@@ -200,12 +200,12 @@ Symbolic system calls.
 
 Permanent and semipermanent tty information.
 
-* Permanent Variables::
-* Permanent Calls::
+* Permanent Variables::         The variables.
+* Permanent Calls::             System calls.
 
 The variables.
 
-* Screen Size::
+* Screen Size::                 The Screen Size.
 * TTYOPT::                      The TTYOPT variable.
 * TCTYP::                       The TCTYP variable.
 * TTYTYP::                      The TTYTYP variable.
@@ -224,9 +224,9 @@ System calls.
 
 Pseudo-teletypes (STYs).
 
-* Opening STYs::
-* STY Output::
-* STY Input::
+* Opening STYs::                Opening STYs.
+* STY Output::                  Output to STYs.
+* STY Input::                   Input from STYs.
 * Closing::                     Closing STYs.
 * Controlling::                 Controlling the tty associated with a STY.
 * Direct::                      Direct connections to network channels:  STYNET.
@@ -235,16 +235,16 @@ Pseudo-teletypes (STYs).
 Output to STYs.
 
 * Empty::                       What happens when the buffer is empty.
-* STY Output Interrupts::
+* STY Output Interrupts::       Interrupts.
 * Reset::                       RESET on sty output channels.
 * Status::                      STATUS on sty output channels.
 
 Input from STYs.
 
-* STY Empty::
-* STY Interrupts::
-* STY Status::
-* STY Input Reset::
+* STY Empty::                   What happens when the buffer is empty.
+* STY Interrupts::              Interrupts.
+* STY Status::                  STATUS on STY input channels.
+* STY Input Reset::             RESET on STY input channels.
 
 The intelligent terminal protocol.
 
