@@ -3114,35 +3114,38 @@ may use the STYGET symbolic system call to get information on
 what those jobs are doing.  STYGET takes one argument - a tty spec -
 and returns the following five values:
 
-1) The RH is 0 if the sty is free; otherwise, it is the job number
-     the job that owns the sty.  The LH bits %SSHNG and %SSOHG
-     if set indicate that input and output, respectively, are in
-     don't hang mode.
-   This value contains garbage if the tty is not associated with a sty.
-2) -1 if the tty is free; otherwise, the job number of the job
-     that owns the tty.
-3) -1 if the tty is not a console; otherwise, the RH contains the
-     job number of the top level job in the tty's tree and the LH
-     is nonzero iff the tree is logging out.
-4) Gives information on whether a job is hung trying to use the tty:
-     Bit 1.1 if 1 => the job owning the tty is waiting for input.
-     Bit 4.9 if 1 => that job is waiting for output buffer room.
-5) Indicates the status of the tty's buffers:
-     Bit 4.9 if 1 => input is available.
-     Bit 4.8 if 1 => output buffer space is available.
-6) Is the tty's TTYSTA word, which contains these bits:
-     Bit 4.9 (%TACFM) 1 => tty has had a "console-free"
-	message printed, and has not been in use since.
-     Bit 4.8 (%TAC.Z) 1 => tty is being ^Z'd, but the
-	tree has not been created yet.  %TACFM will
-	be 0.  If %TACFM is 0 and %TAC.Z is also 0,
-	the tty is in the process of being freed.
-     Bit 4.7 (%TANJS) 1 => the ^Z attempt in progress
-	on this tty is being ignored, because all
-	the job slots in the system are in use.
-     Bits 4.6-4.3 (%TANEC) Number of following chars to inhibit echo and
-	ints for.  This is used for the arg chars that follow Top-E, Top-S,
-	Top-Y, etc. 
+@enumerate
+@item
+The RH is 0 if the sty is free; otherwise, it is the job number the job that
+owns the sty.  The LH bits %SSHNG and %SSOHG if set indicate that input and
+output, respectively, are in don't hang mode.@*
+This value contains garbage if the tty is not associated with a sty.
+@item
+-1 if the tty is free; otherwise, the job number of the job that owns the tty.
+@item
+-1 if the tty is not a console; otherwise, the RH contains the job number of
+the top level job in the tty's tree and the LH is nonzero iff the tree is
+logging out.
+@item
+Gives information on whether a job is hung trying to use the tty:@*
+Bit 1.1 if 1 => the job owning the tty is waiting for input.@*
+Bit 4.9 if 1 => that job is waiting for output buffer room.
+@item
+Indicates the status of the tty's buffers:@*
+Bit 4.9 if 1 => input is available.@*
+Bit 4.8 if 1 => output buffer space is available.
+@item
+Is the tty's TTYSTA word, which contains these bits:@*
+Bit 4.9 (%TACFM) 1 => tty has had a "console-free" message printed, and has
+not been in use since.@*
+Bit 4.8 (%TAC.Z) 1 => tty is being ^Z'd, but the tree has not been created yet.
+%TACFM will be 0.  If %TACFM is 0 and %TAC.Z is also 0, the tty is in the
+process of being freed.@*
+Bit 4.7 (%TANJS) 1 => the ^Z attempt in progress on this tty is being ignored,
+because all the job slots in the system are in use.@*
+Bits 4.6-4.3 (%TANEC) Number of following chars to inhibit echo and ints for.
+This is used for the arg chars that follow Top-E, Top-S, Top-Y, etc.
+@end enumerate
 
 @node Intelligent Terminal Protocol
 @chapter The intelligent terminal protocol.
