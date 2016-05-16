@@ -3173,60 +3173,59 @@ for readability;  they should not actually be sent)
 
 The escape sequences are:
 
-^\ <ch1> <ch2> where <ch1> is in @{@@, A, B, ..., _@} and <ch2> is
-	any character inputs the character (<ch1>&27)*200+<ch2>.
-	That is, <ch1> supplies the 4 meta-bits for <ch2>.  The
-	meta bits are (in their ultimate positions):
+@table @code
+@item ^\ <ch1> <ch2>
+where <ch1> is in @{@@, A, B, ..., _@} and <ch2> is any character inputs the
+character (<ch1>&27)*200+<ch2>. That is, <ch1> supplies the 4 meta-bits for
+<ch2>.  The meta bits are (in their ultimate positions):
+@itemize @code
+@item
+%TXTOP	4000	"TOP"
+@item
+%TXSUP	1000	"SUPER"  (Used to mean "SHIFT".)
+@item
+%TXMTA	 400	"META"
+@item
+%TXCTL	 200	"CONTROL"
+@end itemize
+The bits should appear in <ch1> shifted right 5; thus, "C" = 103 will set
+%TXCTL and %TXMTA.@*
+Note that %TXCTL and %TXMTA are used with the uncontrollified character, while
+%TXTOP is used with the code for a SAIL-graphic < 40, not with the letter
+which appears on that key on a TV keyboard. Thus, 32 is the code for CALL,
+while %TXTOP+32 is the code for the harmless SAIL graphic character NOT-EQUAL
+and %TXCTL+132 is the code for CONTROL-Z. %TXCTL+32 is CONTROL-CALL, and
+%TXCTL+%TXTOP+32 is CONTROL-NOT-EQUAL. %TXTOP+132 is meaningless, because
+%TXTOP makes sense only with basic 7-bit codes that are less than 40.
 
-		%TXTOP	4000	"TOP"
-		%TXSUP	1000	"SUPER"  (Used to mean "SHIFT".)
-		%TXMTA	 400	"META"
-		%TXCTL	 200	"CONTROL"
-
-	The bits should appear in <ch1> shifted right 5; thus,
-	"C" = 103 will set %TXCTL and %TXMTA.
-
-	Note that %TXCTL and %TXMTA are used with the
-	uncontrollified character, while %TXTOP is used
-	with the code for a SAIL-graphic < 40, not with
-	the letter which appears on that key on a TV keyboard.
-	Thus, 32 is the code for CALL, while %TXTOP+32 is the
-	code for the harmless SAIL graphic character NOT-EQUAL
-	and %TXCTL+132 is the code for CONTROL-Z.
-	%TXCTL+32 is CONTROL-CALL, and %TXCTL+%TXTOP+32
-	is CONTROL-NOT-EQUAL.
-	%TXTOP+132 is meaningless, because %TXTOP makes sense
-	only with basic 7-bit codes that are less than 40.
-
+@item
 (In the following, # represents a number between 0 and 177
 (octal) which is simply transmitted as a character.)
-
-^\ ^A #    increments the allocation by # characters.
-
-^\ ^Z      zeros the allocation.
-
-^\ ^I      sets the allocation to infinity.
-
-^\ ^S      stops output at main program level.
-
-^\ ^R      restarts output at main program level.
-
-^\ ^P # #  sets the cursor position.  The first # is the vertical
-          position (zero at the top of the screen.)  The second #
-          is the horizontal position (0 at the left margin.)
-          Output is then restarted at main program level.
-
-^\ ^\     inputs a ^\.  This is what to send when the user types
-	  ^\ on the keyboard (unless the full character set is
-	  being hacked in which case one would probably use
-          either "^\ A \" to input a control-backslash, or
-          "^\ P ^\" to input a less-than-or-equal).
-
-^\ ^C	  signals that the screen has been "messed up".
-	  This gives a %PIATY interrupt to the running program,
-	  just as if its superior had taken the terminal away and
-	  presumably messed up the screen.  Some programs (including
-	  TECO) will respond to this by redisplaying everything.
+@item ^\ ^A #
+increments the allocation by # characters.
+@item ^\ ^Z
+zeros the allocation.
+@item ^\ ^I
+sets the allocation to infinity.
+@item ^\ ^S
+stops output at main program level.
+@item ^\ ^R
+restarts output at main program level.
+@item ^\ ^P # #
+sets the cursor position.  The first # is the vertical position (zero at the
+top of the screen.)  The second # is the horizontal position (0 at the left
+margin.)  Output is then restarted at main program level.
+@item ^\ ^\
+inputs a ^\.  This is what to send when the user types ^\ on the keyboard
+(unless the full character set is being hacked in which case one would probably
+use either "^\ A \" to input a control-backslash, or "^\ P ^\" to input a
+less-than-or-equal).
+@item ^\ ^C
+signals that the screen has been "messed up". This gives a %PIATY interrupt to
+the running program, just as if its superior had taken the terminal away and
+presumably messed up the screen.  Some programs (including TECO) will respond
+to this by redisplaying everything.
+@end table
 
 @node Alloc
 @section       Allocation.
