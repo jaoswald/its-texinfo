@@ -2583,36 +2583,89 @@ ISPEED and OSPEED variables with TTYVAR.
 "%TT" signifies a bit in the left half of TTYTYP; "$TT", a byte
 pointer to a field.  "%TY" signifies a bit in the right half.
 
-%TTLCL==400000	;BIT 4.9 ONE => LOCAL TTY
-%TT340==200000	;BIT 4.8 ONE => CONSOLE NEXT TO 340 OR A 340 SLAVE
-%TT3HP==100000	;BIT 4.7 HIGH PRIORITY ON 340
-%TTPAR==004000	;BIT 4.3 TTY needs to have parity sent.
-%TTDDI==002000	;BIT 4.2 DONT DING ON EXCESS INPUT
-%TTIBM==001000	;BIT 4.1 DATEL LINE
-$TTISP==260400	;3.8-3.5 INPUT SPEED CODE
-$TTOSP==220400	;3.4-3.1 OUTPUT SPEED CODE
-%TYDPK==400000	;BIT 2.9 => this tty is on a datapoint controller line.
-%TYSTY==200000	;BIT 2.8 => this tty is the alter ego of an STY.
-%TYNVA==100000	;BIT 2.7 => this tty is a NOVA tty (They no longer exist)
-%TYMTY==040000	;BIT 2.6 => this tty is on a Morton controller line.
-%TYDIL==020000	;BIT 2.5 => this tty is on a dial-up line.
-%TY11T==010000	;BIT 2.4 => this tty is a PDP-11 TV.
-%TYDL== 004000	;BIT 2.3 => this tty is on a DC76 line.
-%TYOTY==002000	;BIT 2.2 => this tty is a KA-10 console tty.
-%TYETY==001000	;BIT 2.1 => this tty is a DTE-20 tty.
-%TYNTY==000400	;BIT 1.9 => this tty is a TK-10 tty.
-%TYMDM==000200	;BIT 1.8 => this tty is on a dial-up line with modem control.
-%TYKST==000100	;BIT 1.7 => this tty is a KS-10 console tty.
-%TYDZT==000040	;BIT 1.6 => this tty is a DZ-11 tty on a KS-10.
-%TYRLM==000020	;BIT 1.5 => this tty is a connected to the ROLM data switch.
+@table @code
+@item %TTLCL==400000
+4.9 1 => Local TTY
+@item %TT340==200000
+4.8 1 => Console next to 340 or a 340 slave.
+@item %TT3HP==100000
+4.7 => High priority on 340.
+@item %TTPAR==004000
+4.3 => TTY needs to have parity sent.
+@item %TTDDI==002000
+4.2 => Don't ding on excess input.
+@item %TTIBM==001000
+4.1 => Datel line.
+@item $TTISP==260400
+3.8-3.5 Input speed code, @xref{SpeedCode}.
+@item $TTOSP==220400
+3.4-3.1 Output speed code, @xref{SpeedCode}.
+@item %TYDPK==400000
+2.9 => this tty is on a datapoint controller line.
+@item %TYSTY==200000
+2.8 => this tty is the alter ego of an STY.
+@item %TYNVA==100000
+2.7 => this tty is a NOVA tty (They no longer exist)
+@item %TYMTY==040000
+2.6 => this tty is on a Morton controller line.
+@item %TYDIL==020000
+2.5 => this tty is on a dial-up line.
+@item %TY11T==010000
+2.4 => this tty is a PDP-11 TV.
+@item %TYDL== 004000
+2.3 => this tty is on a DC76 line.
+@item %TYOTY==002000
+2.2 => this tty is a KA-10 console tty.
+@item %TYETY==001000
+2.1 => this tty is a DTE-20 tty.
+@item %TYNTY==000400
+1.9 => this tty is a TK-10 tty.
+@item %TYMDM==000200
+1.8 => this tty is on a dial-up line with modem control.
+@item %TYKST==000100
+1.7 => this tty is a KS-10 console tty.
+@item %TYDZT==000040
+1.6 => this tty is a DZ-11 tty on a KS-10.
+@item %TYRLM==000020
+1.5 => this tty is a connected to the ROLM data switch.
+@end table
 
+@anchor{SpeedCode}
 The meanings of the possible 4-bit speed codes are:
- 0 = unknown		6 = 1800 baud		13 = 40K baud
- 1 = 600 baud		7 = 2400 baud		14 = 50K baud
- 2 = 110 baud	       10 = 4800 baud		15 = 80K baud
- 3 = 150 baud	       11 = 9600 baud		16 unused
- 4 = 300 baud	       12 = 25K baud		17 unused
- 5 = 1200 baud
+@table @asis
+@item 0
+unknown
+@item 1
+600 baud
+@item 2
+110 baud
+@item 3
+150 baud
+@item 4
+300 baud
+@item 5
+1200 baud
+@item 6
+1800 baud
+@item 7
+2400 baud
+@item 10
+4800 baud
+@item 11
+9600 baud
+@item 12
+25K baud
+@item 13
+40K baud
+@item 14
+50K baud
+@item 15
+80K baud
+@item 16
+unused
+@item 17
+unused
+@end table
 
 @node TTYCOM
 @subsection      The TTYCOM Variable.
