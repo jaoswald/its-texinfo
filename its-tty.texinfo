@@ -2830,13 +2830,23 @@ size and the horizontal size.
 
 This symbolic system call takes one argument specifying the tty
 (like TTYGET's argument) and returns seven values:
+
+@enumerate
+@item
 the vertical screen size,
+@item
 the horizontal screen size,
+@item
 the TCTYP variable,
+@item
 the TTYCOM variable,
+@item
 the TTYOPT variable,
+@item
 the TTYTYP variable,
+@item
 the TTYSMT variable.
+@end enumerate
 
 Note that the CNSGET call can fail quite legitimately, if the
 user translates device TTY: to a file of commands for the program.
