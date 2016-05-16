@@ -1,6 +1,5 @@
 \input texinfo @c -*- texinfo; coding:utf-8 -*-
 @c %**start of header
-@c %**start of header
 @setfilename its-tty
 @documentencoding utf-8
 @settitle ITS TTY
@@ -17,7 +16,7 @@
 @set altchar $
 @end ifset
 @ifset altmodeliteral
-@set altchar ^
+@set altchar 
 @end ifset
 @ifclear altchar
 @iftex
@@ -730,8 +729,8 @@ several levels past programs that are trying to prevent that.
 Since super-image input mode now exists, such an attempt is futile.
 This "feature" can probably be flushed if anyone wishes.
 
-The "P" command causes DDT to do an .ATTY, among other things.
-"^P" does not.  DDT does a .DTTY when an "P"'ed job returns to DDT.
+The "@altk{P}" command causes DDT to do an .ATTY, among other things.
+"^P" does not.  DDT does a .DTTY when an "@altk{P}"'ed job returns to DDT.
 
 A job need not have the tty to do an .ATTY or .DTTY.  In fact, they
 are the only operations on ttys that work as well without the tty
@@ -754,7 +753,7 @@ superior's %TBINF are both 1.  A job has type-out permission iff a
 chain of inheritance reaches up from it to the top of the tree or to
 the job which owns the TTY. 
 
-The DDT command ^P works by means of this feature.
+The DDT command @altalt{^P} works by means of this feature.
 
 @node .TTY
 @section The .TTY variable
