@@ -2452,54 +2452,78 @@ value of TTYOPT.
 "%TO" signifies a bit in the left half of TTYOPT.  "%TP" signifies a
 bit in the right half; "$TP", a byte pointer to a field.
 
-%TOALT==200000	;4.8 => Standardize altmodes.
-%TOCLC==100000	;4.7 => Convert lower case to upper on input.
-%TOERS==40000	;4.6 => This tty can erase selectively
-%TOHDX==20000	;4.5 => This tty is half-duplex.
-%TOMVB==10000	;4.4 => This tty can handle backspaces directly.
-%TOSAI==4000	;4.3 => This tty can handle the SAIL character
-		;set, if given control characters in image mode.
-%TOSA1==2000	;4.2 => use the SAIL character set for echo and
-		;ascii mode output (actually just init %TSSAI of
-		;new jobs).
-%TOOVR==1000	;4.1 => This tty can overprint successfully.
-%TOMVU==400	;3.9 => This tty can move its cursor upward
-		;(that is, it is a display).
-%TOMOR==200	;3.8 => do **MORE** processing on this tty
-		;(actually just used to init %TSMOR for new jobs).
-%TOROL==100	;3.7 similarly, used to init %TSROL for new jobs.
-%TORAW==40	;3.6 => don't optimize cursor motion (*Note Out: E/7.).
-%TOLWR==20	;3.5 => this tty has lower case keyboard.
-		;(Doesn't affect system actions - exists to
-		;tell user programs what to do).
-%TOFCI==10	;3.4 => this tty's keyboard has full TV character set.
-%TOIML==4	;3.3 => this tty acts like an imlac
-%TOLID==2	;3.2 => this tty can insert/delete lines.
-%TOCID==1	;3.1 => thus tty can insert/delete characters.
-$TPPLF==170300	;3-bit field saying how to pad LF.
-		;0 - don't. 1 - memowreck, 2741 (2 pad chars.).  2 - more.
-		;If a terminet, tells the baud rate.
-$TPPCR==140300	;3-bit field saying how to pad CR.
-		;7 - unused. 6 - memowreck. 5 - 2741. 4 - execuport.
-		;0 - don't. 1 - normal. 2 - double.
-		;On datapoints, number of padding characters desired
-		;before each string of cursor motion commands.
-$TPPTB==110300	;3 bit field saying how much padding needed after tab.
-		;0 => tabs not allowed; else 1 +<# padding chars needed>
-		;On displays: 0 don't use tabs, 1 use tabs,
-		;2 use VT52-style absolute positioning.
-%TPMTA==400	;1.9 => treat bit 1.8 of input characters as the meta bit.
-		 ;This is for terminals such as Telerays which have Edit keys.
-%TPPRN==200	;1.8 => interchange ( with [, and ) with ], on input.
-%TPTEL==100	;1.7 => Treat CRLF input as CR for TELNET protocol.
-%TPCBS==40	;1.6 => intelligent terminal protocol in use. 
-		 ; *Note ITP: J.
-%TP11T==20	;1.5 => PDP-11 TV tty.  Reflects %TY11T.
-		;not settable by user.
-%TPORS==10	;1.4 => output reset on this tty should really do something.
-%TPRSC==4	;1.3 => this terminal implements %TDRSU and %TDRSD.
-		 ;These are commands usable in superimage output
-		 ;which perform region scrolling.  *Note RSC: K/1.
+@table @code
+@item %TOALT==200000
+4.8 => Standardize altmodes.
+@item %TOCLC==100000
+4.7 => Convert lower case to upper on input.
+@item %TOERS==40000
+4.6 => This tty can erase selectively
+@item %TOHDX==20000
+4.5 => This tty is half-duplex.
+@item %TOMVB==10000
+4.4 => This tty can handle backspaces directly.
+@item %TOSAI==4000
+4.3 => This tty can handle the SAIL character set, if given control characters
+in image mode.
+@item %TOSA1==2000
+4.2 => use the SAIL character set for echo and ascii mode output (actually just
+init %TSSAI of new jobs).
+@item %TOOVR==1000
+4.1 => This tty can overprint successfully.
+@item %TOMVU==400
+3.9 => This tty can move its cursor upward (that is, it is a display).
+@item %TOMOR==200
+3.8 => do **MORE** processing on this tty (actually just used to init %TSMOR
+for new jobs).
+@item %TOROL==100
+3.7 similarly, used to init %TSROL for new jobs.
+@item %TORAW==40
+3.6 => don't optimize cursor motion (*Note Out: E/7.).
+@item %TOLWR==20
+3.5 => this tty has lower case keyboard.v(Doesn't affect system actions -
+exists to tell user programs what to do).
+@item %TOFCI==10
+3.4 => this tty's keyboard has full TV character set.
+@item %TOIML==4
+3.3 => this tty acts like an imlac
+@item %TOLID==2
+3.2 => this tty can insert/delete lines.
+@item %TOCID==1
+3.1 => thus tty can insert/delete characters.
+@item $TPPLF==170300
+3-bit field saying how to pad LF.@*0 - don't.
+@*1 - memowreck, 2741 (2 pad chars.).@*2 - more.
+@*If a terminet, tells the baud rate.
+
+@item $TPPCR==140300
+3-bit field saying how to pad CR.
+@*7 - unused.@*6 - memowreck.@*5 - 2741.@*4 - execuport.
+@*0 - don't.@*1 - normal.@*2 - double.
+@*On datapoints, number of padding characters desired before each string of
+cursor motion commands.
+@item $TPPTB==110300
+3 bit field saying how much padding needed after tab.@*
+0 => tabs not allowed; else 1 +<# padding chars needed>@*
+On displays: 0 don't use tabs, 1 use tabs, 2 use VT52-style absolute
+positioning.
+@item %TPMTA==400
+1.9 => treat bit 1.8 of input characters as the meta bit. This is for terminals
+such as Telerays which have Edit keys.
+@item %TPPRN==200
+1.8 => interchange ( with [, and ) with ], on input.
+@item %TPTEL==100
+1.7 => Treat CRLF input as CR for TELNET protocol.
+@item %TPCBS==40
+1.6 => intelligent terminal protocol in use.  *Note ITP: J.
+@item %TP11T==20
+1.5 => PDP-11 TV tty.  Reflects %TY11T.  not settable by user.
+@item %TPORS==10
+1.4 => output reset on this tty should really do something.
+@item %TPRSC==4
+1.3 => this terminal implements %TDRSU and %TDRSD.  These are commands usable
+in superimage output which perform region scrolling.  *Note RSC: K/1.
+@end table
 
 @node TCTYP
 @subsection       The TCTYP variable.
