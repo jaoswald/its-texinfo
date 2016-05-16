@@ -3096,14 +3096,18 @@ to be turned into just a CR.
 
 The arguments to a STYNET call are as follows:
 
-arg 1	sty channel (either direction).
-arg 2	-1 to disconnect the sty from its network channels
-	(in which case args 3 and 4 are unnecessary),
-	or Net input channel (to connect sty output to).
-arg 3	Net output channel (to connect sty input to).
-arg 4	Characters to send out on net
-	when an output .RESET is done on the sty's TTY.
-	Up to 3 8-bit characters, left-justified.
+@enumerate
+@item
+sty channel (either direction).
+@item
+-1 to disconnect the sty from its network channels (in which case args 3 and 4
+are unnecessary), or Net input channel (to connect sty output to).
+@item
+Net output channel (to connect sty input to).
+@item
+Characters to send out on net when an output .RESET is done on the sty's TTY.
+Up to 3 8-bit characters, left-justified.
+@end enumerate
 
 @node STYGET
 @section      STYGET.
