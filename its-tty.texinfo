@@ -2758,36 +2758,54 @@ graphics protocol *Note Graphics: (SYSDOC;GRPHCS)*.
 %TQ signifies a bit or field in the left half of TTYSMT, and %TR
 signifies a bit or field in the right half.
 
-%TQMCH==700000	;4.7-4.9 CPU type.  0 => unknown or uninteresting.
-		   ;1 => PDP11.  2 => IMLAC PDS4.  3 => IMLAC PDS1.
-
-;These bits are for local-editing and line-saving (See SUPDUP doc)
-%TRLED==100000	;2.7 Terminal supports the local-editing protocol.
-%TRLSV==034000	;2.3-2.5 nonzero means terminal can save about 4**n lines.
-
-;These bits record what timezone the terminal is physically in.
-%TRTIM==003700	;2.2-1.7 signed offset from GMT minus 20.  A value of zero
-		; means don't know, don't care, or user program hasn't
-		; implemented it yet.
-
-;The remainder of TTYSMT pertains to the graphics protocol.
-;If %TQGRF is 0, it should all be 0.
-%TQGRF==1	;3.1 Terminal understands the graphics protocol.
-		   ;the old name for this was %TQGPH
-%TQHGT==76000	;4.2-4.6 Character height in dots.
-%TQWID==1700	;3.7-4.1 Character width in dots.
-
-;The remaining bits and fields in TTYSMT indicate which optional
-;features of the graphics protocol are supported.
-%TQSET==2	;3.2 Terminal implements multiple sets.
-%TQREC==4	;3.3 Terminal implements the rectangle commands.
-%TQXOR==10	;3.4 Terminal implements XOR mode.
-%TQBNK==20	;3.5 Terminal implements blinking.
-%TQVIR==40	;3.6 Terminal implements virtual coordinates.
-
-%TRGIN==400000	;2.9 Terminal provides graphic input.
-%TRGHC==200000	;2.8 Terminal provides has graphic hardcopy.
-%TRSCN==040000	;2.6 Terminal implements scan-line output.
+@table @code
+@item %TQMCH==700000
+4.7-4.9 CPU type.@*
+0 => unknown or uninteresting.@*
+1 => PDP11@*
+2 => IMLAC PDS4.@*
+3 => IMLAC PDS1.
+@item
+@itemx %TRLED==100000
+@itemx %TRLSV==034000
+These bits are for local-editing and line-saving (See SUPDUP doc)@*
+2.7 Terminal supports the local-editing protocol.@*
+2.3-2.5 nonzero means terminal can save about 4**n lines.
+@item
+@itemx %TRTIM==003700
+These bits record what timezone the terminal is physically in.@*
+2.2-1.7 signed offset from GMT minus 20. A value of zero means don't know,
+don't care, or user program hasn't implemented it yet.
+@item
+The remainder of TTYSMT pertains to the graphics protocol.
+If %TQGRF is 0, it should all be 0.
+@item %TQGRF==1
+3.1 Terminal understands the graphics protocol. the old name for this was
+%TQGPH
+@item %TQHGT==76000
+4.2-4.6 Character height in dots.
+@item %TQWID==1700
+3.7-4.1 Character width in dots.
+@item
+The remaining bits and fields in TTYSMT indicate which optional
+features of the graphics protocol are supported.
+@item %TQSET==2
+3.2 Terminal implements multiple sets.
+@item %TQREC==4
+3.3 Terminal implements the rectangle commands.
+@item %TQXOR==10
+3.4 Terminal implements XOR mode.
+@item %TQBNK==20
+3.5 Terminal implements blinking.
+@item %TQVIR==40
+3.6 Terminal implements virtual coordinates.
+@item %TRGIN==400000
+2.9 Terminal provides graphic input.
+@item %TRGHC==200000
+2.8 Terminal provides has graphic hardcopy.
+@item %TRSCN==040000
+2.6 Terminal implements scan-line output.
+@end table
 
 @node Permanent Calls
 @section       System calls.
