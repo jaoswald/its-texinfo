@@ -2858,13 +2858,23 @@ is being used and do the "appropriate" thing.
 @subsection      CNSSET.
 
 This symbolic system call is used to set the permanent and
-semipermanent variables.  It takes six arguments.  The first is
-a tty channel; the next five are the new values of
+semipermanent variables.  It takes six arguments.
+
+@enumerate
+@item
+The first is a tty channel; the next five are the new values of
+@item
 the vertical screen size,
+@item
 the horizontal screen size,
+@item
 the TCTYP variable,
+@item
 the TTYCOM variable,
+@item
 the TTYOPT variable.
+@end enumerate
+
 If the second, third or fourth argument is negative, the
 corresponding variable will not be altered.  Fewer than six
 arguments may be given, in which case variables corresponding
