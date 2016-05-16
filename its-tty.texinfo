@@ -285,10 +285,10 @@ superior.  On TV's, this function is requested by hitting the
 "CALL" key; on other terminals, which have no "CALL" key, the
 character "^Z" is used.  This makes the character "^Z" difficult
 to type in as a normal characters on such terminals, requiring
-quoting (*Note Quoting: A/2.).
+quoting (@pxref{Quoting})
 
 In detail, the CALL function gives the job which owns the tty 
-(*Note TTY-owning: B.) a fatal interrupt, causing its superior in the
+(@pxref{Control}) a fatal interrupt, causing its superior in the
 tree to be interrupted.  The superior will usually react by retrieving
 the terminal from the job that had posessed it.  Thus, CALL makes it
 possible to regain control when the program that has the terminal is
@@ -506,7 +506,7 @@ becoming linked to.
 @node Querying
 @subsection Querying
 
-When the specified terminal is in query mode (*Note ^_Q: A/4/g.),
+When the specified terminal is in query mode (@pxref{Respond}),
 "QUERYING" is typed on the requesting terminal, and the "LINK FROM ..."
 message is typed on the specified terminal only (NOT on the
 terminals linked to it already), followed by "QUERYING", which
@@ -609,7 +609,7 @@ entered by typing "^_A"; refuse mode, by "^_R"; query mode, by "^_Q".
 In addition, "^_A" accepts all pending queries, and "^_R" refuses them.
 The program TCTYP also has the capability of changing the mode, using
 the CNSSET system call.  The information is stored in the bits %TCRFS
-and %TCQRY in the TTYCOM variable (*Note Combits: H/1/e.).
+and %TCQRY in the TTYCOM variable (@pxref{TTYCOM}).
 
 @node Escape Codes
 @section List of ESCAPE codes
@@ -830,7 +830,7 @@ Device TTY may only be successfully opened by a job in a console-
 -controlled tree which is in posession of the tty.  If a job which
 does not meet that criterion tries to open the tty, the open may
 hang, fail, or generate a fatal interrupt, depending on the setting
-of the %TBNVR and %TBINT bits of the job (*Note NoTTY: B/3.).
+of the %TBNVR and %TBINT bits of the job (@pxref{.TTY}).
 What such an open will definitely not do is succeed.
 
 @section Opening "Tmn:"
@@ -853,7 +853,7 @@ per-job information, but those bits are
 effective only if the terminal is not open in the same direction on
 any other channel (those bits exist for historical reasons only,
 since the variables they set may be set explicitly at any time
-using the TTYSET and SCML symbolic system calls (*Note vars: G.)).
+using the TTYSET and SCML symbolic system calls (@pxref{Vars}.)).
 
 The per-channel bits which have names are used only to initialize
 the IOCHNM word of the channel - thus, mode bit 4.6 (%TIECH) is
@@ -1034,7 +1034,7 @@ IOT'ing on the job's console cannot actually be done unless the
 job has control of the console (*Note Owner: B.).  If it does not,
 either the IOT will wait until the job gets the tty, or a class 2
 interrupt will result, depending on the %TBINT and %TBWAT
-bits in .TTY (*Note NoTTY: B/3.).
+bits in .TTY (@pxref{.TTY}).
 Also, on any tty, IOT's will wait until either the tty is
 not in a com link, or the tty is slaved, or %TCICO is set
 (*Note Com: A/4/e.).
@@ -1365,7 +1365,7 @@ SIOT's on unit mode channels.
 
 The symbolic system calls IOT and SIOT allow the respecification of
 the values of several per-channel mode bits (all those given names
-starting with "%TJ" - *Note Bits: C/3/c.).  Unit mode IOT is somewhat
+starting with "%TJ" - @pxref{Bits}.).  Unit mode IOT is somewhat
 slower than the .IOT UUO, but the same is not true for SIOT and block
 mode IOT.
 
@@ -1375,7 +1375,7 @@ as IOT'ing, since their differences have all been described above.
 If the terminal is in a com link, output IOT's will hang up, unless
 %TCOCO (see "^_O") or %TCLFT (see "^_E") is set.  If the tty is the job's
 console, the IOT will not do its work unless the job has the
-tty; otherwise it may wait or it may interrupt (*Note NoTTY: B/3.).
+tty; otherwise it may wait or it may interrupt (@pxref{.TTY}).
 
 @node Normal
 @section      Normal output (sequential access).
@@ -1767,7 +1767,7 @@ consisting of the vertical position in the left half and the
 horizontal position in the right half.  The first value is the
 main program area cursor; the second, the echo area cursor.  The
 echo area cursor position is returned relative to the top of the
-echo area.  *Note TTY Spec: G/2. for a description of the options
+echo area.  @xref{Calls} for a description of the options
 for the first argument and the reasons why the call can fail.
 RCPOS does not require ownership of the terminal, just output
 permission (*Note Permit: B/3.).  For example:
@@ -1880,7 +1880,7 @@ associated with the channel it is given on to normal.  For example,
 if the RESET took place after an interrupt out from the middle of
 typing out a ^P-code, the RESET will cause the next output character
 to be treated normally rather than as a display code.  If the channel
-had been hung in a **MORE** (*Note More: F/2/a.) it will be unhung.
+had been hung in a **MORE** (@pxref{Smart}.) it will be unhung.
 
 @node Waiting
 @section     Waiting for output to be sent to the terminal.
@@ -2124,22 +2124,22 @@ These words are divided into 6-bit bytes, one for each character
 group.  All of the options for the characters in any group are
 located in the byte for that group, as follows:
 %TGINT==1	;1 => characters in this group should interrupt.
-		 ;*Note Int: D/4.
+		 ;@xref{Interrupts}.
 %TGACT==2	;1 => characters in this group should activate.
-		 ;*Note Act: D/3.
+		 ;@xref{Activation}.
 %TGSPC==4	;1 => perform special hack.  The meaning of this bit
 		 ;depends on which character-group is in question.
 		 ;Right now it is defined only for group 1 (letters)
 		 ;and means "convert lower case to upper case).
 %TGIMG==10	;1 => output the characters of this group in image mode.
-		 ;*Note Image: E/2. for the consequences of setting this bit.
+		 ;@xref{Normal} for the consequences of setting this bit.
 		 ;It is likely that this feature will be flushed soon,
 		 ;since it cannot be made to work right with the $$^P
 		 ;feature that allows several jobs to type out at once
 %TGPIE==20	;1 => echo these characters at interrupt level.
-		 ;*Note Echo: D/1.
+		 ;@xref{Echo}.
 %TGMPE==40	;1 => echo them at main program level
-		 ;(that is, when they are .IOT'ed in).  *Note Echo: D/1.
+		 ;(that is, when they are .IOT'ed in). @xref{Echo}.
 
 The characters are divided into groups based on the ascii code.
 TV characters are assigned to groups by converting them to ascii
@@ -2198,9 +2198,9 @@ be found in its .TTST variable.
 		 ;uses to know that it should clear the screen before
 		 ;the next display.
 		;3.6-3.5 unused.
-%TSNOE==000010	;3.4 1 => defer echoing (*Note Echo: D/1.).
+%TSNOE==000010	;3.4 1 => defer echoing (@pxref{Echo}.).
 %TSLCZ==000004	;3.3 1 => the last character typed in was "^Z".
-		 ;If this bit is 1, .ATTY fails (*Note ATTY: B/2.).
+		 ;If this bit is 1, .ATTY fails (@pxref{ATTY}.).
 %TSSII==000002	;3.2 1 => superimage input.  The special treatment of
 		 ;"^Z" and "^_" is suppressed.
 %TSCNS==000001	;3.1 1 => the tty is a console (not a device).
