@@ -396,7 +396,7 @@ default values of the switches, which are used to initialize new jobs.
 ESCAPE codes are provided for complementing the switch associated with
 the job that the terminal belongs to at the moment.
 
-@table @asis a
+@table @asis
 @item "^_M"
 Complement **MORE** Processing (%TSMOR).
 
