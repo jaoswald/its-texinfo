@@ -2171,23 +2171,27 @@ settings for the console kept in the .USET variables .TTS1 and .TTS2.
 These words are divided into 6-bit bytes, one for each character
 group.  All of the options for the characters in any group are
 located in the byte for that group, as follows:
-%TGINT==1	;1 => characters in this group should interrupt.
-		 ;@xref{Interrupts}.
-%TGACT==2	;1 => characters in this group should activate.
-		 ;@xref{Activation}.
-%TGSPC==4	;1 => perform special hack.  The meaning of this bit
-		 ;depends on which character-group is in question.
-		 ;Right now it is defined only for group 1 (letters)
-		 ;and means "convert lower case to upper case).
-%TGIMG==10	;1 => output the characters of this group in image mode.
-		 ;@xref{Normal} for the consequences of setting this bit.
-		 ;It is likely that this feature will be flushed soon,
-		 ;since it cannot be made to work right with the $$^P
-		 ;feature that allows several jobs to type out at once
-%TGPIE==20	;1 => echo these characters at interrupt level.
-		 ;@xref{Echo}.
-%TGMPE==40	;1 => echo them at main program level
-		 ;(that is, when they are .IOT'ed in). @xref{Echo}.
+
+@table @code
+@item %TGINT==1
+1 => characters in this group should interrupt. @xref{Interrupts}.
+@item %TGACT==2
+1 => characters in this group should activate. @xref{Activation}.
+@item %TGSPC==4
+1 => perform special hack.  The meaning of this bit depends on which
+character-group is in question.  Right now it is defined only for group 1
+(letters) and means "convert lower case to upper case).
+@item %TGIMG==10
+1 => output the characters of this group in image mode. @xref{Normal}, for the
+consequences of setting this bit.  It is likely that this feature will be
+flushed soon, since it cannot be made to work right with the @altalt{^P}
+feature that allows several jobs to type out at once.
+@item %TGPIE==20
+1 => echo these characters at interrupt level. @xref{Echo}.
+@item %TGMPE==40
+1 => echo them at main program level (that is, when they are .IOT'ed in).
+@xref{Echo}.
+@end table
 
 The characters are divided into groups based on the ascii code.
 TV characters are assigned to groups by converting them to ascii
