@@ -2198,19 +2198,34 @@ TV characters are assigned to groups by converting them to ascii
 (thus, the meta bit is ignored, and the control bit is ignored
 except with letters, which are converted into ascii control characters).
 The groups of characters are:
-Group 0:   "^@@" - "^F", "^K", "^L", "^N" - "^R", "^T" - "^Z", "^\" - "^^".
-	    (in otherwords, random control characters).
-Group 1:   Letters (both upper and lower case).
-Group 2:   Digits.
-Group 3:   !"#$%&',.:;?@@\`|~	(random graphics).
-Group 4:   *+-/=^_		(operators)
-Group 5:   <>[]()@{@}		(brackets).
-Group 6:   "^G" "^S"		(most commonly used interrupt chars).
-Group 7:   LF, TAB.
-Group 10:  Altmode.
-Group 11:  CR.
-Group 12:  Rubout.
-Group 13:  Space and BS.
+
+@table @asis
+@item Group 0
+"^@@" - "^F", "^K", "^L", "^N" - "^R", "^T" - "^Z", "^\" - "^^". (in
+otherwords, random control characters).
+@item Group 1
+Letters (both upper and lower case).
+@item Group 2
+Digits.
+@item Group 3
+!"#$%&',.:;?@@\`|~ (random graphics).
+@item Group 4
+*+-/=^_ (operators)
+@item Group 5
+<>[]()@{@} (brackets).
+@item Group 6
+"^G" "^S" (most commonly used interrupt chars).
+@item Group 7
+LF, TAB.
+@item Group 10
+Altmode.
+@item Group 11
+CR.
+@item Group 12
+Rubout.
+@item Group 13
+Space and BS.
+@end table
 
 @node STS
 @subsection         The TTYSTS variable.
