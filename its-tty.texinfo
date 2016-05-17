@@ -3336,15 +3336,15 @@ The escape sequences are:
 where <ch1> is in @{@@, A, B, ..., _@} and <ch2> is any character inputs the
 character (<ch1>&27)*200+<ch2>. That is, <ch1> supplies the 4 meta-bits for
 <ch2>.  The meta bits are (in their ultimate positions):
-@itemize @code
+@itemize @bullet
 @item
-%TXTOP	4000	"TOP"
+%TXTOP 4000 "TOP"
 @item
-%TXSUP	1000	"SUPER"  (Used to mean "SHIFT".)
+%TXSUP 1000 "SUPER" (Used to mean "SHIFT".)
 @item
-%TXMTA	 400	"META"
+%TXMTA 400 "META"
 @item
-%TXCTL	 200	"CONTROL"
+%TXCTL 200 "CONTROL"
 @end itemize
 The bits should appear in <ch1> shifted right 5; thus, "C" = 103 will set
 %TXCTL and %TXMTA.@*
