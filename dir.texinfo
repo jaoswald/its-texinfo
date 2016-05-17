@@ -15,6 +15,7 @@ These files document the Incompatible Time-sharing System.
 * Introduction:(its-intro)Top. An initial primer to ITS.
 * DDT Primer:(its-ddt-primer)Top. An introduction to DDT, the debugger and
 and primary user shell for ITS.
+* TTY:(its-tty)Top. ITS support for Teletypes and terminals.
 @end menu
 @end ifnottex
 @bye
