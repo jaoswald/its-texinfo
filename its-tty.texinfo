@@ -1816,6 +1816,8 @@ echo area.  @xref{Calls}, for a description of the options
 for the first argument and the reasons why the call can fail.
 RCPOS does not require ownership of the terminal, just output
 permission @xref{Permission}.  For example:
+
+@example
 	.CALL [	SETZ
 		SIXBIT/RCPOS/
 		1000,,CHANNEL
@@ -1824,6 +1826,7 @@ permission @xref{Permission}.  For example:
 				 ;ECHPOS.
 	 .VALUE			;CALL FAILED.
 	...			;CALL SUCCEEDED.
+@end example
 
 @node Super
 @section       Superimage output.
@@ -2309,6 +2312,8 @@ expect the external form, .USET of .UIND returns it, etc.).
 As an example, suppose TTYNUM contains the number of a tty whose
 variables are to be read.  The following code will read the TTYST1,
 TTYST2 and TTYSTS respectively into ST1, ST2, and STS:
+
+@example
 	MOVE A,TTYNUM
 	.CALL [	SETZ
 		'TTYGET
@@ -2318,6 +2323,7 @@ TTYST2 and TTYSTS respectively into ST1, ST2, and STS:
 		402000,,STS]	;Sign bit marks end of call.
 	 JRST TRANSL		 ;User must have translated TTY to a file.
 	...			;ST1, ST2, STS now set up.
+@end example
 
 Note that the TTYGET call can fail quite legitimately, if the
 user translates device TTY: to a file of commands for the program.
@@ -2345,6 +2351,8 @@ For example, if the desired values of the variables are contained
 in ST1, ST1+1, and STS, the variables may be set as follows
 (This isn't the simplest way; it is meant to illustrate the
 flexibility of the symbolic system call):
+
+@example
 	MOVEI A,ST1
 	.CALL [	SETZ
 		'TTYSET
@@ -2354,6 +2362,7 @@ flexibility of the symbolic system call):
 		400000,,STS]	;Set TTYSTS from STS
 	 JRST TRANSL		 ;User must have translated TTY to a file.
 	...			;Variables now set.
+@end example
 
 Most of the time, when TTYSET is used, only a few of the bits
 are intended to be changed.  Rather than giving the TTYSET
@@ -2367,12 +2376,15 @@ you want to change, and then write out the result.
 
 SCML takes two arguments: a tty channel number, and the desired
 size of the echo area.  For example, to have 4 echo lines:
+
+@example
 	.CALL [	SETZ
 		SIXBIT/SCML/	;Note 'SCML is right-justified, and won't do.
 		1000,,TYIC	;Immediate arg = tty channel
 		401000,,4]	;Immediate arg = <# command lines>.
 	 JRST TRANSL		 ;User must have translated TTY to a file.
 	...			;Echo area now set up.
+@end example
 
 Before attempting to do a SCML, you should verify that the
 terminal being used is a display and not a printing terminal.
