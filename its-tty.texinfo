@@ -2236,48 +2236,57 @@ The prefix "%TS" is used for bits in the TTYSTS variable.  When a job
 does not possess its console, its TTYSTS setting for the console may
 be found in its .TTST variable.
 
-%TSFRE==400000	;4.9 1 => tty is free (not in use as device or console)
-%TSCLE==200000	;4.8 1 => "^L" output in echo mode should always come
-		 ;out as uparrow-L.  (Normally, "^L" echoes as a clear
-		 ;screen on displays).
-%TSHDX==100000	;4.7 same as %TOHDX.  This is vestigial.
-%TSFCO==040000	;4.6 1 => use the full 12-bit TV character set for
-		 ;output and echoing.  The control bit outputs as "^A"
-		 ;or "alpha", the meta bit outputs as "^B" or "beta", and
-		 ;the super bit outputs as "^F" or "epsilon".
-		 ;Also, the top bit is used to distinguish ASCII control
-		 ;characters from Sail graphic characters.  The main value
-		 ;of this feature is for its effect on echoing.
-%TSALT==020000	;4.5 1 => don't standardize altmodes.
-%TSROL==010000	;4.4 1 => scroll mode is in effect.
-		 ;Complemented by "^_"""".
-%TSSAI==004000	;4.3 1 => echo and ascii output should use SAIL chars.
-		 ;Complemented by "^_^".
-%TSACT==002000	;4.2 1 => next input IOT shouldn't wait for an
-		 ;activation character to have been typed in.
-%TSNEA==001000	;4.1 => Don't echo in echo area; echo in M.P. area.
-%TSINT==000400	;3.9 1 => next input character should interrupt even
-		 ;if its %TGINT bit doesn't say it should.
-%TSMOR==000200	;3.8 1 => inhibit **MORE** processing.
-		 ;Complemented by "^_M".
-%TSATY==000100	;3.7 this bit is set whenever an .ATTY executed by a
-		 ;superior gives the tty to the job.  It is what TECO
-		 ;uses to know that it should clear the screen before
-		 ;the next display.
-		;3.6-3.5 unused.
-%TSNOE==000010	;3.4 1 => defer echoing (@pxref{Echo}.).
-%TSLCZ==000004	;3.3 1 => the last character typed in was "^Z".
-		 ;If this bit is 1, .ATTY fails (@pxref{ATTY}.).
-%TSSII==000002	;3.2 1 => superimage input.  The special treatment of
-		 ;"^Z" and "^_" is suppressed.
-%TSCNS==000001	;3.1 1 => the tty is a console (not a device).
-
-RH:		;the user-index of the job that owns the tty, or -1
-		 ;if the tty is free.  The actual system variable has
-		 ;the user-index in its internal form but TTYGET
-		 ;returns it in external form (=internal form
-		 ;divided by LUBLK).
-
+@table @code
+@item %TSFRE==400000
+4.9 1 => tty is free (not in use as device or console)
+@item %TSCLE==200000
+4.8 1 => "^L" output in echo mode should always come out as uparrow-L.
+(Normally, "^L" echoes as a clear screen on displays).
+@item %TSHDX==100000
+4.7 same as %TOHDX.  This is vestigial.
+@item %TSFCO==040000
+4.6 1 => use the full 12-bit TV character set for output and echoing.  The
+control bit outputs as "^A" or "alpha", the meta bit outputs as "^B" or "beta",
+and the super bit outputs as "^F" or "epsilon".  Also, the top bit is used to
+distinguish ASCII control characters from Sail graphic characters.  The main
+value of this feature is for its effect on echoing.
+@item %TSALT==020000
+4.5 1 => don't standardize altmodes.
+@item %TSROL==010000
+4.4 1 => scroll mode is in effect. Complemented by "^_"""".
+@item %TSSAI==004000
+4.3 1 => echo and ascii output should use SAIL chars. Complemented by "^_^".
+@item %TSACT==002000
+4.2 1 => next input IOT shouldn't wait for an activation character to have been
+typed in.
+@item %TSNEA==001000
+4.1 => Don't echo in echo area; echo in M.P. area.
+@item %TSINT==000400
+3.9 1 => next input character should interrupt even if its %TGINT bit doesn't
+say it should.
+@item %TSMOR==000200
+3.8 1 => inhibit **MORE** processing. Complemented by "^_M".
+@item %TSATY==000100
+3.7 this bit is set whenever an .ATTY executed by a superior gives the tty to
+the job.  It is what TECO uses to know that it should clear the screen before
+the next display.
+@item
+3.6-3.5 unused.
+@item %TSNOE==000010
+3.4 1 => defer echoing (@pxref{Echo}.)
+@item %TSLCZ==000004
+3.3 1 => the last character typed in was "^Z". If this bit is 1, .ATTY fails
+(@pxref{ATTY}.).
+@item %TSSII==000002
+3.2 1 => superimage input.  The special treatment of "^Z" and "^_" is
+suppressed.
+@item %TSCNS==000001
+3.1 1 => the tty is a console (not a device).
+@item RH:
+the user-index of the job that owns the tty, or -1 if the tty is free.  The
+actual system variable has the user-index in its internal form but TTYGET
+returns it in external form (=internal form divided by LUBLK).
+@end table
 
 @node Size
 @subsection        The Size of the Echo Area.
