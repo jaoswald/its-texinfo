@@ -1812,7 +1812,7 @@ consisting of the vertical position in the left half and the
 horizontal position in the right half.  The first value is the
 main program area cursor; the second, the echo area cursor.  The
 echo area cursor position is returned relative to the top of the
-echo area.  @xref{Calls} for a description of the options
+echo area.  @xref{Calls}, for a description of the options
 for the first argument and the reasons why the call can fail.
 RCPOS does not require ownership of the terminal, just output
 permission (*Note Permit: B/3.).  For example:
