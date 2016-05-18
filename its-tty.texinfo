@@ -623,6 +623,7 @@ and %TCQRY in the TTYCOM variable (@pxref{TTYCOM}).
 
 @node Escape Codes
 @section List of ESCAPE codes
+
 In most cases, the escape code name is also the name of a footnote
 leading to a node containing more details on the specific code.
 
@@ -770,7 +771,7 @@ are the only operations on ttys that work as well without the tty
 as with it.
 
 @node Permission
-@section  Permission to type out
+@section Permission to type out
 
 The job that owns the TTY, and the job at the top of the tree,
 can always type out on the TTY.  Those jobs can also grant
@@ -790,6 +791,7 @@ The DDT command @altalt{^P} works by means of this feature.
 
 @node .TTY
 @section The .TTY variable
+
 This variable is actually called TTYTBL in the system.
 "%TB" and "$TB" identify bits and fields in the TTYTBL variable,
 which contains the information on the status of a job
@@ -871,6 +873,7 @@ job doing the opening.
 
 @node Opening-TTY
 @section Opening "TTY:"
+
 Device TTY may only be successfully opened by a job in a console-
 -controlled tree which is in posession of the tty.  If a job which
 does not meet that criterion tries to open the tty, the open may
@@ -879,6 +882,7 @@ of the %TBNVR and %TBINT bits of the job (@pxref{.TTY}).
 What such an open will definitely not do is succeed.
 
 @section Opening "Tmn:"
+
 Opening device Tnm is the way for a program to make use of a tty
 other than its console (in fact, it need not have a console).
 "nm" should be replaced by the two-digit octal number of the terminal
@@ -891,6 +895,7 @@ asked to specify a tty by number.
 
 @node Bits
 @section Device-dependent bits in the OPEN mode
+
 Many of the bits in the mode specified in a .OPEN have special
 meanings for devices TTY and Tnm.  Some of them affect only the
 channel being opened; others merely initialize some of the per-tty/
@@ -1391,7 +1396,8 @@ the particular terminal can perform.
 @end menu
 
 @node Output-Chars
-@section      How to cause characters to be output.
+@section How to cause characters to be output.
+
 User programs output characters by means of the .IOT UUO or the
 symbolic system calls IOT or SIOT.  .IOT is pretty much equivalent to
 symbolic IOT, but has slightly less overhead and is less flexible.
@@ -1423,7 +1429,7 @@ console, the IOT will not do its work unless the job has the
 tty; otherwise it may wait or it may interrupt (@pxref{.TTY}).
 
 @node Normal
-@section      Normal output (sequential access).
+@section Normal output (sequential access).
 
 The way terminal output works when display commands are not in use
 is that each ordinary character is printed where the cursor points,
@@ -1439,7 +1445,7 @@ commands).
 @end menu
 
 @node How
-@subsection         How the System Goes about Outputting.
+@subsection How the System Goes about Outputting.
 
 The way the system outputs any particular character to the tty
 depends in general on the following factors: whether the relevant
@@ -1469,20 +1475,20 @@ probably open a channel in superimage mode and use it at such times.
 @end menu
 
 @node Ascii
-@subsubsection       ASCII Graphic Characters.
+@subsubsection ASCII Graphic Characters.
 
 These characters are simply sent to the terminal.  The system
 assumes that they will occupy one printing position, and move
 the terminal's hardware cursor one place to the right.
 
 @node ^G
-@subsubsection          "^G".
+@subsubsection "^G".
 
 "^G" is assumed to make a noise or other temporary indication,
 occupy no space on the screen, and not move the cursor.
 
 @node CR
-@subsubsection          Carriage-return.
+@subsubsection Carriage-return.
 
 If the channel specifies echo mode, a "CRLF" will be done.
 That is, the results will be the as if a CR and a LF had
@@ -1501,7 +1507,7 @@ this will not cause any trouble, and for those which are stray, it
 will cause the desired overprinting.
 
 @node LF
-@subsubsection          Linefeed.
+@subsubsection Linefeed.
 
 If a LF follows a CR that was output in ascii mode and not
 in echo mode, the LF is ignored.  Otherwise, the LF is output
@@ -1519,7 +1525,7 @@ trigger **MORE** processing.  If it starts from the bottom line
 of the screen, it needs to wrap around or scroll (*Note Wrap: E/2/c.).
 
 @node Tab
-@subsubsection         Tab.
+@subsubsection Tab.
 
 If the channel specifies echo mode or TTYST2 specifies ascii
 mode, the tab causes the cursor to be moved rightward up to
@@ -1533,7 +1539,7 @@ If output is not in ascii mode or echo mode, a tab character
 is sent to the tty, and assumed not to move the cursor.
 
 @node ^L
-@subsubsection          Control-L (Formfeed).
+@subsubsection Control-L (Formfeed).
 
 In echo mode, "^L" will normally echo as a clear screen
 ("^PC").  However, on printing ttys (ttys whose %TOMVU is off)
@@ -1543,7 +1549,7 @@ Not in echo mode, "^L" is treated like other random
 control characters.
 
 @node Altmode
-@subsubsection     Altmode.
+@subsubsection Altmode.
 
 If the TTYST2 variable says that altmode should be output in
 ascii mode, or if the channel specifies echo mode, then
@@ -1559,7 +1565,7 @@ understands the SAIL character set", in which case it will
 be assumed to move the cursor one space right.
 
 @node ^P
-@subsubsection          Control-P, the escape code.
+@subsubsection Control-P, the escape code.
 
 "^P" is output like most other control characters (*Note Ctl: E/2/a/10.).
 However, on a channel open in display mode, "^P" serves as
@@ -1568,7 +1574,7 @@ a "^P" using such a channel, the display command "^PP" must
 be used.
 
 @node BS
-@subsubsection          Backspace.
+@subsubsection Backspace.
 
 In echo mode on a terminal which can't backspace, "^H" echoes
 as uparrow-H.
@@ -1579,7 +1585,7 @@ of terminals, backspace simply moves the cursor back one
 position.
 
 @node Random
-@subsubsection      Random Control Characters, and Rubout.
+@subsubsection Random Control Characters, and Rubout.
 
 If TTYST1 specifies ascii mode for these characters, or
 the channel specifies echo mode, then a control character
@@ -1599,7 +1605,7 @@ except for the details of the conversion in the case
 of ascii or echo mode with %TSSAI not set.
 
 @node Contin
-@subsection      Continuation - the Result of Line-overflow.
+@subsection Continuation - the Result of Line-overflow.
 
 When typeout attempts to go past the right margin, the
 system inserts a "!" and a CRLF to make sure that output
@@ -1621,7 +1627,7 @@ The display codes ^PX and ^PB "understand" continuation to some
 extent.  See their descriptions.
 
 @node Wrap
-@subsection        Wraparound and Scrolling - the Results of Page-overflow
+@subsection Wraparound and Scrolling - the Results of Page-overflow
 
 When an attempt is made to linefeed past the bottom line of
 the screen, either the cursor wraps around or the screen scrolls
@@ -1664,7 +1670,7 @@ Wraparound does take place on printing ttys, but it is
 indistinguishable from ordinary linefeed.
 
 @node Display
-@section     Display-mode channels.  ^P-codes.
+@section Display-mode channels.  ^P-codes.
 
 It would be impossible to output a display command using a channel
 which simply printed any character sent out on it.  If it is desired
@@ -1754,7 +1760,7 @@ _	delete character.  The character at the cursor disappears, and
 	does not move.
 
 @node Echo-Area
-@section        The echo area.
+@section The echo area.
 
 Normally there is only one cursor, used by all output, including
 echoing, and visible always on the screen.  However, the program may
@@ -1774,7 +1780,7 @@ the "echo area cursor".
 @end menu
 
 @node How-Echo-Works
-@subsection         How the Echo Area Works.
+@subsection How the Echo Area Works.
 
 One of the per-tty/per-job variables in the system is the size of the
 echo area.  This variable is 0 iff there is no echo area; this is the
@@ -1793,7 +1799,7 @@ just as with the main program cursor, and completely independently,
 but all system echoing is done with %TIMOR set to prevent that.
 
 @node Creating
-@subsection    Creating an Echo Area.
+@subsection Creating an Echo Area.
 
 When a job is created it has no echo area on its console.  When a tty
 in use as a device is first opened, it has no echo area.  The size of
@@ -1803,7 +1809,7 @@ in section G.3.c.  Also, one of the first-time-only bits in the mode
 of the tty input OPEN allows creation of a 3-line echo area.
 
 @node Cursorpos
-@section   Reading the cursor position.
+@section Reading the cursor position.
 
 The symbolic system call RCPOS returns to the program the values
 of the cursor positions of both the main-program area and the
@@ -1945,7 +1951,7 @@ FINISH does not require ownership of the terminal;  just output
 permission (*Note Permit: B/3.).
 
 @node .STATUS-on-output
-@section     .STATUS on tty output channels.
+@section .STATUS on TTY output channels.
 
 The information returned as the STATUS of an output channel resembles
 that returned for an input channel except that bits 2.1 and 2.2 refer
@@ -3587,7 +3593,7 @@ cleared.
 @end table
 
 @node TDORS
-@section       Handling %TDORS.
+@section Handling %TDORS.
 %TDORS is output to a software tty when an output RESET was
 done on the tty, discarding some number of output characters.
 For a normal terminal, ITS keeps track of the cursor position
