@@ -2802,7 +2802,7 @@ To what extent (if at all) the terminal supports the ITS local-editing and
 line-saving protocols.
 @item
 To what extent (if at all) the terminal supports the ITS terminal-independent
-graphics protocol *Note Graphics: (SYSDOC;GRPHCS)*.
+graphics protocol @uref{https://tools.ietf.org/html/rfc746, SYSDOC;GRPHCS}.
 @end itemize
 
 %TQ signifies a bit or field in the left half of TTYSMT, and %TR
