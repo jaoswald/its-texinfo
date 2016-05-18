@@ -1,7 +1,7 @@
 \input texinfo @c -*- texinfo; coding:utf-8 -*-
 @c %**start of header
 @setfilename its-tty
-@documentencoding utf-8
+@documentencoding UTF-8
 @settitle ITS TTY
 @c %**end of header
 
