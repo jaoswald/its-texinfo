@@ -4,39 +4,6 @@
 @documentencoding utf-8
 @settitle ITS TTY
 @c %**end of header
-@c Denote Altmode prettily in TeX.
-@c To make other choices, one may set the flag
-@c   `altmodedollar` or `altmodeliteral` to use $ or literal ^[
-@c Note: should look into @altarg{0,Q} @altvararg{pat,T}
-@c instead of @alt{0Q} or @alt{<pat>T}
-@c Also, should look into automatically indexing the alt-command.
-@c Note: texi2dvi doesn't render the HTML UTF-8 as well as
-@c makeinfo for Texinfo v. 4.13.
-@ifset altmodedollar
-@set altchar $
-@end ifset
-@ifset altmodeliteral
-@set altchar 
-@end ifset
-@ifclear altchar
-@iftex
-@set altchar @mathhexbox27D
-@end iftex
-@ifnottex
-@set altchar ◊
-@end ifnottex
-@end ifclear
-
-@c altk: altmode + key
-@macro altk {key}
-@w{@value{altchar}\key\}
-@end macro
-
-@c altalt: altmode + altmode + key
-@macro altalt {key}
-@c @kindex @value{altchar}@value{altchar}\key\
-@w{@value{altchar}@value{altchar}\key\}
-@end macro
 
 @copying
 This file is derived from PI:INFO;ITS TTY downloaded from up.update.uu.se.
@@ -611,6 +578,7 @@ Similarly, the "^_O" switch does not interact with the "^_E" switch.
 
 @node Respond
 @subsection Telling the system how to respond to "^_C" requests
+
 Any terminal may be in any one of three modes: accept mode, refuse
 mode, and query mode.  Accept mode is the default, and causes "^_C"
 requests to succeed; refuse mode causes them to fail; query mode
@@ -763,8 +731,9 @@ several levels past programs that are trying to prevent that.
 Since super-image input mode now exists, such an attempt is futile.
 This "feature" can probably be flushed if anyone wishes.
 
-The "@altk{P}" command causes DDT to do an .ATTY, among other things.
-"^P" does not.  DDT does a .DTTY when an "@altk{P}"'ed job returns to DDT.
+@c @altk{P}
+The "$P" command causes DDT to do an .ATTY, among other things.
+"^P" does not.  DDT does a .DTTY when an "$P"'ed job returns to DDT.
 
 A job need not have the tty to do an .ATTY or .DTTY.  In fact, they
 are the only operations on ttys that work as well without the tty
@@ -787,7 +756,8 @@ superior's %TBINF are both 1.  A job has type-out permission iff a
 chain of inheritance reaches up from it to the top of the tree or to
 the job which owns the TTY. 
 
-The DDT command @altalt{^P} works by means of this feature.
+@c @altalt{^P}
+The DDT command $$^P works by means of this feature.
 
 @node .TTY
 @section The .TTY variable
@@ -2188,9 +2158,10 @@ located in the byte for that group, as follows:
 character-group is in question.  Right now it is defined only for group 1
 (letters) and means "convert lower case to upper case).
 @item %TGIMG==10
+@c @altalt{^P}
 1 => output the characters of this group in image mode. @xref{Normal}, for the
 consequences of setting this bit.  It is likely that this feature will be
-flushed soon, since it cannot be made to work right with the @altalt{^P}
+flushed soon, since it cannot be made to work right with the $$^P
 feature that allows several jobs to type out at once.
 @item %TGPIE==20
 1 => echo these characters at interrupt level. @xref{Echo}.
