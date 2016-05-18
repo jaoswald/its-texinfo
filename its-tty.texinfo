@@ -3641,3 +3641,4 @@ the hold-output bit after an output reset.
 SCPOS does not require ownership of the terminal;  just output
 permission (*Note Permit: B/3.).
 
+@bye
