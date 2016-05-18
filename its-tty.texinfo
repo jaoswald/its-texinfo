@@ -1859,8 +1859,7 @@ To be efficient, use SIOT.  Block mode IOT will ignore
 "^C", which may be embarrassing.
 
 If the characters output in superimage mode will move the cursor,
-the SCPOS system call must be used to tell ITS about it.
-@c @ref{SCPOS}
+the SCPOS system call must be used to tell ITS about it. @ref{SCPOS}
 
 @node TTYOPT Bits
 @section      Relevant TTYOPT bits.
@@ -3036,8 +3035,7 @@ sty to operate in "don't hang" mode in that direction. @xref{Empty}.
 @xref{STY Empty}.
 Bit 3.5, on input, says that %TDORS should
 be provided when tty output is reset, even if the tty is
-not a software tty
-@c @ref{TDORS}.
+not a software tty @ref{TDORS}.
 This makes
 it possible for the sty handling job to tell when tty output
 has been thrown away.
