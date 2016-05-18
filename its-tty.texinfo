@@ -956,7 +956,7 @@ named bits, as described below.  They exist for historical reasons.
 3.4	1 => "DDT" (clear %TGPIE and %TGMPE bits for CR, LF and TAB)
 3.6	1 => want 3 lines in echo area.
 	 (that is, the OPEN should do a SCML with argument 3.
-	  *Note SCML: E/4.).
+	 @ref{SCML}).
           
 @node Input
 @chapter Input from terminals.
@@ -1024,7 +1024,7 @@ the character itself if that is right.  The bits are
 %TXPIE=200000 saying PI echo was desired, and %TXMPE=400000
 saying MP echo was desired.
 
-The bit %TSNOE in the TTYSTS variable (*Note TTYSTS: G/1/b.), when set
+The bit %TSNOE in the TTYSTS variable (@pxref{STS}), when set
 to 1, causes echoing to be deferred; that is, echoing will not be
 performed while the bit is set, but the system still remembers what
 echoing is pending, and will again start doing it when %TSNOE becomes
@@ -1052,16 +1052,16 @@ it is provided for the sake of device-independence.  Programs
 should normally read from the tty in unit mode.
 
 IOT'ing on the job's console cannot actually be done unless the
-job has control of the console (*Note Owner: B.).  If it does not,
+job has control of the console @xref{Control}.  If it does not,
 either the IOT will wait until the job gets the tty, or a class 2
 interrupt will result, depending on the %TBINT and %TBWAT
 bits in .TTY (@pxref{.TTY}).
 Also, on any tty, IOT's will wait until either the tty is
 not in a com link, or the tty is slaved, or %TCICO is set
-(*Note Com: A/4/e.).
+@xref{Overrides}.
 
 Input IOT's executed when the input buffer is empty will
-normally wait until input is available (*Note Wait: D/3.).  However,
+normally wait until input is available @xref{Activation}.  However,
 if %TINWT is set, the IOT will not wait at all.  Instead, unit mode
 IOT's will immediately return -1; SIOT's and block mode IOT's
 will return with the supplied block not completely filled
@@ -1493,7 +1493,7 @@ the horizontal position is not zero.
 The bottom of the screen poses special problems for LF.
 If the LF reaches the lowest line on the screen, it may
 trigger **MORE** processing.  If it starts from the bottom line
-of the screen, it needs to wrap around or scroll (*Note Wrap: E/2/c.).
+of the screen, it needs to wrap around or scroll @xref{Wrap}.
 
 @node Tab
 @subsubsection Tab.
@@ -1515,7 +1515,7 @@ is sent to the tty, and assumed not to move the cursor.
 In echo mode, "^L" will normally echo as a clear screen
 ("^PC").  However, on printing ttys (ttys whose %TOMVU is off)
 or if the program has set %TSCLE (Control-L Echo) "^L" will
-echo like other random control characters (*Note Ctl: E/2/a/10.).
+echo like other random control characters @xref{Random}.
 Not in echo mode, "^L" is treated like other random
 control characters.
 
@@ -1538,7 +1538,7 @@ be assumed to move the cursor one space right.
 @node ^P
 @subsubsection Control-P, the escape code.
 
-"^P" is output like most other control characters (*Note Ctl: E/2/a/10.).
+"^P" is output like most other control characters @xref{Random}.
 However, on a channel open in display mode, "^P" serves as
 an escape prefix for display commands.  In order to output
 a "^P" using such a channel, the display command "^PP" must
@@ -1683,7 +1683,7 @@ K	Kill (erase) the character the cursor points at.  The cursor
 	 written in next by ordinary output.
 L	clear Line.  The current line, starting with the position that
 	 the cursor points at, is erased.  The cursor does not move.
-M	(More) hang up until a character is read in.  *Note More: F/3.
+M	(More) hang up until a character is read in.  @xref{Programmed}.
 N	(No home-up) similar, but don't home up after the character is
 	 read.
 P	output "^P".  Useful if it is desired to output "^P" in image
@@ -1776,7 +1776,7 @@ When a job is created it has no echo area on its console.  When a tty
 in use as a device is first opened, it has no echo area.  The size of
 the echo area may be changed (and, in particular, an echo area may be
 created or destroyed) with the SCML symbolic system call, described
-in section G.3.c.  Also, one of the first-time-only bits in the mode
+in @ref{SCML}.  Also, one of the first-time-only bits in the mode
 of the tty input OPEN allows creation of a 3-line echo area.
 
 @node Cursorpos
@@ -1812,8 +1812,8 @@ When %TISIO is 1, output is done in superimage mode.  That means that
 no padding will be done, and the system will not do cursor positioning
 or attempt to keep track of where the cursor is; every character
 IOT'ed will be sent without change.  In addition, ITS output buffer
-display commands may be sent directly, rather than via ^P-codes
-(*Note SUPDUP: K/1).  This mode is useful when output is
+display commands may be sent directly, rather than via ^P-codes @xref{Escape}.
+This mode is useful when output is
 being done to a strange device that is connected to the system via a
 tty line (for example, a logo music box or a PDP11 running the
 absolute loader), and when the output has already been put into the
@@ -1828,7 +1828,7 @@ To be efficient, use SIOT.  Block mode IOT will ignore
 
 If the characters output in superimage mode will move the cursor,
 the SCPOS system call must be used to tell ITS about it.
-*Note SCPOS: K/3.
+@c @ref{SCPOS}
 
 @node TTYOPT Bits
 @section      Relevant TTYOPT bits.
@@ -1919,7 +1919,7 @@ The call's only argument is a tty output channel number:
 		401000,,CHTTYO]
 	 .LOSE %LSFIL		;CALL FAILS??
 FINISH does not require ownership of the terminal;  just output
-permission (*Note Permit: B/3.).
+permission @xref{Permission}.
 
 @node .STATUS-on-output
 @section .STATUS on TTY output channels.
@@ -1927,7 +1927,7 @@ permission (*Note Permit: B/3.).
 The information returned as the STATUS of an output channel resembles
 that returned for an input channel except that bits 2.1 and 2.2 refer
 to the output buffer rather than the input buffer, and bits 2.5, 2.8
-and 2.9 are not returned with any information.  *Note In-status: D/7.
+and 2.9 are not returned with any information.  @xref{.STATUS}.
 
 @node More
 @chapter **MORE** processing.
@@ -2270,7 +2270,7 @@ returns it in external form (=internal form divided by LUBLK).
 @subsection        The Size of the Echo Area.
 
 The vertical size of the echo area is a per-tty/per-job
-variable.  *Note Echo area: E/4.
+variable.  @xref{Echo-Area}.
 
 @node Calls
 @section Symbolic system calls.
@@ -2497,7 +2497,7 @@ for new jobs).
 @item %TOROL==100
 3.7 similarly, used to init %TSROL for new jobs.
 @item %TORAW==40
-3.6 => don't optimize cursor motion (*Note Out: E/7.).
+3.6 => don't optimize cursor motion @xref{TTYOPT Bits}.
 @item %TOLWR==20
 3.5 => this tty has lower case keyboard.v(Doesn't affect system actions -
 exists to tell user programs what to do).
@@ -2533,14 +2533,14 @@ such as Telerays which have Edit keys.
 @item %TPTEL==100
 1.7 => Treat CRLF input as CR for TELNET protocol.
 @item %TPCBS==40
-1.6 => intelligent terminal protocol in use.  *Note ITP: J.
+1.6 => intelligent terminal protocol in use.  @xref{Intelligent Terminal Protocol}.
 @item %TP11T==20
 1.5 => PDP-11 TV tty.  Reflects %TY11T.  not settable by user.
 @item %TPORS==10
 1.4 => output reset on this tty should really do something.
 @item %TPRSC==4
 1.3 => this terminal implements %TDRSU and %TDRSD.  These are commands usable
-in superimage output which perform region scrolling.  *Note RSC: K/1.
+in superimage output which perform region scrolling.  @xref{Codes}.
 @end table
 
 @node TCTYP
@@ -2572,7 +2572,7 @@ PDP-11 TV.
 Memowreck.
 @item %TNSFW==7
 "software" terminal that expects internal ITS display commands ("SUPDUP"
-codes).  *Note SUPDUP: I/3/e.
+codes).  @xref{Codes}.
 @item %TNTRM==10
 Terminet.
 @item %TNESC==11
@@ -3000,11 +3000,13 @@ on an input open is copied into the associated tty's %TOHDX bit,
 so if the sty is opened for input in image mode,
 characters output to the sty will not be read back in as echo.
 Bit 3.4, if 1 in either an input or an output open, causes the
-sty to operate in "don't hang" mode in that direction.
-*Note NH Out: I/2/a.  *Note NH In: I/3/a.
+sty to operate in "don't hang" mode in that direction. @xref{Empty}.
+@xref{STY Empty}.
 Bit 3.5, on input, says that %TDORS should
 be provided when tty output is reset, even if the tty is
-not a software tty (*Note TDORS: K/2.).  This makes
+not a software tty
+@c @ref{TDORS}.
+This makes
 it possible for the sty handling job to tell when tty output
 has been thrown away.
 
@@ -3157,7 +3159,7 @@ tty associated with the specified sty.  The calls that are most
 useful in this mode are TTYGET, CNSGET and CNSSET.  TTYGET returns
 the TTYSTS variable, which tells whether the tty is in use (%TSFRE),
 by what job (the R.H.), and whether as a console or as a device
-(%TSCNS) (*Note TTYSTS: G/1/b. for a description of the TTYSTS variable and the
+(%TSCNS) @ref{STS} for a description of the TTYSTS variable and the
 values of those two bits).  CNSGET returns the information that ITS
 uses in deciding exactly how to treat the tty.  CNSSET sets that
 information.  Programs that use sty's will often want to do a CNSSET
@@ -3397,7 +3399,7 @@ To stop using the allocation feature, just do ^\ ^I.
 @node Output Reset
 @section       Output-reset.
 
-If the TTY is a software-tty (*Note Soft: K.), uses the
+If the TTY is a software-tty @xref{Intelligent Terminal Protocol}, uses the
 intelligent terminal protocol (has %TPCBS on in TTYOPT), and
 does output-resets (has %TPORS on in TTYOPT), then .RESET on
 an output channel to that tty is handled specially.  Any characters
@@ -3577,8 +3579,8 @@ actual cursor position after each RESET.  RESET turns on
 the "hold output" bit for the tty, to make sure that
 nothing happens to confuse the matter until that is done.
 Actual terminals should use the ^\ ^P # # command of the
-Intelligent Terminal Protocol (*Note ITP: J/3.).  Sty
-handlers should use the SCPOS system call (*Note SCPOS: K/3.).
+Intelligent Terminal Protocol @xref{Output Reset}.  Sty
+handlers should use the SCPOS system call @xref{SCPOS}.
 
 %TDORS will be sent to sty ttys even if they are not
 software ttys, if %SSORS is set for the sty.  That will
@@ -3609,7 +3611,7 @@ equivalent of an SCPOS after output RESETs, but they use
 the Intelligent Terminal Protocol instead.
 
 The first argument to an SCPOS system call should be a tty specifier
-(*Note TTY spec: G/2.).
+@xref{Calls}.
 The next two arguments should be the corrected vertical and
 horizontal positions.
 The third argument is optional, and if present sets the TTOALC
@@ -3617,6 +3619,5 @@ variable of the tty.  A third argument of -1 is the way to clear
 the hold-output bit after an output reset.
 
 SCPOS does not require ownership of the terminal;  just output
-permission (*Note Permit: B/3.).
-
+permission @xref{Permission}.
 @bye
