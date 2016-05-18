@@ -1291,12 +1291,18 @@ combination with %TXTOP.  TECO ORDER has more information on this.
 
 The modifier bits are:
 
-	%TXTOP	Indicates that the TOP key was held down (usually).
-		Can also indicate some special characters (see below).
-	%TXCTL	Indicates that the CTRL key was held down.
-	%TXMTA	Indicates that the META key was held down.
-	%TXSUP	Indicates that the SUPER key was held down.
-		(This used to mean that the SHIFT key was held down.)
+@table @code
+@item %TXTOP
+Indicates that the TOP key was held down (usually).  Can also indicate some
+special characters (see below).
+@item %TXCTL
+Indicates that the CTRL key was held down.
+@item %TXMTA
+Indicates that the META key was held down.
+@item %TXSUP
+Indicates that the SUPER key was held down.  (This used to mean that the SHIFT
+key was held down.)
+@end table
 
 Numerically, %TXTOP=4000, %TXCTL=200, %TXMTA=400, and %TXSUP=1000.
 %TXASC=177 is a mask for the 7-bit ascii basic character.
@@ -1307,33 +1313,54 @@ code, but CTRL and META are simply added in.
 Some special keys are indicated by %TXTOP plus the ascii code for
 a capital letter.  These can also be combined with %TXCTL, %TXMTA and %TXSUP.
 
-	%TXTOP+A	ESCAPE.  Note that the ESCAPE key is used to send commands
-			to the terminal controller (see ITS TV), so it cannot
-			be sent to the system except with CTRL or META.
-	%TXTOP+B	BREAK.  Recommended as the character for "getting out of"
-			programs where CALL is not what you want.
-	%TXTOP+C	CLEAR.
-	%TXTOP+D	circle-minus.  An unassigned printing character key.
-	%TXTOP+E	circle-plus.  An unassigned printing character key.
-	%TXTOP+F	delta.  An unassigned printing character key.  (shift circle-minus)
-	%TXTOP+G	del.  An unassigned printing character key.  (shift circle-plus)
-	%TXTOP+H	Help key (top H).  Recommended for getting help.
-			 This code is unusual in that it is passed to the
-			 program as %TXTOP+H even when %TIFUL is not set.
-	%TXTOP+Z	Internal code for deferred call.
+@table @code
+%TXTOP+A
+ESCAPE.  Note that the ESCAPE key is used to send commands to the terminal
+controller (see ITS TV), so it cannot be sent to the system except with CTRL
+or META.
+@item %TXTOP+B
+BREAK.  Recommended as the character for "getting out of" programs where CALL
+is not what you want.
+@item %TXTOP+C
+CLEAR.
+@item %TXTOP+D
+circle-minus.  An unassigned printing character key.
+@item %TXTOP+E
+circle-plus.  An unassigned printing character key.
+@item %TXTOP+F
+delta.  An unassigned printing character key.  (shift circle-minus)
+@item %TXTOP+G
+del.  An unassigned printing character key.  (shift circle-plus)
+@item %TXTOP+H
+Help key (top H).  Recommended for getting help.  This code is unusual in that
+it is passed to the program as %TXTOP+H even when %TIFUL is not set.
+@item %TXTOP+Z
+Internal code for deferred call.
+@end table
 
 Other special keys, which generate codes in the ascii controls region
 and without %TXTOP, are:
 
-	10	Backspace
-	11	Tab
-	12	Line
-	13	VT
-	14	Form (recommended for clear and redisplay the screen)
-	15	Return (recommended for end of line)
-	37	Back-next (used for input escape, *Note Escape: A.)
-	33	Altmode
-	177	Rubout (recommended for character deletion)
+@table @code
+@item 10
+Backspace
+@item 11
+Tab
+@item 12
+Line
+@item 13
+VT
+@item 14
+Form (recommended for clear and redisplay the screen)
+@item 15
+Return (recommended for end of line)
+@item 37
+Back-next (used for input escape, @pxref{Strange})
+@item 33
+Altmode
+@item 177
+Rubout (recommended for character deletion)
+@end table
 
 Some of these have printed representations on output.  Backspace, Tab,
 Line, and Return are format effectors.  Altmode is a printing character.
