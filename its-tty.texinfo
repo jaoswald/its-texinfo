@@ -3512,7 +3512,7 @@ Clear out character after cursor, without moving cursor.
 @item %TDMTF==205
 Turn off motor (should not come out except on terminets).
 @item %TDMTN==206
-Turn on motor (" ").
+Turn on motor (should not come out except on terminets).
 @item %TDCRL==207
 Move cursor to beginning of next line, and clear that line.  If done when the
 cursor is on the bottom line, it causes the terminal to scroll its whole screen
@@ -3522,9 +3522,9 @@ No-op.
 @item %TDBS==211
 Backspace - used only on tty's with %TORAW set.
 @item %TDLF==212
-Linefeed - (").
+Linefeed - used only on tty's with %TORAW set.
 @item %TDRCR==213
-Carriage return - (").
+Carriage return - used only on tty's with %TORAW set.
 @item %TDORS==214
 Output reset.  Put in the buffer when a tty output reset is done, to inform the
 sty handling program or the terminal.  Should never be sent by a program
