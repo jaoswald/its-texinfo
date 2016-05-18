@@ -10,11 +10,14 @@ This file is derived from PI:INFO;ITS TTY downloaded from up.update.uu.se.
 It is available under the same license terms as the Incompatible Timesharing
 System documentation.
 @end copying
+
 @titlepage
 @title Incompatible Timesharing System (ITS) TTY
 @author from the PI distribution
 @end titlepage
+
 @contents
+
 @ifnottex
 @node Top
 @top ITS TTY
@@ -534,6 +537,7 @@ to supply another).
 
 @node Overrides
 @subsection Input and output overrides.  "^_I" and "^_O".
+
 Normally, on a terminal in com mode input is not passed to the
 program and programs may not type out (.IOT's hang).  That can be
 explicitly changed with "^_I" and "^_O".  "^_O" complements the
@@ -960,6 +964,7 @@ named bits, as described below.  They exist for historical reasons.
           
 @node Input
 @chapter Input from terminals.
+
 Characters typed on a terminal, aside from those that invoke the
 CALL and ESCAPE functions, go into an input buffer from which
 they may eventually be read by the program (if the buffer is
