@@ -22,7 +22,6 @@ System documentation.
 This file describes just about all there is to know about using and 
 programming TTYs (abbreviation for "Teletypes", for which read "consoles")
 on the ITS operating system.
-@end ifnottex
 
 @menu
 * Special::                     Characters specially interpreted when typed on the TTY.
@@ -227,6 +226,8 @@ Software TTYs and ITS output buffer codes.
 
 @end detailmenu
 @end menu
+
+@end ifnottex
 
 @node Special
 @chapter Characters Specially Interpreted When Typed on the TTY.
